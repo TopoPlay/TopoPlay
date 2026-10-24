@@ -1,3 +1,9 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Added in the TopoPlay educational fork.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
 #pragma once
 // V67_WATER_RETURN_V72: pre-10x ripple dynamics; broad V70 absorber removed.
 // WATER_CREDITS_V69: the adapted Evan Wallace ripple update retains its MIT

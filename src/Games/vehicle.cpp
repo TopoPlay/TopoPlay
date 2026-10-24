@@ -1,3 +1,9 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Modified from upstream Magic-Sand.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
 #include "../World/AnimalTerrain.h" // ANIMAL_LEVELS_V56
 /***********************************************************************
 vehicle.cpp - vehicle class (animals/BOIDS moving in the sandbox)

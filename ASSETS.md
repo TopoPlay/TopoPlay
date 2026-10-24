@@ -2,14 +2,14 @@
 
 
 This record supersedes the earlier source-only asset review for the following
-replacement files. The reviewed/generated core media, restored thunder WAV and font license text
+replacement files. The reviewed/generated core media, generated public thunder WAV and font license text
 are bundled in this GitHub preparation package.
 Hashes identify the prepared replacement assets, not an assertion that every file
 in a locally edited installation still matches. See `docs/assets/KNOWN-ASSET-HASHES.json` and the complete package manifest.
 
 | Runtime paths relative to bin/data | Origin / notice |
 | --- | --- |
-| `rain/thunder.wav` | Friendly Free Sounds; credited in README, CREDITS, rain source comment and sidecar. Operator-supplied permission record and exact restored hash in `docs/assets/THUNDER-PERMISSION.md`. |
+| `rain/thunder.wav` | Original mathematical synthesis without samples; recipe `docs/assets/synthesize-thunder.py`, hash and history in `docs/assets/THUNDER-PERMISSION.md`. |
 | `volcano/warning.wav`, `volcano/eruption.wav` | Mathematical synthesis without imported samples; recipe `docs/assets/synthesize-sounds.py`. |
 | `volcano/lava.jpg`, `volcano/whitesmoke.png` | Generated artwork; smoke is also used for clouds. |
 | `dig/dinotrex.png`, `dig/closedchest.png` | Generated fossil and chest artwork. |
@@ -26,16 +26,21 @@ that their original prompts are in the core artwork JSON. New shaders and proced
 sharks, rays, bone/shovel controls, flames and effects are source-rendered features;
 the original source notices and project license remain applicable.
 
-## Remaining legacy resources
+## GUI artwork
 
-Unused or optional old map-game images, reference islands and splash screens
-have not acquired a new redistribution license merely because replacement
-artwork was created elsewhere. Their individual provenance still needs review,
-replacement, or exclusion from a public export. Original font files in backups
-are not licensed by the DejaVu replacement. Do not publish personal calibration,
-box-startup settings, performance captures or automatic backups.
+The five files under `bin/data/ofxbraitsch/ofxdatgui/` match the corresponding
+ofxDatGui upstream files byte for byte. Stephen Braitsch's MIT notice is included
+in `licenses/ofxDatGui-MIT.txt`. Exact paths, hashes and the checked upstream
+commit are recorded in `docs/assets/gui-image-provenance.json`.
+
+## Source snapshot boundaries
+
+Old map-game island/splash resources are not included in this source snapshot.
+This does not license other old files kept in local installations or backups.
+The DejaVu replacement does not license original font binaries in old backups.
+Keep calibration, box-startup settings, performance captures and backups private.
 
 The GPL source license and media permission records serve different purposes.
-Keep original author/dependency/font notices; do not label the thunder or every
-asset as public domain, Creative Commons, or AI-generated. This update records
+Keep original author/dependency/font notices; do not label all assets as public
+domain or as sharing a blanket media license. This update records
 known origins and permissions and does not invent a blanket license for media.

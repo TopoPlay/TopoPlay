@@ -1,25 +1,28 @@
-# Thunder recording: credit and permission record
+# Public thunder asset and historical recording
 
-Credit: **Thunder sound effect by Friendly Free Sounds**
+The current `bin/data/rain/thunder.wav` is original mathematical synthesis made
+for the public TopoPlay source release. It imports no recordings or audio samples.
+The generator is `docs/assets/synthesize-thunder.py` (GPL-2.0-or-later); the generated
+WAV is distributed under the same terms to the extent copyright applies.
 
-Original video: https://www.youtube.com/watch?v=xK_m77VZYnc
-Title supplied by operator: Thunder Sound Effect
-Publication date supplied by operator: April 7, 2023
+- SHA-256: `49e61a7a89940e395a1ffc1977bbafd171993e6401deb9c6226384aea49811b0`
+- Stereo PCM, 44,100 Hz, 16 bits, 1,539,072 frames (about 34.900 seconds).
+- Main onsets: 1, 9, 21 and 26 seconds, matching the existing flash schedule.
+- Generation environment: NumPy 2.3.5, SciPy 1.17.0.
+- The recording's duration, format and runtime path are preserved. Sound quality
+  and hardware playback of this replacement still need operator testing.
 
-The operator pasted the creator's description into the project conversation.
-It explicitly permits use in videos, games, animations and other media, and
-requests credit to the channel. That supplied permission is the basis for use
-here; no Creative Commons license identifier or public-domain status is asserted.
-The live YouTube page could not be fetched during preparation of this record.
-Keep this credit and record with distributions of the sound.
+## Earlier local recording
 
-The WAV was supplied by the operator in the runtime review export. This patch
-restores those exact bytes, without trimming, processing or re-encoding:
+Earlier source snapshots and the operator's installed sandbox used Friendly Free
+Sounds' “Thunder Sound Effect”, identified by the operator as published April 7,
+2023: https://www.youtube.com/watch?v=xK_m77VZYnc . That creator is credited here
+for the earlier recording, not for the current generated WAV. The operator
+reported permission for media/game use with channel credit. The original wording
+could not be retrieved to establish standalone source-package redistribution,
+so the recording is excluded from the current source snapshot.
 
-- Runtime path: `bin/data/rain/thunder.wav`
-- SHA-256: `3798a887ff469d0986eb6413514abb66379c1ba398a9308894c34ae70c237c92`
-- PCM WAV, stereo, 44,100 Hz, 16 bits, 1,539,072 frames (34.899592 seconds).
-- The original replacement-asset manifest records this same hash as the prior WAV.
-- This recording replaces the earlier synthesized thunder; the warning and eruption sounds remain synthesized.
-- Matching the operator's supplied file and URL is based on their identification;
-  the WAV metadata does not independently certify authorship of the recording.
+Earlier Git commits can still contain that recording. Replacing it in the current
+source does not erase Git history or settle permission for earlier copies. Do not
+attach an old source archive containing it as the new public source release.
+The separately installed sandbox is not changed by this repository update.

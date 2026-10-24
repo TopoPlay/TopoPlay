@@ -1,3 +1,9 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Modified from upstream Magic-Sand.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
 #include "ProjectedModeButtons.h" // MODE_BUTTONS_V37
 #include "BoneRoiFootprint.h" // BONE_CORNER_V36
 #include "FossilRoiSurface.h" // FOSSIL_SURFACE_V35

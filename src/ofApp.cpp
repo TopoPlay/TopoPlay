@@ -1,3 +1,9 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Modified from upstream Magic-Sand.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
 /* PROJECT_ATTRIBUTION_V45
  * Magic-Sand: Thomas Wolf and Rasmus R. Paulsen; based in part on
  * Oliver Kreylos / UC Davis / KeckCAVES SARndbox and Gene Kogan's calibration toolkit.

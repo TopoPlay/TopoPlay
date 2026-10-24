@@ -1,3 +1,5 @@
+// TopoPlay compatibility snapshot: local modifications; notice updated 2026-10-23.
+// See dependencies/README.md and patches; original MIT notice is retained.
 /*
     Copyright (C) 2016 Stephen Braitsch [http://braitsch.io]
 

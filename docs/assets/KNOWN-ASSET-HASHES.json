@@ -2,116 +2,146 @@
   {
     "path": "bin/data/Batang.ttf",
     "sha256": "8f2c103bfa3fd5de71f1b92b18f21906b5a26871fb7e19a9a4c9af539c3cc7ab",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
   },
   {
     "path": "bin/data/Verdana.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
   },
   {
     "path": "bin/data/cooperBlack.ttf",
     "sha256": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
   },
   {
     "path": "bin/data/demo/mounding-hands.png",
     "sha256": "f5adc64c191bcb3a05359aba9c8fefb109118571c856aadd572efb47e9278cab",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/demo/rain-hand.png",
     "sha256": "eef35817e31d56ea2f951410fb401f23e433ade91897aa65eb40eec556ffc0b3",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/dig/closedchest.png",
     "sha256": "38c6cbc557f40812ee088834cb802a5e7a32680debb133520a7a1a820cfa5944",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/dig/dinotrex.png",
     "sha256": "1603146a95f862c131686f482840992b634746299b4035af103afd147379f1e6",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
-    "path": "bin/data/licenses/DejaVu-fonts-copyright.txt",
-    "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "path": "bin/data/images/rain-pool-caustics-v28.png",
+    "sha256": "04c8435e85bcba2bb5cd3c5055c6c129df6d5bc9b82b80f220bad900516e01bc",
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/ofxbraitsch/fonts/HelveticaNeueLTStd-Md.otf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
   },
   {
     "path": "bin/data/ofxbraitsch/fonts/Roboto-Regular.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
   },
   {
     "path": "bin/data/ofxbraitsch/fonts/Verdana.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-group-closed.png",
+    "sha256": "e2b8e67b07f30d3d99f4b0176d57e62832e9b9c1388ea7a39f6601ed9f0aa4ca",
+    "origin": "Stephen Braitsch/ofxDatGui; MIT; see gui-image-provenance.json"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-group-open.png",
+    "sha256": "949799ca9de4548c0ba016f1ad67746fd7cc91cb1b2de4830814bd01706f5dd0",
+    "origin": "Stephen Braitsch/ofxDatGui; MIT; see gui-image-provenance.json"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-radio-off.png",
+    "sha256": "0230c9932a9f5936f5889e8ae81471c18b7cbeeb8b61a4f2d5e4c908dfb88d0c",
+    "origin": "Stephen Braitsch/ofxDatGui; MIT; see gui-image-provenance.json"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-radio-on.png",
+    "sha256": "3d4c43b12a1e2d28d57a5589a20430548335cf037648719a4e6321cad8a4c921",
+    "origin": "Stephen Braitsch/ofxDatGui; MIT; see gui-image-provenance.json"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/picker-rainbow.png",
+    "sha256": "b9d37045ccb0881d53ff7fa5c5bc6cf8f49a73b0d971dff1dc50d91efc44cf40",
+    "origin": "Stephen Braitsch/ofxDatGui; MIT; see gui-image-provenance.json"
+  },
+  {
+    "path": "bin/data/rain/thunder.wav",
+    "sha256": "49e61a7a89940e395a1ffc1977bbafd171993e6401deb9c6226384aea49811b0",
+    "origin": "Original mathematical synthesis; see synthesize-thunder.py and THUNDER-PERMISSION.md"
   },
   {
     "path": "bin/data/textures/grass.jpg",
     "sha256": "1e4bc84d2444bce86de0b25da252090a38049b90c859a8d320419763ab0d176a",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/textures/mountainside.jpeg",
     "sha256": "b2122b39cd09b86c03341cf0f0e2dd375f2bda20d3897c8feca817eb75c6d899",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/textures/rock_diff.jpg",
     "sha256": "b2122b39cd09b86c03341cf0f0e2dd375f2bda20d3897c8feca817eb75c6d899",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/textures/sandygrass.jpg",
     "sha256": "97fc5f0c477207bf45c69883159e9a45e9383865eb63793def3bdc1d69874f2d",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/textures/snow_diff.jpg",
     "sha256": "a6da9713d1bb27d9901642a4cd612645290bcca651d69bb47d7ec793c9156b04",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/textures/spottygrass.jpg",
     "sha256": "1e4bc84d2444bce86de0b25da252090a38049b90c859a8d320419763ab0d176a",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
+  },
+  {
+    "path": "bin/data/vegetation/pine-v1.png",
+    "sha256": "205526a418c28aed0b8dd21c2081249b4462fc3e949c727abe0459f4a89f6d05",
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/verdana.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Unmodified DejaVu font compatibility alias; see font-aliases.json and DejaVu-fonts-copyright.txt"
   },
   {
     "path": "bin/data/volcano/eruption.wav",
     "sha256": "80f10edbdb636a0a854ccfe73f490f6850a80e6b8f7389f89d68353c68fee668",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Original mathematical synthesis; see synthesize-sounds.py"
   },
   {
     "path": "bin/data/volcano/lava.jpg",
     "sha256": "a3b0196d4a04b4869c1f9692db2a5b5fa0bd1eafe07604f577fa25194c8798f6",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   },
   {
     "path": "bin/data/volcano/warning.wav",
     "sha256": "a66ab9bbabd9f51d4ddd336e90692d42411e2acdd0dfbf9a0c942247ca9ef1f2",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Original mathematical synthesis; see synthesize-sounds.py"
   },
   {
     "path": "bin/data/volcano/whitesmoke.png",
     "sha256": "08bfdfa0aad4cf79f68662a1b8569caff01c81a2d12996f6f716e3f15db13bcd",
-    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
-  },
-  {
-    "path": "bin/data/rain/thunder.wav",
-    "sha256": "3798a887ff469d0986eb6413514abb66379c1ba398a9308894c34ae70c237c92",
-    "origin": "Friendly Free Sounds; operator supplied converted WAV; permission record alongside"
+    "origin": "Generated artwork; see ASSETS.md and image-prompts-and-provenance.json where applicable"
   }
 ]

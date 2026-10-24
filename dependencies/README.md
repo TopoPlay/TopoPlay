@@ -49,3 +49,13 @@ theme before it is available. ofxModal binds callbacks to the window that opened
 the modal, removes those listeners on closing, and ensures a nonzero animation
 duration. The patch also preserves the operator's existing diagnostic logging.
 These are the exact captured changes, not newly refactored dependency code.
+
+## Source-release notice update
+
+Original addon MIT notices are preserved. The five captured ofxDatGui files and
+two captured ofxModal files now also carry dated, comment-only TopoPlay snapshot
+notices. These notice comments were added after the captured compatibility patches;
+applying the original patches reproduces their functional changes, not these later
+annotation bytes. openFrameworks 0.12.1's full license text is included in
+`licenses/openFrameworks-0.12.1-LICENSE.md`; addon MIT notices are also centralized
+under `licenses/`. Dependencies downloaded separately retain their own licenses.

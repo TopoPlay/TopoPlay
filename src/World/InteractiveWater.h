@@ -1,3 +1,9 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Added in the TopoPlay educational fork.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
 #pragma once
 // WATER_CREDITS_V69: this project renderer uses the MIT-attributed ripple
 // algorithm in WaterRippleGrid.h plus project-specific hydraulic heights.

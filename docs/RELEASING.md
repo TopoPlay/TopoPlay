@@ -1,16 +1,22 @@
-# TopoPlay release checklist
+# Source release checklist
 
-1. Keep the operator's final tested backup intact.
-2. Build bin/TopoPlay with scripts/build.sh; test calibration, water, modes, saved
-   settings, demo, CPU behavior and projector/lid handling on the original box.
-3. Create a public bundle with scripts/package-release.py --output /chosen/file.tar.gz.
-4. Extract and run scripts/install.py; select the intended install folder.
-5. Test the complete bundle on a clean compatible Linux system, including a path
-   containing spaces. Check dependencies, Kinect USB permissions, menu launch,
-   settings persistence, update preservation and optional mode-lock behavior.
-6. Include source, original notices, GPL text, component licenses, asset credits
-   and the recorded dependency/addon patches. Follow docs/PUBLISHING.md.
+1. Retain the operator's working installation and private final backup.
+2. Run `python3 scripts/verify-package.py` in the current source repository.
+3. Confirm source notices, GPL text, dependency MIT/Boost notices, media provenance,
+   DejaVu license and generated thunder recipe are included.
+4. Build/test if possible on the original hardware; label untested changes honestly.
+   The new thunder requires an audible hardware check. Source notices do not alter
+   simulation/rendering logic or saved settings.
+5. Commit, push and create a source archive from that exact commit. Example:
 
-A successful same-machine copy is not a cross-distribution validation. The build
-machine's Linux/libc/architecture are recorded in RELEASE.json. The separate
-projector handoff experiment remains a known independent change/test.
+```bash
+git archive --format=zip --prefix=TopoPlay/ \
+  --output="$HOME/Desktop/TopoPlay-1.0.1-source.zip" HEAD
+```
+
+6. Attach only that current archive when publishing a source release; identify it
+   as source requiring separately installed dependencies. See PUBLISHING.md.
+
+No compiled application or shared-library bundle is cleared by this source review.
+Binary distribution remains a separate license/dependency and clean-system test.
+Earlier Git history still contains the previous recording; see the sound record.

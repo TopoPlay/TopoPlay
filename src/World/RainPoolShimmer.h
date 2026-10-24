@@ -1,3 +1,10 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Added in the TopoPlay educational fork.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
+// SPDX-License-Identifier: GPL-2.0-or-later
 /* PROJECT_ATTRIBUTION_V45
  * Pool-caustic artwork created with ChatGPT image generation for v28.
  * Subsequent distortion animates texture coordinates; it is not a separate asset.

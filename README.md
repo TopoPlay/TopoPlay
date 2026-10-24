@@ -12,9 +12,18 @@ Rasmus R. Paulsen, based in part on Oliver Kreylos's UC Davis/KeckCAVES
 work. Original notices remain in the source. See [CREDITS.md](CREDITS.md),
 [COPYING](COPYING), and [ASSETS.md](ASSETS.md).
 
-## Install a complete Linux application bundle
+## Current distribution: source and runtime assets
 
-Extract the **TopoPlay Linux application bundle**, open its folder, and run:
+The public release contains source, runtime assets, notices and build scripts.
+It does not supply a compiled executable, shared libraries or a prebuilt installer.
+Build TopoPlay using the [Linux build notes](docs/BUILD_LINUX.md) and install its
+external dependencies separately. Original notices and component licenses are
+retained; see [the source-release review](docs/SOURCE-RELEASE-REVIEW.md).
+
+## Local installation after building
+
+After building the executable and obtaining the runtime dependencies, open the
+complete local project folder and run:
 
 ```bash
 python3 scripts/install.py
@@ -109,9 +118,10 @@ Run `python3 scripts/unregister.py` to remove that installation's menu entry and
 registry record. It deliberately leaves the program and your settings intact.
 Back up `bin/data` before manually removing an installation folder.
 
-## Create a complete release bundle
+## Experimental binary packaging for local testing
 
-After a successful build:
+The current public release is source-only. Binary redistribution needs a separate
+license/dependency review and a clean-system test. After a successful local build:
 
 ```bash
 python3 scripts/package-release.py --output /chosen/output/TopoPlay-1.0.1-linux.tar.gz
@@ -152,9 +162,10 @@ rendering and water simulation. Windows/macOS and clean-machine distribution
 have not been validated. Historical development notes retain their filenames
 so source references remain valid.
 
-Thunder credit: **Friendly Free Sounds**, "Thunder Sound Effect", April 7, 2023:
-https://www.youtube.com/watch?v=xK_m77VZYnc . The supplied permission requires
-channel credit; see [the permission record](docs/assets/THUNDER-PERMISSION.md).
+The public source uses generated thunder without imported audio samples.
+Friendly Free Sounds is credited for the earlier local recording in
+[the historical sound record](docs/assets/THUNDER-PERMISSION.md); that recording
+is excluded from the current source snapshot.
 
 ## Closing TopoPlay
 

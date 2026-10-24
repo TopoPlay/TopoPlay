@@ -1,0 +1,47 @@
+[
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-radio-off.png",
+    "sha256": "0230c9932a9f5936f5889e8ae81471c18b7cbeeb8b61a4f2d5e4c908dfb88d0c",
+    "upstream_path": "ofxbraitsch/ofxdatgui/icon-radio-off.png",
+    "upstream_commit": "21dadfe612c16bf364d9bcdfe5a6055ab4eb2891",
+    "source": "https://github.com/braitsch/ofxDatGui",
+    "license": "MIT",
+    "notice": "licenses/ofxDatGui-MIT.txt"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/picker-rainbow.png",
+    "sha256": "b9d37045ccb0881d53ff7fa5c5bc6cf8f49a73b0d971dff1dc50d91efc44cf40",
+    "upstream_path": "ofxbraitsch/ofxdatgui/picker-rainbow.png",
+    "upstream_commit": "21dadfe612c16bf364d9bcdfe5a6055ab4eb2891",
+    "source": "https://github.com/braitsch/ofxDatGui",
+    "license": "MIT",
+    "notice": "licenses/ofxDatGui-MIT.txt"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-group-open.png",
+    "sha256": "949799ca9de4548c0ba016f1ad67746fd7cc91cb1b2de4830814bd01706f5dd0",
+    "upstream_path": "ofxbraitsch/ofxdatgui/icon-group-open.png",
+    "upstream_commit": "21dadfe612c16bf364d9bcdfe5a6055ab4eb2891",
+    "source": "https://github.com/braitsch/ofxDatGui",
+    "license": "MIT",
+    "notice": "licenses/ofxDatGui-MIT.txt"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-group-closed.png",
+    "sha256": "e2b8e67b07f30d3d99f4b0176d57e62832e9b9c1388ea7a39f6601ed9f0aa4ca",
+    "upstream_path": "ofxbraitsch/ofxdatgui/icon-group-closed.png",
+    "upstream_commit": "21dadfe612c16bf364d9bcdfe5a6055ab4eb2891",
+    "source": "https://github.com/braitsch/ofxDatGui",
+    "license": "MIT",
+    "notice": "licenses/ofxDatGui-MIT.txt"
+  },
+  {
+    "path": "bin/data/ofxbraitsch/ofxdatgui/icon-radio-on.png",
+    "sha256": "3d4c43b12a1e2d28d57a5589a20430548335cf037648719a4e6321cad8a4c921",
+    "upstream_path": "ofxbraitsch/ofxdatgui/icon-radio-on.png",
+    "upstream_commit": "21dadfe612c16bf364d9bcdfe5a6055ab4eb2891",
+    "source": "https://github.com/braitsch/ofxDatGui",
+    "license": "MIT",
+    "notice": "licenses/ofxDatGui-MIT.txt"
+  }
+]

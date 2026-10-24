@@ -1,23 +1,25 @@
-# Publishing TopoPlay
+# Publishing the TopoPlay source release
 
-The permanent product/executable name is TopoPlay (initial public version 1.0.0).
-Retain original project and third-party notices in CREDITS.md, COPYING, ASSETS.md,
-licenses and source headers. Historical docs and technical namespaces may still
-refer to Magic-Sand/AR Sandbox; these are attribution and compatibility identifiers.
+The public release is source plus reviewed runtime assets, not an executable or
+installer bundle. Preserve COPYING, original headers, CREDITS.md, ASSETS.md,
+licenses, source modification notices and the dependency/source records.
 
-First build/test the renamed app on the operator's hardware. Create the full Linux
-bundle with scripts/package-release.py, without --include-box-settings for public
-use. Test installing it in a folder outside Downloads (also one containing spaces)
-on a clean compatible Linux system. Verify Kinect permissions and dependencies.
-The small TopoPlay rename patch itself contains neither all media nor an executable;
-it is a migration tool, not the complete release artifact.
+1. Apply the source-release notice/media update and verify PACKAGE-SHA256.json.
+2. Commit the complete reviewed source and notices to GitHub.
+3. Create a source archive from that exact commit with `git archive`; this contains
+   the current generated thunder, not the historical recorded WAV.
+4. Identify the download as source requiring openFrameworks 0.12.1, addons,
+   libfreenect2 and matching external dependencies. See BUILD_LINUX.md.
+5. Preserve the tested hardware/28 × 20 inch projection limits in the README.
 
-Use the complete current source, addons.make, portable config.make, scripts, docs,
-licenses and assets for GitHub. Exclude config.local.make, topoplay-build.json,
-calibration.xml, kinectProjectorSettings.xml, box-startup.json, recordings, backups
-and build objects. Do not publish the private final backup. The package helper's
-public bundle omits box-specific startup/calibration/color/CPU files by default.
+Do not include executables, shared libraries, calibration, box startup profiles,
+machine paths, recordings, automatic backups or build output. Installer and
+packaging scripts may remain as source tools; their presence is not a claim that
+an approved binary bundle is supplied. Before any binary release, identify the
+actual linked/bundled dependencies, include the required notices and corresponding
+source arrangements, resolve license compatibility, and test a clean system.
 
-Dependency/addon revisions and compatibility patches are documented in the existing
-dependencies record, when present in the working tree. Resolve that record's
-remaining clean-build/media-provenance limitations before a public release claim.
+The repository's earlier commits may contain the prior thunder recording. This
+update does not rewrite or clear that history. A source ZIP created from the new
+commit excludes that recording. Separate permission confirmation or an explicitly
+planned history cleanup is needed to address old downloadable copies.

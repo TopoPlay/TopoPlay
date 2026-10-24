@@ -1,9 +1,12 @@
-/* PROJECT_ATTRIBUTION_V45
- * Thunder sound effect by Friendly Free Sounds.
- * https://www.youtube.com/watch?v=xK_m77VZYnc
- * Operator-supplied creator permission allows media/game use with channel credit.
- * Exact restored WAV and permission record: docs/assets/THUNDER-PERMISSION.md.
- * This recording is third-party audio, not the unused v39 synthesized thunder.
+/* TopoPlay modification notice — 2026-10-23
+ * Added in the TopoPlay educational fork.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
+/* Public source-release thunder: original mathematical synthesis, no samples.
+ * Runtime path: rain/thunder.wav. Recipe: docs/assets/synthesize-thunder.py.
+ * See docs/assets/THUNDER-PERMISSION.md for current and historical provenance.
  */
 #include "RainRunoff.h"
 // RAIN_CLOUD_REFINE_V9: immediate visitor renewal, color-only water, stronger neutral overhead cloud.

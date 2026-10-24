@@ -1,3 +1,7 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Educational-fork shader changes; source-release notice added on this date.
+ * Original notices are retained. See docs/MODIFICATIONS.md.
+ */
 /***********************************************************************
 heightMapShader - Shader fragment to display color and contourlines.
 Copyright (c) 2016 Thomas Wolf

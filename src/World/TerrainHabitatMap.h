@@ -1,3 +1,10 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Added in the TopoPlay educational fork.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
+// SPDX-License-Identifier: GPL-2.0-or-later
 #pragma once
 
 #include "ofMain.h"

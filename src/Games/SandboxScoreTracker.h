@@ -1,3 +1,9 @@
+/* TopoPlay modification notice — 2026-10-23
+ * Modified from upstream Magic-Sand.
+ * This update adds source-release licensing/provenance notices.
+ * Earlier local development dates were not individually recorded.
+ * Original notices below are retained; see docs/MODIFICATIONS.md.
+ */
 /***********************************************************************
 SandboxScoreTracker.h - Keep tracks of score for the Sandbox games
 Copyright (c) 2017  Rasmus R. Paulsen (people.compute.dtu.dk/rapa)
