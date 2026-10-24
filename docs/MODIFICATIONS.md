@@ -157,3 +157,12 @@ GPL-2.0-or-later `scripts/desktop_icon.py` helper to copy and reference the
 bundled TopoPlay logo. Existing launcher targets and application behavior are
 unchanged. The new runtime icon is an exact copy of the existing generated
 GitHub-logo PNG; provenance is in `docs/assets/topoplay-icon.json`.
+
+## User-selected installation and shortcut — 2026-10-24
+
+`scripts/install.py` now explains folder selection before opening the picker and
+starts it at Home, independently of the
+installation registry, and passes that existing directory to Zenity.
+`scripts/desktop_shortcut.py` asks for an explicit create/update choice when no
+shortcut flag was supplied, including for an existing managed shortcut. Explicit
+flags remain noninteractive. Original license notices and logo behavior remain.

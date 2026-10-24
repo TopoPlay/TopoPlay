@@ -1,5 +1,13 @@
 # TopoPlay change log
 
+## User-selected installation and shortcut — 2026-10-24
+
+- Explain the installation folder selection in a dialog before opening the picker; Cancel stops the installation.
+- Open the normal installation folder picker at Home and wait for the user's parent-folder choice, independently of old registered installations.
+- Pass Home explicitly to the Zenity fallback so a remembered removed folder is not used as the initial location.
+- Ask whether to create or update the desktop shortcut even when a managed shortcut already exists.
+- Retain explicit command-line flags, the logo icon, saved-setting preservation on updates, and unrelated application behavior.
+
 ## TopoPlay launcher icon — 2026-10-24
 
 - Bundle the original TopoPlay logo as the desktop/application-menu icon.

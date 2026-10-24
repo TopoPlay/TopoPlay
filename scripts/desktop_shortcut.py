@@ -20,21 +20,22 @@ def shortcut_path():
 def owned(path):
     return path.is_file() and TAG in path.read_text().splitlines()
 
-def ask():
+def ask(existing=False):
+    prompt=('Update the existing TopoPlay desktop shortcut to this installation?' if existing else 'Create a TopoPlay shortcut on your desktop?')
     if os.environ.get('DISPLAY') or os.environ.get('WAYLAND_DISPLAY'):
         try:
             import tkinter as tk
             from tkinter import messagebox
             win=tk.Tk();win.withdraw()
-            try:return messagebox.askyesno('TopoPlay installation','Create a TopoPlay shortcut on your desktop?',parent=win)
+            try:return messagebox.askyesno('TopoPlay installation',prompt,parent=win)
             finally:win.destroy()
         except ImportError:pass
         except Exception as exc:
             if type(exc).__name__!='TclError':raise
         if shutil.which('zenity'):
-            r=subprocess.run(['zenity','--question','--title=TopoPlay installation','--text=Create a TopoPlay shortcut on your desktop?'],check=False)
+            r=subprocess.run(['zenity','--question','--title=TopoPlay installation','--text='+prompt],check=False)
             if r.returncode in (0,1):return r.returncode==0
-    if sys.stdin.isatty():return input('Create a TopoPlay desktop shortcut? [y/N]: ').strip().lower() in ('y','yes')
+    if sys.stdin.isatty():return input(prompt+' [y/N]: ').strip().lower() in ('y','yes')
     print('Desktop shortcut skipped (no interactive prompt). Use --desktop-shortcut to request one.')
     return False
 
@@ -43,7 +44,7 @@ def sync_shortcut(target,choice=None):
     path=shortcut_path()
     if path is None:
         print('Desktop directory is disabled; the application-menu entry remains available.');return False
-    if choice is None:choice=True if owned(path) else ask()
+    if choice is None:choice=ask(owned(path))
     if not choice:return False
     if path.exists() and not owned(path):
         print('Desktop shortcut skipped: '+str(path)+' already exists and is not managed by this installer.');return False

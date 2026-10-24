@@ -278,3 +278,17 @@ The installer stores the icon under the user's data directory so its location
 stays stable when choosing another application folder. Registering an older
 installation without a bundled logo retains an already-installed user icon,
 or falls back to the generic education icon if no logo is available.
+
+## Choosing where to install
+
+Run `python3 scripts/install.py` for interactive installation. An explanation identifies the installer and
+describes the folder selection before the picker opens. The picker starts at Home
+and waits for your choice; previous installations do not select
+its starting directory. Choose a parent folder and TopoPlay will create or
+update its `TopoPlay` subfolder. Canceling the picker cancels installation.
+
+The normal interactive flow asks whether to create a desktop shortcut, or
+whether to update an existing managed shortcut to this installation. Declining
+leaves any existing shortcut unchanged. The app-menu entry is still created.
+Explicit `--destination`, `--desktop-shortcut` and `--no-desktop-shortcut` flags
+remain available for intentional noninteractive use.

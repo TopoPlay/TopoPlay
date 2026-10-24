@@ -12,15 +12,20 @@ MARKER='topoplay-install.json'
 MUTABLE=('bin/data/settings','bin/data/colorMaps','bin/data/projector-color.json','bin/data/cpu-limit.json')
 
 def choose_destination():
-    initial=Path.home()/'Applications'
-    registered=[Path(p) for p in registrations() if Path(p).is_dir()]
-    if registered:initial=registered[-1].parent
+    # A first-time install starts at Home; the user chooses the destination.
+    initial=Path.home()
     parent=None
+    explanation=("Choose where to install TopoPlay.\n\n"
+                 "The next window lets you select a parent folder. A folder named "
+                 "TopoPlay will be created inside it, or updated if it already exists.\n\n"
+                 "Select Cancel to stop without installing.")
     try:
         import tkinter as tk
-        from tkinter import filedialog
+        from tkinter import filedialog,messagebox
         window=tk.Tk();window.withdraw()
-        try:parent=filedialog.askdirectory(title='Choose the folder that will contain TopoPlay',initialdir=str(initial if initial.exists() else Path.home()))
+        try:
+            if not messagebox.askokcancel('Install TopoPlay',explanation,parent=window):raise SystemExit('Installation cancelled.')
+            parent=filedialog.askdirectory(title='Install TopoPlay — choose parent folder',initialdir=str(initial),parent=window)
         finally:window.destroy()
         if not parent:raise SystemExit('Installation cancelled.')
     except (ImportError,RuntimeError):pass
@@ -28,11 +33,14 @@ def choose_destination():
         # A headless shell can have tkinter installed but no display server.
         if type(e).__name__!='TclError':raise
     if parent is None and shutil.which('zenity') and (os.environ.get('DISPLAY') or os.environ.get('WAYLAND_DISPLAY')):
-        result=subprocess.run(['zenity','--file-selection','--directory','--title=Choose the folder that will contain TopoPlay'],capture_output=True,text=True)
+        intro=subprocess.run(['zenity','--question','--title=Install TopoPlay','--ok-label=Choose folder','--cancel-label=Cancel','--text='+explanation],check=False)
+        if intro.returncode:raise SystemExit('Installation cancelled.')
+        result=subprocess.run(['zenity','--file-selection','--directory','--filename='+str(initial)+os.sep,'--title=Install TopoPlay — choose parent folder'],capture_output=True,text=True)
         if result.returncode:raise SystemExit('Installation cancelled.')
         parent=result.stdout.strip()
     if parent is None:
         if not sys.stdin.isatty():raise RuntimeError('No folder picker available. Use --destination /your/chosen/TopoPlay.')
+        print(explanation)
         answer=input('Install TopoPlay in which full folder? ['+str(initial/'TopoPlay')+']: ').strip()
         return Path(answer).expanduser() if answer else initial/'TopoPlay'
     return Path(parent)/'TopoPlay'
