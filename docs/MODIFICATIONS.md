@@ -118,3 +118,14 @@ identified components such as the MIT-adapted ripple algorithm.
   generated audio is an optional alternative. An intermediate substitution is reverted.
 - Make source-only distribution explicit and refresh asset/package checksums.
 - Source annotations are comments only; simulation and rendering logic are unchanged.
+
+## Fresh calibration update — 2026-10-24
+
+The Kinect/projector acquisition and calibration implementation was modified to
+clear attempts, wait for fresh frames, resolve corner ordering, normalize the
+projective fit, enforce two-height/error checks, and preserve compatible saved
+calibration coefficients. `FreshCalibration.h` and `FreshCaptureGate.h` are new
+GPL-2.0-or-later helpers. The rendering files were restored to the composition
+used in the successful calibration tests; responsive shutdown is retained.
+`ofApp.cpp` also includes opt-in calibration tracing. Original source notices and
+licenses remain in place. README calibration instructions were corrected.

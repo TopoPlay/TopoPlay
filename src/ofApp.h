@@ -9,7 +9,6 @@
 #include "FossilRoiSurface.h" // FOSSIL_SURFACE_V35
 #include "FossilBoxGeometry.h" // FOSSIL_ROI_V33
 #include "AutoRunStartup.h" // AUTO_RUN_V32
-#include "ProjectorFrameSync.h"
 /***********************************************************************
 ofApp.h - main openframeworks app
 Copyright (c) 2016-2017 Thomas Wolf and Rasmus R. Paulsen (people.compute.dtu.dk/rapa)
@@ -123,7 +122,6 @@ private:
 
 	// One finished image used by both projector and RUN preview
 	ofFbo projectorComposite;
-    TopoPlayProjectorFrameSync projectorFrameSync;
 
 	// Window/update-rate diagnostic
 	uint64_t diagUpdateCount = 0;

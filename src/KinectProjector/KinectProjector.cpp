@@ -1,8 +1,7 @@
-/* TopoPlay modification notice — 2026-10-23
- * Modified from upstream Magic-Sand.
- * This update adds source-release licensing/provenance notices.
- * Earlier local development dates were not individually recorded.
- * Original notices below are retained; see docs/MODIFICATIONS.md.
+/* TopoPlay modification notice — 2026-10-24
+ * Experimental fresh calibration: isolated acquisition, normalized projective
+ * fitting, checkerboard symmetry resolution and strict measurement validation.
+ * Original copyright and license notices below are retained.
  */
 #include "../VisibleBoxROI.h" // VISIBLE_BOX_ROI_V23
 /***********************************************************************
@@ -32,8 +31,54 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #include "../LengthUnits.h"
 #include "../TriggerSettings.h"
 #include <sstream>
+#include <cstdlib>
+#include <map>
 
 using namespace ofxCSG;
+
+// TOPOPLAY_CALIBRATION_TRACE: diagnostic output only; no geometry changes.
+static bool topoplayCalibrationTraceEnabled(){
+    const char* value=std::getenv("TOPOPLAY_CALIBRATION_TRACE");
+    return value && std::string(value)=="1";
+}
+void KinectProjector::traceCalibrationState(const char* reason, bool changesOnly){
+    if(!topoplayCalibrationTraceEnabled())return;
+    if(std::string(reason)=="ROI outlines drawn"){
+        static float last=-1;
+        const float now=ofGetElapsedTimef();
+        if(last>=0 && now-last<0.5f)return;
+        last=now;
+    }
+    std::ostringstream key;
+    key<<"state="<<int(applicationState)
+       <<" roi="<<kinectROI.x<<","<<kinectROI.y<<","<<kinectROI.width<<","<<kinectROI.height
+       <<" roiDefined="<<ROIcalibrated<<" calibrated="<<projKinectCalibrated
+       <<" planeComputed="<<basePlaneComputed<<" stabilized="<<imageStabilized
+       <<" baseDepth="<<basePlaneOffset.z<<" savedBaseDepth="<<basePlaneOffsetBack.z
+       <<" plane="<<basePlaneEq.x<<","<<basePlaneEq.y<<","<<basePlaneEq.z<<","<<basePlaneEq.w
+       <<" spatial="<<spatialFiltering<<" acquisitionSpatial="<<(freshCalibrationAcquisition?false:spatialFiltering)
+       <<" freshAcquisition="<<freshCalibrationAcquisition<<" resetPending="<<freshCaptureGate.waitingForReset()<<" fullFrame="<<doFullFrameFiltering
+       <<" averaging="<<numAveragingSlots<<" showROI="<<doShowROIonProjector
+       <<" projector="<<projRes.x<<","<<projRes.y;
+    if(projKinectCalibrated){
+        key<<" projectionMatrix=";
+        for(int r=0;r<4;++r)for(int c=0;c<4;++c)key<<kinectProjMatrix(r,c)<<",";
+    }
+    static std::map<std::string,std::string> previous;
+    if(changesOnly && key.str()==previous[reason])return;
+    previous[reason]=key.str();
+    std::cout<<"[CALIBRATION TRACE] t="<<ofGetElapsedTimef()<<" "<<reason<<" "<<key.str();
+    if(projKinectCalibrated && kinectOpened && imageStabilized){
+        const auto redUL=kinectCoordToProjCoord(kinectROI.getMinX(),kinectROI.getMinY());
+        const auto redLR=kinectCoordToProjCoord(kinectROI.getMaxX()-1,kinectROI.getMaxY()-1);
+        const auto greenUL=kinectCoordToProjCoord(kinectROI.getMinX(),kinectROI.getMinY(),basePlaneOffset.z);
+        const auto greenLR=kinectCoordToProjCoord(kinectROI.getMaxX(),kinectROI.getMaxY(),basePlaneOffset.z);
+        std::cout<<" red="<<redUL.x<<","<<redUL.y<<" -> "<<redLR.x<<","<<redLR.y
+                 <<" green="<<greenUL.x<<","<<greenUL.y<<" -> "<<greenLR.x<<","<<greenLR.y;
+    }
+    std::cout<<std::endl;
+}
+
 
 KinectProjector::KinectProjector(std::shared_ptr<ofAppBaseWindow> const& p)
 :ROIcalibrated(false),
@@ -262,6 +307,12 @@ void KinectProjector::updateStatusGUI()
 
 void KinectProjector::update()
 {
+    if(freshCalibrationAcquisition && applicationState!=APPLICATION_STATE_CALIBRATING){
+        freshCalibrationAcquisition=false;
+        const bool spatial=spatialFiltering,follow=followBigChanges;const float cutoff=maxOffset;
+        kinectgrabber.performInThread([=](KinectGrabber& kg){kg.setSpatialFiltering(spatial);kg.setFollowBigChange(follow);kg.setMaxOffset(cutoff);});
+        std::cout<<"[FRESH CALIBRATION] restored runtime acquisition controls"<<std::endl;
+    }
     // Clear updated state variables
     basePlaneUpdated = false;
     projKinectCalibrationUpdated = false;
@@ -310,6 +361,7 @@ void KinectProjector::update()
         if (kinectgrabber.colored.tryReceive(coloredframe)) 
 		{
             kinectColorImage.setFromPixels(coloredframe);
+            freshCaptureGate.colorReceived();
 		
 			if (TemporalFilteringType == 0)
 				TemporalFrameFilter.NewFrame(kinectColorImage.getPixels().getData(), kinectColorImage.width, kinectColorImage.height);
@@ -783,7 +835,7 @@ std::string KinectProjector::GetTimeAndDateString()
 bool KinectProjector::savePointPair()
 {
 	std::string ppK = ofToDataPath(DebugFileOutDir + "CalibrationPointPairsKinect.txt");
-	std::string ppP = ofToDataPath(DebugFileOutDir + "CalibrationPointPairsKinect.txt");
+	std::string ppP = ofToDataPath(DebugFileOutDir + "CalibrationPointPairsProjector.txt");
 	std::ofstream ppKo(ppK);
 	std::ofstream ppPo(ppP);
 
@@ -811,8 +863,10 @@ void KinectProjector::updateProjKinectAutoCalibration()
         autoCalibState = AUTOCALIB_STATE_INIT_POINT;
 		updateStatusGUI();
     } 
-	else if (autoCalibState == AUTOCALIB_STATE_INIT_POINT && imageStabilized)
+	else if (autoCalibState == AUTOCALIB_STATE_INIT_POINT && imageStabilized && !freshCaptureGate.waitingForReset())
 	{
+        pairsKinect.clear();pairsProjector.clear();cvPoints.clear();
+        std::cout<<"[FRESH CALIBRATION] new attempt: cleared all previous measurements"<<std::endl;
 		calibrationText = "Acquiring sea level plane";
 		updateStatusGUI();
 		updateBasePlane(); // Find base plane
@@ -826,6 +880,7 @@ void KinectProjector::updateProjKinectAutoCalibration()
 		calibrationText = "Sea level plane estimated";
 		updateStatusGUI();
 
+        delete[] autoCalibPts;
         autoCalibPts = new ofPoint[10];
 
         // -------------------------------------------------
@@ -907,8 +962,9 @@ void KinectProjector::updateProjKinectAutoCalibration()
 		if (!(TemporalFrameCounter % 20))
 			ofLogVerbose("KinectProjector") << "autoCalib(): Got frame " + ofToString(TemporalFrameCounter) + " / " + ofToString(TemporalFrameFilter.getBufferSize() + 3) + " for temporal filter";
 
+		++TemporalFrameCounter;
 		// We want to have a buffer of images that are only focusing on one chess pattern
-		if (TemporalFrameCounter++ > TemporalFrameFilter.getBufferSize() + 3)
+		if (TemporalFrameFilter.isValid() && freshCaptureGate.ready(imageStabilized, TemporalFrameFilter.getBufferSize() + 4))
 		{
 			CalibrateNextPoint();
 			TemporalFrameCounter = 0;
@@ -929,13 +985,20 @@ void KinectProjector::updateProjKinectAutoCalibration()
 		else 
 		{
             ofLogVerbose("KinectProjector") << "autoCalib(): Calibrating" ;
-            kpt->calibrate(pairsKinect, pairsProjector);
+            std::string freshReason;
+            if(!kpt->calibrateFresh(pairsKinect,pairsProjector,freshReason)){
+                projKinectCalibrated=false;projKinectCalibrationUpdated=false;
+                applicationState=APPLICATION_STATE_SETUP;
+                calibrationText=freshReason;ofLogError("Calibration")<<freshReason;
+                updateStatusGUI();return;
+            }
+            if(DumpDebugFiles)savePointPair();
             kinectProjMatrix = kpt->getProjectionMatrix();
 
 			double ReprojectionError = ComputeReprojectionError(DumpDebugFiles);
 			ofLogVerbose("KinectProjector") << "autoCalib(): ReprojectionError " + ofToString(ReprojectionError);
 
-			if (ReprojectionError >350)
+			if (!std::isfinite(ReprojectionError) || ReprojectionError > 5.0*std::max(projRes.x/1280.0f,projRes.y/720.0f))
 			{
 				ofLogVerbose("KinectProjector") << "autoCalib(): ReprojectionError too big. Something wrong with projection matrix";
 				projKinectCalibrated = false; 
@@ -948,6 +1011,7 @@ void KinectProjector::updateProjKinectAutoCalibration()
 
 			// Preserve the manually selected camera ROI after projector calibration;
             // visible-ROI fitting is handled separately once depth stabilizes.
+            freshCalibrationAccepted=true;
             projKinectCalibrated = true; // Update states variables
             projKinectCalibrationUpdated = true;
 			applicationState = APPLICATION_STATE_SETUP;
@@ -1232,32 +1296,7 @@ void KinectProjector::CalibrateNextPoint()
 					}
 				}
 
-				// -------------------------------------------------
-				// SB detector row-order correction.
-				// Keep each row left/right unchanged, but reverse
-				// the order of the three rows.
-				// -------------------------------------------------
-				if (foundChessboard &&
-					usedSBDetector &&
-					cvPoints.size() == 12)
-				{
-					std::vector<cv::Point2f> original = cvPoints;
-
-					int cols = patternSize.width;
-					int rows = patternSize.height;
-
-					for (int r = 0; r < rows; r++)
-					{
-						for (int c = 0; c < cols; c++)
-						{
-							cvPoints[r * cols + c] =
-								original[(rows - 1 - r) * cols + c];
-						}
-					}
-
-					ofLogVerbose("KinectProjector")
-						<< "autoCalib(): Flipped SB rows vertically to match projector";
-				}
+                // Corner ordering is resolved geometrically by calibrateFresh.
 
 				// Changed logic so the "cleared" flag is not used -
 			// we do a long frame average instead
@@ -1423,7 +1462,7 @@ if (okchess)
 		{ // We ask for higher points
 			calibModal->hide();
 			confirmModal->show();
-			confirmModal->setMessage("Please cover the sandbox with a board and press ok.");
+			confirmModal->setMessage("Place a flat board clearly ABOVE the sand (at least 30 mm closer to Kinect), keep it steady, then press OK.");
 		}
 	}
 }
@@ -1550,6 +1589,10 @@ bool KinectProjector::addPointPair() {
             pairsKinect.push_back(worldPoint);
             pairsProjector.push_back(currentProjectorPoints[i]);
         }
+        double capturedDepth=0;
+        for(size_t i=pairsKinect.size()-12;i<pairsKinect.size();++i)capturedDepth+=pairsKinect[i].z/12.0;
+        std::cout<<"[FRESH CAPTURE] pattern="<<currentCalibPts<<" raised="<<upframe
+            <<" totalPoints="<<pairsKinect.size()<<" meanDepth="<<capturedDepth<<std::endl;
         resultMessage = "addPointPair(): Added " + ofToString((chessboardX-1)*(chessboardY-1)) + " points pairs.";
 		if (DumpDebugFiles)
 		{
@@ -1601,6 +1644,9 @@ void KinectProjector::drawGuiOnly()
 }
 
 void KinectProjector::drawChessboard(int x, int y, int chessboardSize) {
+    freshCaptureGate.patternChanged();TemporalFrameCounter=0;
+    if(kinectColorImage.width>0 && kinectColorImage.height>0)
+        TemporalFrameFilter.Init(kinectColorImage.width,kinectColorImage.height,15);
     fboProjWindow.begin();
     ofFill();
     // Draw the calibration chess board on the projector window
@@ -1860,6 +1906,9 @@ void KinectProjector::setupGui(){
 
 void KinectProjector::startApplication()
 {
+    if(applicationState==APPLICATION_STATE_SETUP && freshCalibrationAttempted && !freshCalibrationAccepted){
+        calibrationText="Complete a valid fresh calibration before RUN";updateStatusGUI();return;
+    }
 	if (applicationState == APPLICATION_STATE_RUNNING)
 	{
 		applicationState = APPLICATION_STATE_SETUP;
@@ -1968,7 +2017,8 @@ void KinectProjector::startFullCalibration()
 		return;
 	}
 
-	applicationState = APPLICATION_STATE_CALIBRATING;
+	requestFreshCalibrationFrames();
+    applicationState = APPLICATION_STATE_CALIBRATING;
     calibrationState = CALIBRATION_STATE_FULL_AUTO_CALIBRATION;
     fullCalibState = FULL_CALIBRATION_STATE_ROI_DETERMINATION;
 	ROICalibState = ROI_CALIBRATION_STATE_INIT;
@@ -2016,7 +2066,8 @@ void KinectProjector::startAutomaticKinectProjectorCalibration(){
 
 	calibrationText = "Starting projector/kinect calibration";
 
-	applicationState = APPLICATION_STATE_CALIBRATING;
+	requestFreshCalibrationFrames();
+    applicationState = APPLICATION_STATE_CALIBRATING;
     calibrationState = CALIBRATION_STATE_PROJ_KINECT_AUTO_CALIBRATION;
     autoCalibState = AUTOCALIB_STATE_INIT_POINT;
     confirmModal->setTitle("Calibrate projector");
@@ -2238,6 +2289,7 @@ void KinectProjector::onConfirmModalEvent(ofxModalEvent e)
                 if (!upframe)
 				{
                     upframe = true;
+                    requestFreshCalibrationFrames();
                 }
             }
         }
@@ -2674,4 +2726,17 @@ void KinectProjector::restoreBoxGui(const ofJson& j){
 }
 bool KinectProjector::saveBoxCalibration(){
     return projKinectCalibrated&&ROIcalibrated&&kpt->saveCalibration("settings/calibration.xml")&&saveSettings();
+}
+
+void KinectProjector::requestFreshCalibrationFrames(){
+    freshCalibrationAttempted=true;freshCalibrationAccepted=false;
+    freshCalibrationAcquisition=true;imageStabilized=false;TemporalFrameCounter=0;
+    freshCaptureGate.resetRequested();
+    if(kinectColorImage.width>0 && kinectColorImage.height>0)
+        TemporalFrameFilter.Init(kinectColorImage.width,kinectColorImage.height,15);
+    kinectgrabber.performInThread([this](KinectGrabber& kg){
+        kg.setMaxOffset(0);kg.setSpatialFiltering(false);kg.setFollowBigChange(true);
+        kg.resetBuffers();freshCaptureGate.resetComplete();
+    });
+    std::cout<<"[FRESH CALIBRATION] requested fresh depth/RGB buffers; calibration spatial filter OFF"<<std::endl;
 }

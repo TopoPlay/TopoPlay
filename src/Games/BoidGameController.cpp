@@ -876,14 +876,6 @@ void CBoidGameController::drawGuiOnly()
 }
 
 
-void CBoidGameController::drawVegetationLayer()
-{
-    const eGameState sequence=GameSequence[CurrentGameSequence];
-    if(sequence!=GAME_STATE_IDLE && sequence!=GAME_STATE_PLAYANDSHOWCOUNTDOWN)return;
-    // Reuse the existing cached pine/fire meshes; do not allocate another FBO.
-    vegetationManager.draw(kinectProjector);
-}
-
 void CBoidGameController::drawProjectorWindow()
 {
 	eGameState sequence = GameSequence[CurrentGameSequence];
@@ -1352,7 +1344,8 @@ bool CBoidGameController::setRandomVehicleLocation(ofRectangle area, bool liveIn
 
 void CBoidGameController::drawVehicles()
 {
-    // Vegetation is composed separately above lava by drawVegetationLayer().
+    // Static environmental features are drawn before animals.
+    vegetationManager.draw(kinectProjector);
 
     uint64_t t0, t1;
 

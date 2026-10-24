@@ -75,17 +75,35 @@ Evan Wallace's MIT-licensed ripple component is credited separately in
 
 Keep the camera and projector rigidly mounted. For a new box, use this order:
 
-1. Define the **manual sandbox ROI** in the camera/depth view.
-2. Click **Save box settings before starting projector calibration**.
-3. Run the projector/Kinect calibration for your box.
-4. Click **Save box settings again**, then check the terrain against the box edges.
-5. Set terrain elevations and gesture controls, and save those settings as needed.
+1. Set the projector orientation before calibration. Depending on the mounting,
+   its image may need a horizontal or vertical flip. Keep that orientation fixed
+   throughout calibration and normal use; recalibrate after changing it.
+2. Define the **manual sandbox ROI** in the camera/depth view.
+3. Start the projector/Kinect calibration. Let it finish the lower surface first.
+4. At the raised-board prompt, place a flat board at least **30 mm closer to the
+   Kinect**, hold it steady, and confirm to capture the upper surface.
+5. Remove the board after calibration succeeds, enter **RUN**, and check the
+   projected terrain against the box edges.
+6. Click **Save box settings** in RUN after the alignment and controls are correct.
+   Close and reopen once to confirm the saved setup.
 
-Saving the manual ROI first matters: the fresh-install test produced a smaller,
-skewed terrain footprint when that ROI had not been saved before calibration.
-The tested build requests RUN automatically when saved calibration is present
-and depth is ready. Public source snapshots omit the operator's private box
-calibration and startup profile.
+Each calibration attempt starts with a fresh set of points. The program waits for
+fresh color frames and stable depth, resolves checkerboard corner ordering, and
+rejects measurements with insufficient height separation or excessive projection
+error. On a failed attempt, check the camera's view and board placement, then retry.
+The 30 mm requirement refers to distance toward the Kinect, rather than a fixed
+board thickness.
+
+**Show ROI** draws two depth-based projections of the same camera ROI: red uses
+measured depth and green uses reference-plane depth. They do not represent the
+laptop and projector separately. These outlines require a valid calibration to
+be meaningful; use the camera/depth view to draw the initial ROI.
+
+During calibration, spatial smoothing is temporarily disabled and depth buffers
+are refreshed; the selected runtime filtering controls are restored afterward.
+A new successful calibration replaces the saved projector mapping. Public source
+snapshots omit the operator's private calibration and startup profile. The tested
+build requests RUN automatically when a saved calibration and ready depth exist.
 
 Mutable settings are in `bin/data/settings`, user terrain maps in
 `bin/data/colorMaps`, and projector/performance settings alongside them under

@@ -1,8 +1,7 @@
-/* TopoPlay modification notice — 2026-10-23
- * Modified from upstream Magic-Sand.
- * This update adds source-release licensing/provenance notices.
- * Earlier local development dates were not individually recorded.
- * Original notices below are retained; see docs/MODIFICATIONS.md.
+/* TopoPlay modification notice — 2026-10-24
+ * Experimental fresh calibration: isolated acquisition, normalized projective
+ * fitting, checkerboard symmetry resolution and strict measurement validation.
+ * Original copyright and license notices below are retained.
  */
 /***********************************************************************
 KinectProjector - KinectProjector takes care of the spatial conversion
@@ -38,6 +37,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #include "ofxModal.h"
 
 #include "KinectProjectorCalibration.h"
+#include "FreshCaptureGate.h"
 #include "Utils.h"
 #include "TemporalFrameFilter.h"
 #include "ofxXmlSettings.h"
@@ -57,6 +57,11 @@ public:
     void requestShutdown(){kinectgrabber.stop();}
     bool shutdownComplete() const{return kinectgrabber.shutdownComplete();}
 
+    void traceCalibrationState(const char* reason, bool changesOnly=false);
+    void requestFreshCalibrationFrames();
+    TopoPlayFreshCaptureGate freshCaptureGate;
+    bool freshCalibrationAcquisition=false;
+    bool freshCalibrationAttempted=false,freshCalibrationAccepted=false;
     void captureBoxGui(ofJson& j)const;void restoreBoxGui(const ofJson& j);bool saveBoxCalibration();
     bool boxSaveRequested=false;
     bool takeBoxSaveRequest(){bool result=boxSaveRequested;boxSaveRequested=false;return result;}
@@ -366,7 +371,7 @@ private:
     float maxOffsetBack;
     
     // Autocalib points
-    ofPoint* autoCalibPts; // Center of autocalib chess boards
+    ofPoint* autoCalibPts=nullptr; // Center of autocalib chess boards
     int currentCalibPts;
     int trials;
     bool upframe;

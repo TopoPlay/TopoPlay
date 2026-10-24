@@ -1,5 +1,15 @@
 # TopoPlay change log
 
+## Fresh calibration rebuild — 2026-10-24
+
+- Start every calibration attempt with 120 fresh point pairs; do not accumulate failed attempts.
+- Wait for distinct color frames and stable refreshed depth at each pattern and height change.
+- Resolve checkerboard row/column ordering and use a normalized projective fit.
+- Require two separated measurement heights and reject excessive mean/worst projection error.
+- Save Kinect and projector diagnostic point lists to separate files.
+- Restore the rendering composition used during the successful hardware tests; retain responsive shutdown. This supersedes the earlier shared-context/layer experiment below. Intermittent sprite flicker remains under investigation.
+- Operator validation: two fresh calibrations succeeded on the first attempt; the first logged run averaged 1.56 pixels error, worst 5.16 pixels, and exited normally. Saved calibration also reopened aligned. This is validation on the tested setup, not a fresh-OS dependency test.
+
 ## Tested projector and shutdown fixes — 2026-10-23
 
 - Separate animals, ripples, lava, trees and overhead clouds into explicit scene layers.

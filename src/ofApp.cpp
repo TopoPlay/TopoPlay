@@ -57,7 +57,8 @@ bool ofApp::shutdownComplete() const
 void ofApp::releaseShutdownGraphics()
 {
     // Called in the operator update callback while its context still exists.
-    projectorFrameSync.release();
+    // No shared-frame fences in this comparison build; drain this context on exit.
+    glFinish();
 }
 
 void ofApp::setup() {
@@ -234,6 +235,7 @@ void ofApp::update() {
     // button placement below separately waits for the resulting stable depth.
     autoRunStartup.update(kinectProjector); // AUTO_RUN_V32
     updateBoxSettings(); // BOX_SETTINGS_V7: restore after RUN resets
+    kinectProjector->traceCalibrationState("after native update/startup/profile/fit",true);
     ceilingMask.update(kinectProjector); // CONTROLS_V3
 
 	// Very cheap projected ring-button experiment.
@@ -5996,8 +5998,6 @@ void ofApp::updateProjectorComposite()
         return;
     }
 
-    // Wait for the projector's previous read before overwriting this texture.
-    projectorFrameSync.beforeWrite();
     projectorComposite.begin();
 
     // Build exactly the same final image that used to be assembled
@@ -6052,15 +6052,11 @@ void ofApp::updateProjectorComposite()
         // NORMAL MAGIC-SAND / DIG MODE
         // ====================================================
 
-        // Back to front: terrain/pool base, animals, ripple light, lava,
-        // trees, then overhead clouds in the final pass below.
         sandSurfaceRenderer->drawProjectorWindow();
-        rainRunoff.drawWaterBase();idleDemo.drawWaterBase();
+        rainRunoff.draw();idleDemo.drawWater(); // IDLE_DEMO_V1
+        if(!idleDemo.running())volcano.draw();idleDemo.drawVolcano(); // IDLE_DEMO_V1
         mapGameController.drawProjectorWindow();
         boidGameController.drawProjectorWindow();
-        rainRunoff.drawRipples();idleDemo.drawRipples();
-        if(!idleDemo.running())volcano.draw();idleDemo.drawVolcano();
-        boidGameController.drawVegetationLayer();
         kinectProjector->drawProjectorWindow();
 
         drawRingButtonTest();
@@ -6074,8 +6070,6 @@ void ofApp::updateProjectorComposite()
     if(!idleDemo.running())rainRunoff.drawFlash();idleDemo.drawTop(); // IDLE_DEMO_V1
     ceilingMask.draw(); // CONTROLS_V3: final black mask above the ceiling
     projectorComposite.end();
-    // Publish a completed frame before the other GL context samples it.
-    projectorFrameSync.afterWrite();
 }
 
 
@@ -6133,12 +6127,8 @@ void ofApp::drawProjWindow(ofEventArgs &args)
     if (kinectProjector->GetApplicationState() ==
         KinectProjector::APPLICATION_STATE_RUNNING)
     {
-        // This context must wait for the producer, and finish reading before
-        // the producer is allowed to reuse the same image next update.
-        projectorFrameSync.beforeRead();
         // Apply correction only to the projector; PC preview stays original.
         drawCorrectedProjector();
-        projectorFrameSync.afterRead();
     }
     else
     {

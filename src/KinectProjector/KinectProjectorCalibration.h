@@ -1,8 +1,7 @@
-/* TopoPlay modification notice — 2026-10-23
- * Modified from upstream Magic-Sand.
- * This update adds source-release licensing/provenance notices.
- * Earlier local development dates were not individually recorded.
- * Original notices below are retained; see docs/MODIFICATIONS.md.
+/* TopoPlay modification notice — 2026-10-24
+ * Experimental fresh calibration: isolated acquisition, normalized projective
+ * fitting, checkerboard symmetry resolution and strict measurement validation.
+ * Original copyright and license notices below are retained.
  */
 /***********************************************************************
 KinectProjectorCalibration.cpp - KinectProjectorCalibration compute
@@ -47,6 +46,7 @@ public:
     void calibrate(vector<ofVec3f> pairsKinect,
                    vector<ofVec2f> pairsProjector);
     
+    bool calibrateFresh(vector<ofVec3f>& world, const vector<ofVec2f>& image, std::string& message);
     ofVec2f getProjectedPoint(ofVec3f worldPoint);
     ofMatrix4x4 getProjectionMatrix();
     

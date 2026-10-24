@@ -1,8 +1,7 @@
-/* TopoPlay modification notice — 2026-10-23
- * Modified from upstream Magic-Sand.
- * This update adds source-release licensing/provenance notices.
- * Earlier local development dates were not individually recorded.
- * Original notices below are retained; see docs/MODIFICATIONS.md.
+/* TopoPlay modification notice — 2026-10-24
+ * Experimental fresh calibration: isolated acquisition, normalized projective
+ * fitting, checkerboard symmetry resolution and strict measurement validation.
+ * Original copyright and license notices below are retained.
  */
 /***********************************************************************
 KinectProjectorCalibration.cpp - KinectProjectorCalibration compute
@@ -31,6 +30,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ***********************************************************************/
 
 #include "KinectProjectorCalibration.h"
+#include "FreshCalibration.h"
 
 ofxKinectProjectorToolkit::ofxKinectProjectorToolkit(ofVec2f sprojRes, ofVec2f skinectRes) {
 	projRes = sprojRes;
@@ -207,3 +207,25 @@ bool ofxKinectProjectorToolkit::saveCalibration(string path)
     return xml.saveFile(path);
 }
 
+
+// TopoPlay fresh calibration: assign only a finite, validated mapping.
+bool ofxKinectProjectorToolkit::calibrateFresh(vector<ofVec3f>& world,
+        const vector<ofVec2f>& image,std::string& message){
+    using namespace TopoPlayFreshCalibration;
+    std::vector<P3> measured;std::vector<P2> targets;
+    for(const auto& p:world)measured.push_back({p.x,p.y,p.z});
+    for(const auto& p:image)targets.push_back({p.x,p.y});
+    const auto result=solve(measured,targets,projRes.x,projRes.y);
+    std::cout<<"[FRESH CALIBRATION] "<<result.message<<" points="<<world.size()
+        <<" depthSeparation="<<result.depthSeparation<<" mean="<<result.mean
+        <<" max="<<result.maximum<<" symmetry=";
+    for(int v:result.symmetry)std::cout<<v<<",";
+    std::cout<<std::endl;message=result.message;
+    if(!result.ok)return false;
+    for(int i=0;i<11;++i)x(i,0)=result.model[i];
+    projMatrice=ofMatrix4x4(x(0,0),x(1,0),x(2,0),x(3,0),
+        x(4,0),x(5,0),x(6,0),x(7,0),x(8,0),x(9,0),x(10,0),1,
+        0,0,0,1);
+    for(size_t i=0;i<world.size();++i)world[i]=ofVec3f(result.ordered[i].x,result.ordered[i].y,result.ordered[i].z);
+    calibrated=true;return true;
+}
