@@ -73,7 +73,7 @@ Evan Wallace's MIT-licensed ripple component is credited separately in
 
 ## First use and settings
 
-Keep the camera and projector rigidly mounted. For a new box, use this order:
+Keep the camera and projector rigidly mounted, room brightness can effect calibration success. For a new box, use this order:
 
 1. Set the projector orientation before calibration. Depending on the mounting,
    its image may need a horizontal or vertical flip. Keep that orientation fixed
