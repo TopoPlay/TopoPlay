@@ -1,4 +1,8 @@
-# Water and terrain update V73
+# Water and terrain update
+
+Historical development note: this records an individual experiment or patch.
+Later updates may supersede its behavior and validation results. Its filename
+is retained for existing source references.
 
 This patch is based on the user's current-fixes source snapshot. It does not
 write calibration, ROI, saved terrain heights, map XML, CPU limits, or FPS.

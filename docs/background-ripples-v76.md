@@ -1,9 +1,13 @@
-# Background ripples V76
+# Background ripples
 
-Removes the V74/V75 patterned ambient white-light term. Instead, occasional low
+Historical development note: this records an individual experiment or patch.
+Later updates may supersede its behavior and validation results. Its filename
+is retained for existing source references.
+
+Replaces the earlier patterned ambient white-light term. Instead, occasional low
 strength packets are injected into the existing WaterRippleGrid used by hands.
 They spread, interact with boundaries and decay through the existing ripple code.
-Their visible highlights use the working V73 white-only reflection shader.
+Their visible highlights use the existing white-only reflection shader.
 
 A packet is attempted about every 1.8–3.8 seconds, with varied position, direction,
 radius and strength. It prefers a few wet cells away from a shore/ROI edge, and

@@ -1,6 +1,6 @@
 # TopoPlay release checklist
 
-1. Keep the operator's V78 final backup intact.
+1. Keep the operator's final tested backup intact.
 2. Build bin/TopoPlay with scripts/build.sh; test calibration, water, modes, saved
    settings, demo, CPU behavior and projector/lid handling on the original box.
 3. Create a public bundle with scripts/package-release.py --output /chosen/file.tar.gz.
@@ -12,5 +12,5 @@
    and the recorded dependency/addon patches. Follow docs/PUBLISHING.md.
 
 A successful same-machine copy is not a cross-distribution validation. The build
-machine's Linux/libc/architecture are recorded in RELEASE.json. The separate V77
+machine's Linux/libc/architecture are recorded in RELEASE.json. The separate
 projector handoff experiment remains a known independent change/test.

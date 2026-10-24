@@ -1,4 +1,8 @@
-# Steady terrain V78
+# Steady terrain
+
+Historical development note: this records an individual experiment or patch.
+Later updates may supersede its behavior and validation results. Its filename
+is retained for existing source references.
 
 ## Observed cadence
 In the uploaded code SandSurfaceRenderer redraws once per 15 application frames,
@@ -28,7 +32,7 @@ expose filtered depth jitter as small steps. The old renderer comment saying
 No camera capture frequency, averaging, raw-depth handling, ceiling settings,
 wave-hand protection, rain sampling, water physics, ambient ripples, frame rate,
 CPU cap, calibration/ROI file, saved terrain levels, or projector launcher is
-changed. V77 is not a dependency and is not installed/removed by this package.
+changed. The optional projector handoff experiment is independent of this patch.
 The cache adds one bounded CPU pass over the existing terrain vertices during
 scheduled redraws, and uploads vertices only when accepted material Z changes.
 No new camera capture, GPU readback, image filter pass or full-screen buffer is

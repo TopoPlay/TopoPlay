@@ -1,6 +1,10 @@
-# Quiet shoreline — V70
+# Quiet shoreline experiment
 
-V70 strongly absorbs returning shoreline motion while retaining the incoming
+Historical development note: this records an individual experiment or patch.
+Later updates may supersede its behavior and validation results. Its filename
+is retained for existing source references.
+
+This experiment strongly absorbs returning shoreline motion while retaining the incoming
 10x hand-push/pressure boost, actual water storage, run-up, and pullback.
 A graded 24-cell bank band reduces stored discharge when it points away
 from the nearest raised bank. Gravitational pressure still draws water down
@@ -18,8 +22,8 @@ damping both height and velocity so the fine ripples do not repeatedly echo.
 Near shore, fine ripple detail is intentionally calmer. The physical surge
 and shoreline movement continue to use the conservative water solver.
 
-V67 global settling, V68's 10x boost, thin rain, rain amount, pond evaporation,
-GUI, terrain levels, calibration/ROI and V69's MIT/source credits are retained.
+Existing global settling and the experimental 10x boost, thin rain, rain amount, pond evaporation,
+GUI, terrain levels, calibration/ROI and MIT/source credits are retained.
 No display/blending fixes are included: check the cloud/tree flicker after
 this update, independently of how quiet the waves look. There is no larger
 render target, higher FPS, added camera capture, or increased substep cap.
@@ -27,10 +31,10 @@ The shore-map calculation adds a small CPU operation per hydraulic tick;
 actual laptop temperatures still need checking at 15 FPS.
 
 Validation: the isolated plane-wave test reduced returning momentum energy
-to about 1.32% of V69 (roughly 99% lower) over its measured echo window. The
+to about 1.32% of the preceding solver (roughly 99% lower) over its measured echo window. The
 water still ran up the bank and pulled back; closed-basin mass was conserved
 within float rounding. Late visual-ripple energy in the reflected region
-fell to about 2.81% of V69. These are fixture-specific results, not a promise
+fell to about 2.81% of the preceding renderer. These are fixture-specific results, not a promise
 of zero reflection for every terrain. The initial localized run-up remained
 about 19 mm and the downstream crest from a 30-mm pond remained larger than
 from an 8-mm pond. Rain counted once, lake-at-rest, positive depths, changing

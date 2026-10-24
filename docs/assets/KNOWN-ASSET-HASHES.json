@@ -2,112 +2,112 @@
   {
     "path": "bin/data/Batang.ttf",
     "sha256": "8f2c103bfa3fd5de71f1b92b18f21906b5a26871fb7e19a9a4c9af539c3cc7ab",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/Verdana.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/cooperBlack.ttf",
     "sha256": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/demo/mounding-hands.png",
     "sha256": "f5adc64c191bcb3a05359aba9c8fefb109118571c856aadd572efb47e9278cab",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/demo/rain-hand.png",
     "sha256": "eef35817e31d56ea2f951410fb401f23e433ade91897aa65eb40eec556ffc0b3",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/dig/closedchest.png",
     "sha256": "38c6cbc557f40812ee088834cb802a5e7a32680debb133520a7a1a820cfa5944",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/dig/dinotrex.png",
     "sha256": "1603146a95f862c131686f482840992b634746299b4035af103afd147379f1e6",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/licenses/DejaVu-fonts-copyright.txt",
     "sha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/ofxbraitsch/fonts/HelveticaNeueLTStd-Md.otf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/ofxbraitsch/fonts/Roboto-Regular.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/ofxbraitsch/fonts/Verdana.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/textures/grass.jpg",
     "sha256": "1e4bc84d2444bce86de0b25da252090a38049b90c859a8d320419763ab0d176a",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/textures/mountainside.jpeg",
     "sha256": "b2122b39cd09b86c03341cf0f0e2dd375f2bda20d3897c8feca817eb75c6d899",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/textures/rock_diff.jpg",
     "sha256": "b2122b39cd09b86c03341cf0f0e2dd375f2bda20d3897c8feca817eb75c6d899",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/textures/sandygrass.jpg",
     "sha256": "97fc5f0c477207bf45c69883159e9a45e9383865eb63793def3bdc1d69874f2d",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/textures/snow_diff.jpg",
     "sha256": "a6da9713d1bb27d9901642a4cd612645290bcca651d69bb47d7ec793c9156b04",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/textures/spottygrass.jpg",
     "sha256": "1e4bc84d2444bce86de0b25da252090a38049b90c859a8d320419763ab0d176a",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/verdana.ttf",
     "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/volcano/eruption.wav",
     "sha256": "80f10edbdb636a0a854ccfe73f490f6850a80e6b8f7389f89d68353c68fee668",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/volcano/lava.jpg",
     "sha256": "a3b0196d4a04b4869c1f9692db2a5b5fa0bd1eafe07604f577fa25194c8798f6",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/volcano/warning.wav",
     "sha256": "a66ab9bbabd9f51d4ddd336e90692d42411e2acdd0dfbf9a0c942247ca9ef1f2",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/volcano/whitesmoke.png",
     "sha256": "08bfdfa0aad4cf79f68662a1b8569caff01c81a2d12996f6f716e3f15db13bcd",
-    "origin": "v39 generated image / synthesized audio / DejaVu; see ASSETS.md"
+    "origin": "Generated image / synthesized audio / DejaVu; see ASSETS.md"
   },
   {
     "path": "bin/data/rain/thunder.wav",

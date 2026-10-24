@@ -2,8 +2,8 @@
 
 **TopoPlay 1.0.1** is an interactive terrain playground for a Kinect v2, projector,
 and real sand. Shape mountains, dig channels, build ponds and dams, make waves,
-trigger storms, erupt volcanoes, and uncover fossils. This release carries the
-operator-tested V78 behavior under the permanent TopoPlay name.
+trigger storms, erupt volcanoes, and uncover fossils. This release includes operator-tested terrain and water behavior under the
+TopoPlay name.
 
 TopoPlay is an independently maintained educational fork of
 [Magic-Sand](https://github.com/thomwolf/Magic-Sand), by Thomas Wolf and
@@ -125,8 +125,9 @@ same-box copy. Do not publish a private box bundle by mistake.
 
 The operator-tested build has run on an Ubuntu Dell Inspiron 5570, i7-8550U,
 Kinect v2 and 1280×720 projector, with long-run temperature tuning. The slight
-terrain refresh jitter was confirmed improved in V78. This rename preserves that reviewed source; it does not change the rendering or
-water simulation. Windows/macOS and clean-machine distribution have not been validated. Historical development notes retain their original names.
+terrain refresh jitter improved with the material-height cache and steadier tree
+placement. The TopoPlay name migration preserves that reviewed rendering and
+water simulation. Windows/macOS and clean-machine distribution have not been validated. Historical development notes retain their filenames so source references remain valid.
 
 Thunder credit: **Friendly Free Sounds**, "Thunder Sound Effect", April 7, 2023:
 https://www.youtube.com/watch?v=xK_m77VZYnc . The supplied permission requires

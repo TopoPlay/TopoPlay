@@ -12,7 +12,7 @@ and must accompany copies or substantial portions of the adapted component.
 - Upstream source: https://github.com/evanw/webgl-water
 - Upstream algorithm: https://github.com/evanw/webgl-water/blob/master/water.js
 - Original demo: https://madebyevan.com/webgl-water/
-- The upstream source snapshot supplied with V60 is kept at
+- The upstream source snapshot supplied with the ripple adaptation is kept at
   `docs/water-ripples-v60/upstream-water.js`, when that provenance bundle is present.
 
 The adaptation uses a small CPU ripple grid rather than the browser demo's
@@ -39,21 +39,21 @@ method citations, not claims that those projects supplied this source:
 - Equation/CFL reference:
   https://deltares.github.io/Wflow.jl/quarto/model_docs/lateral/local-inertial.html
 
-V66 introduced stored face momentum, depth-dependent dam-break surges and
-shoreline run-up/retreat. V67 added real-time momentum damping so larger waves
-settle without removing their water. V68 exaggerates hand and pressure-generated
-momentum increments by ten, with the higher wave speed included in the CFL
-bound; fine ripple display strength is also increased. Existing momentum is
-not multiplied every frame. These are interactive teaching effects rather
-than an engineering flood or tsunami model. Available volume, friction,
-terrain and positivity limiters still determine actual run-up height.
+Development introduced stored face momentum, depth-dependent dam-break surges,
+shoreline run-up/retreat and real-time momentum damping so larger waves settle
+without removing their water. A later experiment multiplied hand and pressure
+inputs by ten; subsequent updates revised forcing and shoreline handling. The
+historical development notes describe those experiments, rather than a fixed
+specification of the current solver. These are interactive teaching effects,
+not an engineering flood or tsunami model. Available volume, friction, terrain
+and positivity limiters determine actual run-up height.
 
 `src/World/InteractiveWater.h` combines the ripple detail and hydraulic
 heights into the top-down water appearance. Its existing GPL source notice
 is retained. Fine decorative ripples affect surface appearance; actual
 run-up and breached-pond transport are handled by `RainWaterGrid.h`.
 
-The V63 economy renderer, bounded grids, at-rest hydraulic sleep and the
+The economy renderer, bounded grids, at-rest hydraulic sleep and the
 eight-pass transport cap remain in use. The tested operator setting is 15 FPS;
 this documentation update does not change that setting or any runtime behavior.
 

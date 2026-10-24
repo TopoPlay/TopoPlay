@@ -19,7 +19,7 @@ restores those exact bytes, without trimming, processing or re-encoding:
 - Runtime path: `bin/data/rain/thunder.wav`
 - SHA-256: `3798a887ff469d0986eb6413514abb66379c1ba398a9308894c34ae70c237c92`
 - PCM WAV, stereo, 44,100 Hz, 16 bits, 1,539,072 frames (34.899592 seconds).
-- The v39 original-asset manifest records this same hash as the prior WAV.
-- This replaces v39's synthesized thunder, not its warning/eruption sounds.
+- The original replacement-asset manifest records this same hash as the prior WAV.
+- This recording replaces the earlier synthesized thunder; the warning and eruption sounds remain synthesized.
 - Matching the operator's supplied file and URL is based on their identification;
   the WAV metadata does not independently certify authorship of the recording.

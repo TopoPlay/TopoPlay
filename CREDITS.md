@@ -60,12 +60,12 @@ contact when creating the public fork; no unconfirmed identity is assigned here.
   This is a third-party recording, not an AI-generated sound or a public-domain
   claim. The restored WAV is the operator's existing converted file.
 - **ChatGPT image generation / OpenAI** — replacement terrain, lava, smoke,
-  fossil/chest and demonstration artwork generated for this fork (v39), plus
+  fossil/chest and demonstration artwork generated for this fork, plus
   the pine sprite and pool-caustic texture created earlier during development.
-  The v39 prompts, export hashes and font mapping are retained under `docs/assets/`.
-  The earlier pine and pool prompt records are not in that v39 manifest; their
+  The core artwork prompts, export hashes and font mapping are retained under `docs/assets/`.
+  The earlier pine and pool prompt records are not in that core artwork manifest; their
   creation history is recorded separately in ASSETS.md.
-- **Mathematical sound synthesis with ChatGPT/Codex** — v39 countdown and
+- **Mathematical sound synthesis with ChatGPT/Codex** — countdown and
   eruption WAVs; no imported audio samples. The synthesis recipe is included
   under `docs/assets/`. Its unused synthetic thunder recipe is historical;
   the active thunder is Friendly Free Sounds' recording.
@@ -86,7 +86,7 @@ root README. Prefer publishing as a GitHub fork so upstream commit history is
 retained alongside these file-level notices.
 
 
-## Interactive water ripples (v60)
+## Interactive water ripples
 
 The surface ripple update in `src/World/WaterRippleGrid.h` is adapted from
 Evan Wallace's WebGL Water (`water.js`), Copyright 2011 Evan Wallace,
@@ -98,7 +98,7 @@ and https://madebyevan.com/webgl-water/ . The retained MIT notice is in
 This adaptation uses a bounded CPU grid and a lightweight top-down shader.
 It does not include the demo's pool tiles, environment images, ray tracing,
 reflection/refraction scene, sphere simulation or external JavaScript libraries.
-Water artwork remains the existing v28 caustic image credited in ASSETS.md.
+Water artwork remains the pool-caustic image credited in ASSETS.md.
 Original Magic-Sand / UC Davis attribution and GPL notices remain unchanged.
 
 <!-- WATER-CREDITS-V69:BEGIN -->
@@ -120,6 +120,6 @@ Magic-Sand, UC Davis AR Sandbox, framework and asset credits remain in place.
 
 ## Product name
 
-TopoPlay 1.0.0 is the product name of this independently maintained educational
+TopoPlay is the product name of this independently maintained educational
 fork. The previous development snapshots were named Magic-Sand. The rename does
 not change the authorship, licenses, upstream credits, or component provenance.

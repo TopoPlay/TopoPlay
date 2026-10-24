@@ -1,5 +1,5 @@
 
-## Interactive water ripples (v60)
+## Interactive water ripples
 
 The surface ripple update in `src/World/WaterRippleGrid.h` is adapted from
 Evan Wallace's WebGL Water (`water.js`), Copyright 2011 Evan Wallace,
@@ -11,5 +11,5 @@ and https://madebyevan.com/webgl-water/ . The retained MIT notice is in
 This adaptation uses a bounded CPU grid and a lightweight top-down shader.
 It does not include the demo's pool tiles, environment images, ray tracing,
 reflection/refraction scene, sphere simulation or external JavaScript libraries.
-Water artwork remains the existing v28 caustic image credited in ASSETS.md.
+Water artwork remains the pool-caustic image credited in ASSETS.md.
 Original Magic-Sand / UC Davis attribution and GPL notices remain unchanged.
