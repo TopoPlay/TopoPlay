@@ -123,11 +123,34 @@ remain external. Calibration, box startup settings and machine-specific color/CP
 preferences are omitted by default; use `--include-box-settings` only for a private
 same-box copy. Do not publish a private box bundle by mistake.
 
-The operator-tested build has run on an Ubuntu Dell Inspiron 5570, i7-8550U,
-Kinect v2 and 1280×720 projector, with long-run temperature tuning. The slight
-terrain refresh jitter improved with the material-height cache and steadier tree
-placement. The TopoPlay name migration preserves that reviewed rendering and
-water simulation. Windows/macOS and clean-machine distribution have not been validated. Historical development notes retain their filenames so source references remain valid.
+## Tested setup and performance limits
+
+| Item | Tested configuration |
+| --- | --- |
+| Computer | Dell Inspiron 5570 running Ubuntu, Intel Core i7-8550U |
+| Depth camera | Kinect v2 |
+| Projector resolution | 1280 × 720 pixels |
+| Projected sand area | 28 × 20 inches (approximately 71 × 51 cm) |
+| Application frame-rate setting | 15 FPS |
+| CPU turbo/boost | Disabled to reduce heat during extended operation |
+
+These are the operator's test settings, not minimum hardware requirements or a
+performance guarantee. The 15 FPS value is the configured target, not a published
+benchmark of sustained frame rate. CPU boost is a machine-level cooling choice;
+the TopoPlay installer does not disable boost or change system power settings.
+
+Performance, temperatures, tracking and interaction quality with larger projected
+areas or larger Kinect regions of interest (ROIs) have not yet been validated.
+Physical area alone does not establish processing cost: camera ROI, rendering
+resolution, simulation grid sizes and enabled effects also matter. Test a larger
+setup with its intended calibration and effects before relying on it for an event
+or classroom session.
+
+The slight terrain refresh jitter improved with the material-height cache and
+steadier tree placement. The TopoPlay name migration preserves that reviewed
+rendering and water simulation. Windows/macOS and clean-machine distribution
+have not been validated. Historical development notes retain their filenames
+so source references remain valid.
 
 Thunder credit: **Friendly Free Sounds**, "Thunder Sound Effect", April 7, 2023:
 https://www.youtube.com/watch?v=xK_m77VZYnc . The supplied permission requires

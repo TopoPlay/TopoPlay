@@ -68,3 +68,17 @@ Install a separate copy with `python3 scripts/install.py`; choose its folder.
 The installed copy bundles project-private shared libraries and retains system
 library/graphics/USB permission prerequisites. See the top-level README for full
 bundle creation, updates, settings migration and known validation limits.
+
+## Tested runtime and cooling configuration
+
+The operator tested on an Ubuntu Dell Inspiron 5570 with an Intel Core i7-8550U,
+Kinect v2 and a 1280 × 720 projector covering 28 × 20 inches of sand. The application
+frame-rate setting was 15 FPS, with CPU turbo/boost disabled to reduce heat during
+extended operation. This is a tested configuration, not a minimum specification
+or a sustained-frame-rate benchmark. CPU boost was configured separately at the
+machine level; the installer does not alter system power settings.
+
+Larger projected areas and larger Kinect ROIs have not yet been validated for
+performance, temperature or interaction quality. Physical dimensions alone are
+not a processing-cost estimate; ROI, render resolution, simulation grids and
+active effects also matter. Validate the intended larger setup on its own hardware.
