@@ -1,5 +1,14 @@
 # TopoPlay change log
 
+## Projector synchronization — 2026-10-24
+
+- Synchronize the finished RUN image between the operator and projector graphics contexts, preventing a new frame from overwriting a texture still being read by the projector.
+- Drain the previous RUN handoff once when returning to Setup/calibration; leave calibration rendering outside the synchronization path.
+- Release frame synchronization resources before graphics-context teardown.
+- Keep the rebuilt calibration implementation and current scene layer order unchanged.
+- Operator testing: no sprite flicker observed in the separate synchronization test; observation duration was not recorded. Results apply to the tested setup.
+- Known issue under review: ocean ripples appear inactive during idle demos. This update does not change demo effects.
+
 ## Fresh calibration rebuild — 2026-10-24
 
 - Start every calibration attempt with 120 fresh point pairs; do not accumulate failed attempts.

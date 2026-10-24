@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #pragma once
 
 #include "ofMain.h"
+#include "ProjectorFrameSync.h"
 #include "BoxStartup.h"
 #include "OperatorLayout.h"
 #include "IdleDemo.h"
@@ -122,6 +123,7 @@ private:
 
 	// One finished image used by both projector and RUN preview
 	ofFbo projectorComposite;
+    TopoPlayProjectorFrameSync projectorFrameSync;
 
 	// Window/update-rate diagnostic
 	uint64_t diagUpdateCount = 0;

@@ -129,3 +129,13 @@ GPL-2.0-or-later helpers. The rendering files were restored to the composition
 used in the successful calibration tests; responsive shutdown is retained.
 `ofApp.cpp` also includes opt-in calibration tracing. Original source notices and
 licenses remain in place. README calibration instructions were corrected.
+
+## RUN-only projector synchronization — 2026-10-24
+
+`ofApp.cpp`, `ofApp.h` and `ProjectorFrameSync.h` were updated to synchronize
+shared RUN-image writes and projector reads, drain that handoff once when
+leaving RUN, and release synchronization before context teardown. The helper is
+GPL-2.0-or-later. This promotes the separate operator-tested synchronization
+build while retaining the rebuilt calibration and existing layer composition.
+Original notices and licenses are preserved. Earlier rendering rollback entries
+above describe historical changes; this update restores synchronization only.

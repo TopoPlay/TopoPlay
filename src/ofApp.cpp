@@ -57,8 +57,7 @@ bool ofApp::shutdownComplete() const
 void ofApp::releaseShutdownGraphics()
 {
     // Called in the operator update callback while its context still exists.
-    // No shared-frame fences in this comparison build; drain this context on exit.
-    glFinish();
+    projectorFrameSync.release();
 }
 
 void ofApp::setup() {
@@ -5995,9 +5994,12 @@ void ofApp::updateProjectorComposite()
     if (kinectProjector->GetApplicationState() !=
         KinectProjector::APPLICATION_STATE_RUNNING)
     {
+        // Drain the previous RUN handoff once; no sync work during calibration.
+        projectorFrameSync.suspend();
         return;
     }
 
+    projectorFrameSync.beforeWrite();
     projectorComposite.begin();
 
     // Build exactly the same final image that used to be assembled
@@ -6070,6 +6072,7 @@ void ofApp::updateProjectorComposite()
     if(!idleDemo.running())rainRunoff.drawFlash();idleDemo.drawTop(); // IDLE_DEMO_V1
     ceilingMask.draw(); // CONTROLS_V3: final black mask above the ceiling
     projectorComposite.end();
+    projectorFrameSync.afterWrite();
 }
 
 
@@ -6128,7 +6131,9 @@ void ofApp::drawProjWindow(ofEventArgs &args)
         KinectProjector::APPLICATION_STATE_RUNNING)
     {
         // Apply correction only to the projector; PC preview stays original.
+        projectorFrameSync.beforeRead();
         drawCorrectedProjector();
+        projectorFrameSync.afterRead();
     }
     else
     {

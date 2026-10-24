@@ -2,11 +2,11 @@
   "files": {
     ".gitignore": "dde952b3e9fe792537ef711afd62da874400cea389903652df7802d6b511253f",
     "ASSETS.md": "db5554620b79617ba79779754bcd38d3aa1a6547f889a08f59772f85b842c69f",
-    "CHANGELOG.md": "1bdf3715c25cf18f01537418e5cb5e001ddc19980defc8c69cd2d17c72c9dbeb",
+    "CHANGELOG.md": "c9bb009b335a4085a821091e6fd3b62a0f1232cd336d9ae501658fb7089904f1",
     "COPYING": "bc8e40284460ad4dd0a1dd8f9498067bda47ac51a02a6080286c86712bfc048e",
     "CREDITS.md": "ffc09d879e0bbf50cb43ac0ff7ca14ed8028f8fccf9d2f4a67a7af03693b4b94",
     "Makefile": "14e5e98a53d231b1770c74a6a5dc9da3e5643546963a76f972d5ee95f603a84d",
-    "README.md": "e70ae83f62c99e6b39e5e5989bf30a83f43df328e0ffd5e0e7f75cff7635f6f0",
+    "README.md": "65a8ee7aa64385da747a27a92e7e6d31e098d320682243ef3ff57be30fc58627",
     "TopoPlay": "1321aee3e900b9c4dde760828ce3a70b17e6c357c435bf341279728b1ea8db27",
     "addons.make": "ad7b47de43e724eefd4169ddf3892217372a3943e779ebbe20b9279a2147631a",
     "bin/data/Batang.ttf": "8f2c103bfa3fd5de71f1b92b18f21906b5a26871fb7e19a9a4c9af539c3cc7ab",
@@ -310,7 +310,7 @@
     "dependencies/tested-addon-sources/ofxXmlSettings/src/ofxXmlSettings.h": "6e7c3c1305aac5d151c51898a4bd38f479ab503f3e7579c06cdc7ee2a50cbb9d",
     "docs/BUILD_LINUX.md": "b804254d9c52c72982fb9d681489178b4f4fbbcb3edbaaea0877b607f530a1d1",
     "docs/MAINTENANCE.md": "6efbff9f584e4ed754adba69f428684d55d7c45f1d92814d27f237cbda8136c5",
-    "docs/MODIFICATIONS.md": "29ea874da1d3278e72275aee1082005e6037d1b9ea42a3c3c4724f0fefef62d5",
+    "docs/MODIFICATIONS.md": "d48ce6ab72a56f3f4a7788d966d7d185a94e57e0eb1b8fe61a4badd5e660cb0e",
     "docs/PROJECTOR-LAYERS.md": "bb54b3c3636d2f0d0b67394ecf81be7a2c38233b02f14bea30df26008522b3f5",
     "docs/PUBLISHING.md": "1a3b7899999ec04fd5aeee2e783d9ef829bb46973541b5c005db1213e9cebf13",
     "docs/RELEASING.md": "5be27c9e156a49ab7e5da1981f9f1d05815211dac08f1b49336f208716ad51a2",
@@ -466,7 +466,7 @@
     "src/OperatorPanelScroll.h": "cab73b9fc8f488e88b9b9db5145d7d82ae3fce00d0ecfbff6233238a5fdae41f",
     "src/ProjectedModeButtons.h": "940f9ffa72ff91cec295ae32697af0cad8d92a34ebc34dfe4ac3b76b6cdc3c5f",
     "src/ProjectorDisplayGuard.h": "44cced4aab2c4c1861fe9379ad8b06dd84974fb57b9da4e3031ea45cf6d5a465",
-    "src/ProjectorFrameSync.h": "b02be05edf5d892b13005db7fc4f421723041798a664c95907ca67527f9747e8",
+    "src/ProjectorFrameSync.h": "19961818b81a0d7d4de97056bb4070b397d2d5cfb84466492f9f554ec2825846",
     "src/SandSurfaceRenderer/ColorMap.cpp": "6ab5cb30ec98f1f4fb1e59eb893b66582ba16264bf6ee615d5bc4718d42416d1",
     "src/SandSurfaceRenderer/ColorMap.h": "373d58db6a96ba2b331bb251e08cf0b65a19bdd8065932a60cc7583530b74d81",
     "src/SandSurfaceRenderer/LinkedTerrainLayers.h": "047202ddfef6f4f8fbadab1c292c85e43c6cae0e012fb1563288ce0d846385fe",
@@ -506,7 +506,7 @@
     "src/World/WaterRippleSettings.h": "874af6afc8c838bf86c80fd862c933e84bd9bcdf0a205f338b84bc18233754b7",
     "src/World/WaterSweep.h": "5dd7cd65bc7ccee58574cb7c2bf3cb0f9b4a40c426804f9c8b898ef74c9d6d7e",
     "src/main.cpp": "d952e151a692f8d551d79193e3465621be89d20a06e81f1ccbaad4f32712628d",
-    "src/ofApp.cpp": "92651c4b4048b8bcca389f65f2f65f9ff3c01d59099d4a1bf8598c57a7d43fcc",
-    "src/ofApp.h": "692a46201480525c8d1ec4d0d005795329693897ce02ca5bd7db1e8954e8f64e"
+    "src/ofApp.cpp": "785c75e76cb5570f3727d50adc3642d984541a818bc19cdc875f51f202b59c1e",
+    "src/ofApp.h": "e8054cff3071fc12cefa34e672ff9ea5726740ee18a336f4ace61098344e35eb"
   }
 }

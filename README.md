@@ -113,6 +113,19 @@ The existing administrator-installed CPU helper keeps its legacy technical name
 for compatibility; it is not installed or reauthorized by this user-level installer.
 Frame-rate controls remain available without that optional helper.
 
+## Projector rendering and known issues
+
+The finished RUN image is synchronized between the operator and projector
+windows. This avoids overwriting the shared image while the projector still
+reads it. Setup/calibration rendering is outside that synchronization path;
+the fresh-calibration point collection and solver remain unchanged.
+
+Operator testing found no sprite flicker in the separate synchronization test
+on the tested hardware. This does not establish identical behavior on every GPU.
+Ocean ripples have been observed to appear inactive during idle demos; that
+behavior is still under review. Regular-mode and demo effects are unchanged by
+this synchronization update.
+
 ## Projected virtual buttons
 
 The **bone** toggles Fossil mode; the **shovel** toggles Dig mode. These are
