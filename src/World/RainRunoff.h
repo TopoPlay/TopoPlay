@@ -22,6 +22,8 @@ public:
     void setSoundEnabled(bool yes){audioEnabled=yes;thunder.setVolume(yes?.85f:0);}
     void update(const std::shared_ptr<KinectProjector>& k,bool active);
     void draw();
+    void drawWaterBase();
+    void drawRipples();
     void drawFlash();
     void setRainEnabled(bool allowed);
     bool isRainEnabled() const { return rainArmed; }

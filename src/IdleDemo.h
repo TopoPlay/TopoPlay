@@ -94,6 +94,8 @@ public:
             (idleSession?"Next demo in ":"Demo in ")+std::to_string(int(std::ceil(std::max(0.0f,idleSession?nextDemoAt-now:delay-(now-lastActivity)))))+" seconds");}
     }
     void drawWater(){if(phase==2)demoRain.draw();}
+    void drawWaterBase(){if(phase==2)demoRain.drawWaterBase();}
+    void drawRipples(){if(phase==2)demoRain.drawRipples();}
     void drawVolcano(){if(phase==1)demoVolcano.draw();}
     void drawTop() {
         if(phase==0)return;

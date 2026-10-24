@@ -51,14 +51,18 @@ KinectGrabber::~KinectGrabber(){
 
 /// Start the thread.
 void KinectGrabber::start(){
-    startThread(true);
+    if(isThreadRunning())return;
+    workerFinished.store(false,std::memory_order_release);
+    try{startThread(true);}catch(...){workerFinished.store(true,std::memory_order_release);throw;}
 }
 
 /// Signal the thread to stop.  After calling this method,
 /// isThreadRunning() will return false and the while loop will stop
 /// next time it has the chance to.
 void KinectGrabber::stop(){
+    const bool wasRunning=isThreadRunning();
     stopThread();
+    if(wasRunning)std::cout<<"[SHUTDOWN] Kinect worker stop flag set."<<std::endl;
 }
 
 bool KinectGrabber::setup(){
@@ -273,6 +277,10 @@ void KinectGrabber::resetBuffers(void){
 }
 
 void KinectGrabber::threadedFunction() {
+    struct Completion {
+        std::atomic<bool>& done;
+        ~Completion(){done.store(true,std::memory_order_release);}
+    } completion{workerFinished};
 	while(isThreadRunning()) {
 
         bool gotColorThisLoop = false;
@@ -286,6 +294,9 @@ void KinectGrabber::threadedFunction() {
 if (depthListener->waitForNewFrame(depthFrames, 1000))
 {
     depthFrame = depthFrames[libfreenect2::Frame::Depth];
+    if(!isThreadRunning()){
+        depthListener->release(depthFrames);depthFrames.clear();break;
+    }
 
     /*
      * During calibration/setup RGB decoding is enabled.
@@ -376,6 +387,7 @@ if (gotColorThisLoop)
     depthListener->release(depthFrames);
     depthFrames.clear();
 }
+        if(!isThreadRunning())break;
         if (storedframes == 0)
         {
 filtered.send(filteredframe);
@@ -393,8 +405,12 @@ filtered.send(filteredframe);
     }
 if (kinect != nullptr)
 {
+    const auto stopAt=ofGetElapsedTimeMillis();
+    std::cout<<"[SHUTDOWN] Kinect device stop begin."<<std::endl;
     kinect->stop();
-    kinect->close();
+    std::cout<<"[SHUTDOWN] Kinect device stopped after "<<ofGetElapsedTimeMillis()-stopAt<<" ms; closing USB device."<<std::endl;
+    kinect->close();kinect=nullptr;
+    std::cout<<"[SHUTDOWN] Kinect device closed after "<<ofGetElapsedTimeMillis()-stopAt<<" ms."<<std::endl;
 }
     delete[] averagingBuffer;
     delete[] statBuffer;

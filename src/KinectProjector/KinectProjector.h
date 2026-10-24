@@ -54,6 +54,9 @@ public:
 
 class KinectProjector {
 public:
+    void requestShutdown(){kinectgrabber.stop();}
+    bool shutdownComplete() const{return kinectgrabber.shutdownComplete();}
+
     void captureBoxGui(ofJson& j)const;void restoreBoxGui(const ofJson& j);bool saveBoxCalibration();
     bool boxSaveRequested=false;
     bool takeBoxSaveRequest(){bool result=boxSaveRequested;boxSaveRequested=false;return result;}
@@ -205,6 +208,7 @@ public:
 	void SaveKinectColorImage();
 
 private:
+    bool exitSettingsSaved=false;
 
     enum Calibration_state
     {

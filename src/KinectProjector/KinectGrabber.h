@@ -29,6 +29,7 @@ General Public License for more details.
 #include "ofMain.h"
 #include "../CeilingDepth.h"
 #include <mutex>
+#include <atomic>
 #include <cstdint>
 #include "ofxOpenCv.h"
 #include "ofxCv.h"
@@ -51,6 +52,7 @@ public:
 	~KinectGrabber();
     void start();
     void stop();
+    bool shutdownComplete() const{return workerFinished.load(std::memory_order_acquire);}
     void performInThread(std::function<void(KinectGrabber&)> action);
 
     // Enable/disable Magic-Sand RGB processing without stopping
@@ -122,6 +124,7 @@ public:
 	ofThreadChannel<ofVec2f*> gradient;
     
 private:
+    std::atomic<bool> workerFinished{true};
 	void threadedFunction() override;
     void filter();
     bool isInsideROI(int x, int y); // test is x, y is inside ROI

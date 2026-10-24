@@ -492,13 +492,24 @@ void RainRunoff::buildMeshes(float)
 
 void RainRunoff::draw()
 {
+    drawWaterBase();drawRipples();
+}
+
+void RainRunoff::drawWaterBase()
+{
     if(!enabled) return;
     ofPushStyle();ofEnableAlphaBlending();ofSetColor(255);
     waterMesh.draw();
-    // WAVE_RENDER_V71: one consistent base tint on either side of the toggle.
-    // Regular sea keeps its mapped terrain colors; pooled rain keeps its mesh
-    // tint. No separate caustic artwork or hardcoded sea-blue replacement.
+    // Keep the existing terrain/pool base below the animal layer.
     poolMesh.draw();
+    ofPopStyle();
+}
+
+void RainRunoff::drawRipples()
+{
+    if(!enabled) return;
+    ofPushStyle();ofEnableAlphaBlending();ofSetColor(255);
+    // Existing additive white reflections preserve the underlying alpha.
     interactiveWater.draw(ofGetElapsedTimef());
     ofPopStyle();
 }

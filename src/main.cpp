@@ -148,11 +148,16 @@ int main()
     // TOPOPLAY_CLOSE_V80: the operator owns the lifetime of both windows.
     // A lid close/minimize is not an exit event, so projector following remains active.
     TopoPlayShutdown shutdown;
-    ofAddListener(mainWindow->events().exit, &shutdown,
-                  &TopoPlayShutdown::operatorClosed, OF_EVENT_ORDER_BEFORE_APP);
+    shutdown.attach(mainWindow,
+        [mainApp](){mainApp->beginShutdown();},
+        [mainApp](){return mainApp->shutdownComplete();},
+        [mainApp](){mainApp->releaseShutdownGraphics();});
     ofRunApp(mainWindow, mainApp);
     ofRunMainLoop();
-    ofRemoveListener(mainWindow->events().exit, &shutdown,
-                     &TopoPlayShutdown::operatorClosed, OF_EVENT_ORDER_BEFORE_APP);
+    shutdown.detach();
     ofRemoveListener(mainWindow->events().update,&projectorDisplay,&MagicSandProjectorDisplayGuard::update);
+    std::cout<<"[SHUTDOWN] Framework loop returned; releasing application resources."<<std::endl;
+    mainWindow->makeCurrent();
+    mainApp.reset();
+    std::cout<<"[SHUTDOWN] Application resources released."<<std::endl;
 }

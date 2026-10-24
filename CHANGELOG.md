@@ -1,5 +1,12 @@
 # TopoPlay change log
 
+## Tested projector and shutdown fixes — 2026-10-23
+
+- Separate animals, ripples, lava, trees and overhead clouds into explicit scene layers.
+- Synchronize the projector texture between the operator and projector OpenGL contexts.
+- Keep the GUI responsive while Kinect acquisition stops, then release shared graphics work before closing.
+- Operator test: no flicker observed with ripples enabled; closing took about three seconds. Results apply to the tested setup.
+
 ## TopoPlay 1.0.1 — shutdown fix
 
 Closing the operator GUI now requests exit of the complete two-window application.

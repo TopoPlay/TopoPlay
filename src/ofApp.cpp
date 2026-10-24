@@ -41,6 +41,25 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #include <GLFW/glfw3.h>
 #include <cmath>
 
+void ofApp::beginShutdown()
+{
+    if(shuttingDown)return;
+    shuttingDown=true;
+    ofSoundStopAll();
+    if(kinectProjector)kinectProjector->requestShutdown();
+}
+
+bool ofApp::shutdownComplete() const
+{
+    return !kinectProjector || kinectProjector->shutdownComplete();
+}
+
+void ofApp::releaseShutdownGraphics()
+{
+    // Called in the operator update callback while its context still exists.
+    projectorFrameSync.release();
+}
+
 void ofApp::setup() {
 
     // ========================================================
@@ -130,6 +149,7 @@ void ofApp::setup() {
 
 
 void ofApp::update() {
+    if(shuttingDown)return;
     layoutOperatorGui(); // EDGE_GUI_V6
     // Poll the animal/mode panel even during Fossil or Dig mode, when normal
     // animal simulation is skipped. Polling only from the boid update leaves
@@ -5969,12 +5989,15 @@ void ofApp::drawFossilFinder()
 
 void ofApp::updateProjectorComposite()
 {
+    if(shuttingDown)return;
     if (kinectProjector->GetApplicationState() !=
         KinectProjector::APPLICATION_STATE_RUNNING)
     {
         return;
     }
 
+    // Wait for the projector's previous read before overwriting this texture.
+    projectorFrameSync.beforeWrite();
     projectorComposite.begin();
 
     // Build exactly the same final image that used to be assembled
@@ -6029,11 +6052,15 @@ void ofApp::updateProjectorComposite()
         // NORMAL MAGIC-SAND / DIG MODE
         // ====================================================
 
+        // Back to front: terrain/pool base, animals, ripple light, lava,
+        // trees, then overhead clouds in the final pass below.
         sandSurfaceRenderer->drawProjectorWindow();
-        rainRunoff.draw();idleDemo.drawWater(); // IDLE_DEMO_V1
-        if(!idleDemo.running())volcano.draw();idleDemo.drawVolcano(); // IDLE_DEMO_V1
+        rainRunoff.drawWaterBase();idleDemo.drawWaterBase();
         mapGameController.drawProjectorWindow();
         boidGameController.drawProjectorWindow();
+        rainRunoff.drawRipples();idleDemo.drawRipples();
+        if(!idleDemo.running())volcano.draw();idleDemo.drawVolcano();
+        boidGameController.drawVegetationLayer();
         kinectProjector->drawProjectorWindow();
 
         drawRingButtonTest();
@@ -6047,11 +6074,18 @@ void ofApp::updateProjectorComposite()
     if(!idleDemo.running())rainRunoff.drawFlash();idleDemo.drawTop(); // IDLE_DEMO_V1
     ceilingMask.draw(); // CONTROLS_V3: final black mask above the ceiling
     projectorComposite.end();
+    // Publish a completed frame before the other GL context samples it.
+    projectorFrameSync.afterWrite();
 }
 
 
 void ofApp::draw()
 {
+    if(shuttingDown){
+        ofBackground(24);ofSetColor(255);
+        ofDrawBitmapString("Closing TopoPlay... waiting for Kinect cleanup",24,40);
+        return;
+    }
     layoutOperatorGui(); // EDGE_GUI_V6: includes expanded folders/resizes
     diagMainDrawCount++;
     float x = mainWindowROI.x;
@@ -6094,12 +6128,17 @@ void ofApp::draw()
 
 void ofApp::drawProjWindow(ofEventArgs &args)
 {
+    if(shuttingDown){ofClear(0,0,0,255);return;}
     diagProjDrawCount++;
     if (kinectProjector->GetApplicationState() ==
         KinectProjector::APPLICATION_STATE_RUNNING)
     {
+        // This context must wait for the producer, and finish reading before
+        // the producer is allowed to reuse the same image next update.
+        projectorFrameSync.beforeRead();
         // Apply correction only to the projector; PC preview stays original.
         drawCorrectedProjector();
+        projectorFrameSync.afterRead();
     }
     else
     {
@@ -6110,6 +6149,7 @@ void ofApp::drawProjWindow(ofEventArgs &args)
 
 void ofApp::keyPressed(int key) 
 {
+    if(shuttingDown)return;
     idleDemo.noteActivity();if(idleDemo.keyPressed(key))return; // IDLE_DEMO_V1
 
     if(triggerControls.keyPressed(key))return; // TRIGGER_CONTROLS_V1
@@ -6256,6 +6296,7 @@ void ofApp::mouseMoved(int x, int y) {
 }
 
 void ofApp::mouseDragged(int x, int y, int button) {
+    if(shuttingDown)return;
 
 	// We assume that we only use this during ROI annotation
 	kinectProjector->mouseDragged((x-mainWindowROI.x)*kinectProjector->getKinectRes().x/std::max(1.0f,mainWindowROI.width), (y-mainWindowROI.y)*kinectProjector->getKinectRes().y/std::max(1.0f,mainWindowROI.height), button);
@@ -6263,6 +6304,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
 
 void ofApp::mousePressed(int x, int y, int button) 
 {
+    if(shuttingDown)return;
     idleDemo.noteActivity(); // IDLE_DEMO_V1
     if(MagicSandPanelScroll::handle(x,y,button,ofGetWidth(),ofGetHeight(),operatorLeftScroll,operatorLeftMax)){
         layoutOperatorGui();return;
@@ -6275,6 +6317,7 @@ void ofApp::mousePressed(int x, int y, int button)
 }
 
 void ofApp::mouseReleased(int x, int y, int button) {
+    if(shuttingDown)return;
 	// We assume that we only use this during ROI annotation
 	kinectProjector->mouseReleased((x-mainWindowROI.x)*kinectProjector->getKinectRes().x/std::max(1.0f,mainWindowROI.width), (y-mainWindowROI.y)*kinectProjector->getKinectRes().y/std::max(1.0f,mainWindowROI.height), button);
 

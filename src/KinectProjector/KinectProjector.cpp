@@ -157,7 +157,10 @@ void KinectProjector::exit(ofEventArgs& e)
     // The worker finishes its current bounded frame wait, then stops/closes the
     // device in its own thread. Its existing destructor joins that worker.
     // Do not stop/close the libfreenect2 device concurrently from this UI thread.
-    kinectgrabber.stop();
+    if(exitSettingsSaved)return;
+    exitSettingsSaved=true;
+    requestShutdown();
+    std::cout<<"[SHUTDOWN] Saving projector settings."<<std::endl;
 	if (ROIcalibrated)
 	{
 		if (saveSettings())

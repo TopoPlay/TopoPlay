@@ -53,6 +53,7 @@ class CBoidGameController
         void updateOperatorGui();void refreshOperatorGui(); // MODE_BUTTONS_V37
 
 		void drawProjectorWindow();
+        void drawVegetationLayer();
 
 		void drawMainWindow(float x, float y, float width, float height);
 		void drawGuiOnly();
