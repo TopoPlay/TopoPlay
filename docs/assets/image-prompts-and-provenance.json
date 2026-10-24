@@ -1,0 +1,120 @@
+[
+  {
+    "key": "lava",
+    "prompt": "Use case: stylized-concept. Asset type: one seamless square game texture for an overhead projected AR sandbox lava spill. Generate an ORIGINAL molten lava material, flat top-down orthographic, edge-to-edge texture only. Broad irregular glowing orange-red molten channels with small scattered charcoal-maroon crust islands and fine bright yellow seams; strong readable midscale detail, restrained pale-yellow highlights, no large white patches. Naturally flowing amorphous shapes, no directional center, no vortex, no scene, no volcano cone, no perspective, no lighting gradient. Seamlessly tileable all four edges. 1024x1024 square. No text, signatures, logos, borders or symbols.",
+    "exports": [
+      {
+        "path": "bin/data/volcano/lava.jpg",
+        "sha256": "a3b0196d4a04b4869c1f9692db2a5b5fa0bd1eafe07604f577fa25194c8798f6"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "smoke",
+    "prompt": "Use case: stylized-concept. Asset type: ONE transparent particle sprite for smoke/clouds in an overhead projected educational sandbox. ORIGINAL isolated soft white smoke puff, roughly round with 5 asymmetrical billowing lobes, wispy feathery edges, soft internal gray-white volume, cloud-like but physically smoky rather than cartoon outlined. Entire puff centered, fills 80 percent of square with transparent padding around all edges. White RGB smoke with varied translucent alpha, opaque/brighter center and fade to fully transparent outer tendrils; no hard silhouette, no rectangular background, no shadow plane, no objects, no text. Square 1024px. Actual transparent background.",
+    "exports": [
+      {
+        "path": "bin/data/volcano/whitesmoke.png",
+        "sha256": "08bfdfa0aad4cf79f68662a1b8569caff01c81a2d12996f6f716e3f15db13bcd"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "dinosaur",
+    "prompt": "Use case: scientific-educational. Asset type: transparent excavation game sprite. Generate ONE ORIGINAL complete tyrannosaur fossil skeleton arranged flat on the ground like a museum excavation, seen directly from above. Head toward upper right, curved tail sweeping toward lower left, spine diagonal, visible rib cage, two long hind legs and two small forelimbs. Ivory and warm beige mineralized bones, slightly worn edges, clear readable individual bones, restrained realistic 3D rendering with soft ambient shading. All bones belong to one complete coherent skeleton; no rock slab, no surrounding soil, no pedestal, no standing dinosaur, no museum scene, no lettering. Centered in a square with 8 percent transparent padding, genuinely transparent background.",
+    "exports": [
+      {
+        "path": "bin/data/dig/dinotrex.png",
+        "sha256": "1603146a95f862c131686f482840992b634746299b4035af103afd147379f1e6"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "chest",
+    "prompt": "Use case: stylized-concept. Asset type: transparent treasure chest sprite for excavation in an overhead AR sandbox. ONE ORIGINAL closed compact treasure chest seen from a high 65-degree overhead angle so its lid dominates and only a little front and right side show. Warm honey-brown aged wooden staves, gently domed lid, two muted bronze bands, small simple centered lockplate, restrained metal rivets. Distinct simple design, believable tactile materials, readable at small projection size, warm soft light, no ground/shadow plane, no treasure outside, no coins, no text, no branding. Object entirely inside a square with 8 percent padding. Genuinely transparent background.",
+    "exports": [
+      {
+        "path": "bin/data/dig/closedchest.png",
+        "sha256": "38c6cbc557f40812ee088834cb802a5e7a32680debb133520a7a1a820cfa5944"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "rainhand",
+    "prompt": "Use case: illustration-story. Asset type: transparent instructional hand sprite for an educational overhead AR sandbox demo. ONE ORIGINAL gently stylized 3D illustration of a single anatomically correct human LEFT hand viewed from directly above, back of hand visible, wrist enters from left, four relaxed close fingers extend toward the right, thumb extends toward upper right; all five digits readable. A hovering palm-down gesture with fingers nearly level, natural light-medium warm skin, soft clean shading, simple fingernails, no jewelry, no sleeve, no objects, no lettering. Hand fully contained with small transparent padding at fingertips, horizontal wide 2.2:1 composition. Genuinely transparent background. Not a photograph, not a pointing index finger, not a gripping or cupped hand.",
+    "exports": [
+      {
+        "path": "bin/data/demo/rain-hand.png",
+        "sha256": "eef35817e31d56ea2f951410fb401f23e433ade91897aa65eb40eec556ffc0b3"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "moundhands",
+    "prompt": "Use case: illustration-story. Asset type: transparent instructional gesture sprite for an overhead educational sandbox demo. ORIGINAL matching pair of anatomically correct stylized 3D human hands, five digits each, two wrists enter bottom, palms turned inward to cup an EMPTY imaginary mound between them. Left hand on left and right hand on right, fingers point upward and slightly inward, viewed from above the backs and sides at a high overhead angle. Clear large empty transparent gap in the center must remain to show the real sand mound. Natural light-medium warm skin and soft clean shading, no jewelry or sleeves, no sand, no actual mound, no text. Portrait 1:1.2 composition, entire hands visible with transparent outer padding. Genuinely transparent background.",
+    "exports": [
+      {
+        "path": "bin/data/demo/mounding-hands.png",
+        "sha256": "f5adc64c191bcb3a05359aba9c8fefb109118571c856aadd572efb47e9278cab"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "sand",
+    "prompt": "Use case: photorealistic-natural. Asset type: seamless overhead game terrain albedo texture. ORIGINAL warm pale beige fine dry sand grains with subtle scattered cream quartz specks, dense uniform microdetail, modest contrast, completely flat top-down view filling square edge-to-edge. Neutral ambient light, no directional shadows, no large pebbles, no footprints, no dunes, no plants, no lines, no objects, no text. Seamlessly tileable all edges, 1024px square. Texture should remain quiet and natural when tinted by projected elevation colors.",
+    "exports": [
+      {
+        "path": "bin/data/textures/sandygrass.jpg",
+        "sha256": "97fc5f0c477207bf45c69883159e9a45e9383865eb63793def3bdc1d69874f2d"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "grass",
+    "prompt": "Use case: photorealistic-natural. Asset type: one seamless overhead game terrain albedo tile. ORIGINAL dense short meadow grass seen straight down, interwoven fine blades and tiny natural tan thatch, mostly medium fresh green with restrained olive patches. Flat even ambient light, fine uniform detail and moderate contrast for projection onto physical sand. Edge-to-edge square tile, seamlessly repeating in both axes. No horizon, flowers, broad leaves, rocks, paths, borders, directional shadows or text. 1024 square.",
+    "exports": [
+      {
+        "path": "bin/data/textures/grass.jpg",
+        "sha256": "1e4bc84d2444bce86de0b25da252090a38049b90c859a8d320419763ab0d176a"
+      },
+      {
+        "path": "bin/data/textures/spottygrass.jpg",
+        "sha256": "1e4bc84d2444bce86de0b25da252090a38049b90c859a8d320419763ab0d176a"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "rock",
+    "prompt": "Use case: photorealistic-natural. Asset type: seamless overhead rock albedo material tile for an educational sandbox. ORIGINAL weathered gray-brown slate and limestone stone, irregular fractured plates with shallow crevices, medium-scale angular texture, muted warm gray/taupe palette and restrained contrast. Flat straight-down orthographic surface, uniform ambient illumination, no perspective, cliff silhouette, sky, vegetation, water, writing, vignette or objects. Seamlessly tileable on all sides, edge-to-edge 1024 square.",
+    "exports": [
+      {
+        "path": "bin/data/textures/rock_diff.jpg",
+        "sha256": "b2122b39cd09b86c03341cf0f0e2dd375f2bda20d3897c8feca817eb75c6d899"
+      },
+      {
+        "path": "bin/data/textures/mountainside.jpeg",
+        "sha256": "b2122b39cd09b86c03341cf0f0e2dd375f2bda20d3897c8feca817eb75c6d899"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  },
+  {
+    "key": "snow",
+    "prompt": "Use case: photorealistic-natural. Asset type: seamless game terrain snow albedo texture. ORIGINAL white fine granular settled snow viewed straight down, very gentle tiny powder clumps and subtle cool pale-blue shallow shadow detail. Almost white overall, neutral evenly lit material texture, no dramatic dunes or large drifts. Edge-to-edge square, seamlessly repeating in both axes. No footprints, tracks, animals, objects, sky, horizon, text or hard shadows. 1024 square.",
+    "exports": [
+      {
+        "path": "bin/data/textures/snow_diff.jpg",
+        "sha256": "a6da9713d1bb27d9901642a4cd612645290bcca651d69bb47d7ec793c9156b04"
+      }
+    ],
+    "generation": "Built-in image generation; original text prompt, no external image supplied as a generation input."
+  }
+]

@@ -1,0 +1,30 @@
+# Build products and local dependencies
+/obj/
+/lib/
+/bin/*
+!/bin/data/
+/config.local.make
+/topoplay-build.json
+/topoplay-install.json
+*.o
+*.so
+*.so.*
+__pycache__/
+*.pyc
+
+# Backups, logs and release archives
+**/*-backups/
+*.log
+perf*.data*
+*.tar.gz
+*.zip
+
+# Private sandbox settings
+/bin/data/settings/*
+!/bin/data/settings/sandSurfaceRendererSettings.xml
+/bin/data/projector-color.json
+/bin/data/cpu-limit.json
+
+# Generated calibration/debug output and old script copies
+/bin/data/**/DebugFiles/
+/scripts/*.before-*

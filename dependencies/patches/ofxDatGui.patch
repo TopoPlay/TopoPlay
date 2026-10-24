@@ -1,0 +1,70 @@
+diff --git a/src/components/ofxDatGuiSlider.h b/src/components/ofxDatGuiSlider.h
+index 4868043..b399410 100644
+--- a/src/components/ofxDatGuiSlider.h
++++ b/src/components/ofxDatGuiSlider.h
+@@ -135,11 +135,11 @@ class ofxDatGuiSlider : public ofxDatGuiComponent {
+         void printValue()
+         {
+             if (mTruncateValue == false){
+-                cout << setprecision(16) << getValue() << endl;
++                cout << std::setprecision(16) << getValue() << endl;
+             }   else{
+                 int n = ofToString(mValue).find(".");
+                 if (n == -1) n = ofToString(mValue).length();
+-                cout << setprecision(mPrecision + n) << mValue << endl;
++                cout << std::setprecision(mPrecision + n) << mValue << endl;
+             }
+         }
+     
+diff --git a/src/components/ofxDatGuiTextInputField.h b/src/components/ofxDatGuiTextInputField.h
+index 1bd53e2..30b3b18 100644
+--- a/src/components/ofxDatGuiTextInputField.h
++++ b/src/components/ofxDatGuiTextInputField.h
+@@ -192,7 +192,7 @@ class ofxDatGuiTextInputField : public ofxDatGuiInteractiveObject{
+             } else if (key == OF_KEY_LEFT) {
+                 setCursorIndex(max( (int) mCursorIndex - 1, 0));
+             } else if (key == OF_KEY_RIGHT) {
+-                setCursorIndex(min( mCursorIndex + 1, (unsigned int) mText.size()));
++                setCursorIndex(std::min( mCursorIndex + 1, (unsigned int) mText.size()));
+             } else {
+             // insert character at cursor position //
+                 setText(mText.substr(0, mCursorIndex) + (char)key + mText.substr(mCursorIndex));
+diff --git a/src/core/ofxDatGuiComponent.cpp b/src/core/ofxDatGuiComponent.cpp
+index 35677c2..ac96645 100644
+--- a/src/core/ofxDatGuiComponent.cpp
++++ b/src/core/ofxDatGuiComponent.cpp
+@@ -85,7 +85,7 @@ ofxDatGuiType ofxDatGuiComponent::getType()
+ 
+ const ofxDatGuiTheme* ofxDatGuiComponent::getTheme()
+ {
+-    if (theme == nullptr) theme = make_unique<ofxDatGuiTheme>(true);
++    if (theme == nullptr) theme = std::make_unique<ofxDatGuiTheme>(true);
+     return theme.get();
+ }
+ 
+diff --git a/src/core/ofxDatGuiComponent.h b/src/core/ofxDatGuiComponent.h
+index f04923d..f2cb588 100644
+--- a/src/core/ofxDatGuiComponent.h
++++ b/src/core/ofxDatGuiComponent.h
+@@ -112,7 +112,7 @@ class ofxDatGuiComponent : public ofxDatGuiInteractiveObject
+         ofxDatGuiType mType;
+         ofxDatGuiAnchor mAnchor;
+         shared_ptr<ofxSmartFont> mFont;
+-        static unique_ptr<ofxDatGuiTheme> theme;
++        static std::unique_ptr<ofxDatGuiTheme> theme;
+     
+         struct{
+             float width;
+diff --git a/src/ofxDatGui.h b/src/ofxDatGui.h
+index 5563dab..1a4d5b5 100644
+--- a/src/ofxDatGui.h
++++ b/src/ofxDatGui.h
+@@ -128,7 +128,7 @@ class ofxDatGui : public ofxDatGuiInteractiveObject
+         vector<ofxDatGuiComponent*> trash;
+         static ofxDatGui* mActiveGui;
+         static vector<ofxDatGui*> mGuis;
+-        static unique_ptr<ofxDatGuiTheme> theme;
++        static std::unique_ptr<ofxDatGuiTheme> theme;
+     
+         void init();
+         void layoutGui();

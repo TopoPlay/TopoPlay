@@ -1,0 +1,30 @@
+<keys>
+    <key><height>-220.000000000</height><color-r>0</color-r><color-g>8</color-g><color-b>38</color-b></key>
+    <key><height>-180.000000000</height><color-r>0</color-r><color-g>25</color-g><color-b>85</color-b></key>
+    <key><height>-130.000000000</height><color-r>0</color-r><color-g>65</color-g><color-b>135</color-b></key>
+    <key><height>-70.000000000</height><color-r>0</color-r><color-g>110</color-g><color-b>175</color-b></key>
+    <key><height>-15.000000000</height><color-r>45</color-r><color-g>155</color-g><color-b>195</color-b></key>
+    <key><height>-4.000000000</height><color-r>105</color-r><color-g>190</color-g><color-b>210</color-b></key>
+    <key><height>-1.000000000</height><color-r>155</color-r><color-g>205</color-g><color-b>205</color-b></key>
+
+    <!-- clean beach band -->
+    <key><height>0.000000000</height><color-r>214</color-r><color-g>194</color-g><color-b>138</color-b></key>
+    <key><height>4.000000000</height><color-r>220</color-r><color-g>201</color-g><color-b>145</color-b></key>
+    <key><height>8.000000000</height><color-r>216</color-r><color-g>198</color-g><color-b>140</color-b></key>
+
+    <!-- beach to grass transition -->
+    <key><height>12.000000000</height><color-r>160</color-r><color-g>168</color-g><color-b>98</color-b></key>
+    <key><height>14.000000000</height><color-r>104</color-r><color-g>145</color-g><color-b>72</color-b></key>
+
+    <!-- grass -->
+    <key><height>25.000000000</height><color-r>78</color-r><color-g>128</color-g><color-b>58</color-b></key>
+    <key><height>45.000000000</height><color-r>67</color-r><color-g>118</color-g><color-b>52</color-b></key>
+    <key><height>75.000000000</height><color-r>89</color-r><color-g>108</color-g><color-b>58</color-b></key>
+
+    <!-- upland / rock -->
+    <key><height>110.000000000</height><color-r>105</color-r><color-g>92</color-g><color-b>70</color-b></key>
+    <key><height>140.000000000</height><color-r>105</color-r><color-g>101</color-g><color-b>92</color-b></key>
+    <key><height>175.000000000</height><color-r>130</color-r><color-g>128</color-g><color-b>120</color-b></key>
+    <key><height>205.000000000</height><color-r>165</color-r><color-g>165</color-g><color-b>158</color-b></key>
+    <key><height>220.000000000</height><color-r>225</color-r><color-g>225</color-g><color-b>220</color-b></key>
+</keys>

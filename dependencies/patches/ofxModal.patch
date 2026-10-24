@@ -1,0 +1,121 @@
+diff --git a/src/ofxModalWindow.cpp b/src/ofxModalWindow.cpp
+index c0bc693..1c772db 100644
+--- a/src/ofxModalWindow.cpp
++++ b/src/ofxModalWindow.cpp
+@@ -40,11 +40,18 @@ void ofxModalWindow::show()
+         mState = FADING_IN;
+         mAnimation.nTicks = 0;
+         mAnimation.percent = 0;
+-        ofAddListener(ofEvents().draw, this, &ofxModalWindow::onDraw, OF_EVENT_ORDER_AFTER_APP + 9999);
+-        ofAddListener(ofEvents().update, this, &ofxModalWindow::onUpdate, OF_EVENT_ORDER_AFTER_APP + 9999);
+-        ofAddListener(ofEvents().mouseMoved, this, &ofxModalWindow::onMouseMove, OF_EVENT_ORDER_AFTER_APP + 9999);
+-        ofAddListener(ofEvents().mousePressed, this, &ofxModalWindow::onMousePress, OF_EVENT_ORDER_AFTER_APP + 9999);
+-        ofAddListener(ofEvents().windowResized, this, &ofxModalWindow::onWindowResize, OF_EVENT_ORDER_AFTER_APP + 9999);
++	mWindow = ofGetCurrentWindow();
++ofLogNotice("ofxModal") << "show(): current window = "
++                        << (mWindow != nullptr ? "FOUND" : "NULL");
++
++if (mWindow != nullptr)
++{
++    ofAddListener(mWindow->events().draw, this, &ofxModalWindow::onDraw, OF_EVENT_ORDER_AFTER_APP + 9999);
++    ofAddListener(mWindow->events().update, this, &ofxModalWindow::onUpdate, OF_EVENT_ORDER_AFTER_APP + 9999);
++    ofAddListener(mWindow->events().mouseMoved, this, &ofxModalWindow::onMouseMove, OF_EVENT_ORDER_AFTER_APP + 9999);
++    ofAddListener(mWindow->events().mousePressed, this, &ofxModalWindow::onMousePress, OF_EVENT_ORDER_AFTER_APP + 9999);
++    ofAddListener(mWindow->events().windowResized, this, &ofxModalWindow::onWindowResize, OF_EVENT_ORDER_AFTER_APP + 9999);
++}
+     }
+ }
+ 
+@@ -127,7 +134,7 @@ void ofxModalWindow::setTheme(std::shared_ptr<ofxModalTheme> theme)
+     mCloseButton.rect.width = theme->buttonX.width;
+     mCloseButton.rect.height = theme->buttonX.height;
+     mCloseButton.hitPadding = theme->buttonX.hitPadding;
+-    mAnimation.tTicks = theme->animation.speed * ofGetFrameRate();
++    mAnimation.tTicks = std::max(1, (int)(theme->animation.speed * ofGetFrameRate()));
+     mAnimation.tOpacity = theme->alpha.window.background;
+     mTitle.font = theme->fonts.title;
+     mTitle.height = theme->fonts.title->height(mTitle.text);
+@@ -220,7 +227,30 @@ void ofxModalWindow::dispatchCallbacks(ofxModalEvent::EventType eType)
+ 
+ void ofxModalWindow::onDraw(ofEventArgs &e)
+ {
+-    ofPushStyle();
++static bool loggedOnce = false;
++if (!loggedOnce)
++{
++    ofLogNotice("ofxModal") << "onDraw() IS RUNNING";
++    loggedOnce = true;
++}
++   
++	static int drawCount = 0;
++drawCount++;
++
++if (drawCount == 30)
++{
++    ofLogNotice("ofxModal")
++        << "window=" << ofGetWidth() << "x" << ofGetHeight()
++        << " modal x=" << mModal.x
++        << " y=" << mModal.y
++        << " width=" << mModal.width
++        << " height=" << getHeight()
++        << " opacity=" << mAnimation.nOpacity
++        << " ticks=" << mAnimation.nTicks
++        << "/" << mAnimation.tTicks;
++}
++
++	 ofPushStyle();
+         ofFill();
+     // draw background blackout //
+         ofSetColor(0, 0, 0, mAnimation.nOpacity);
+@@ -259,7 +289,15 @@ void ofxModalWindow::onDraw(ofEventArgs &e)
+ 
+ void ofxModalWindow::onUpdate(ofEventArgs &e)
+ {
+-    if (mState == FADING_IN || mState == FADING_OUT){
++
++static bool loggedUpdateOnce = false;
++if (!loggedUpdateOnce)
++{
++    ofLogNotice("ofxModal") << "onUpdate() IS RUNNING";
++    loggedUpdateOnce = true;
++} 
++
++   if (mState == FADING_IN || mState == FADING_OUT){
+         animate();
+     }   else{
+     // update modal components //
+@@ -332,10 +370,17 @@ void ofxModalWindow::animate()
+         // modal is closed, ok to show another one now //
+             activeModal = nullptr;
+             dispatchCallbacks(ofxModalEvent::HIDDEN);
+-            ofRemoveListener(ofEvents().draw, this, &ofxModalWindow::onDraw);
+-            ofRemoveListener(ofEvents().update, this, &ofxModalWindow::onUpdate);
+-            ofRemoveListener(ofEvents().mouseMoved, this, &ofxModalWindow::onMouseMove);
+-            ofRemoveListener(ofEvents().mousePressed, this, &ofxModalWindow::onMousePress);
++
++if (mWindow != nullptr)
++{
++    ofRemoveListener(mWindow->events().draw, this, &ofxModalWindow::onDraw);
++    ofRemoveListener(mWindow->events().update, this, &ofxModalWindow::onUpdate);
++    ofRemoveListener(mWindow->events().mouseMoved, this, &ofxModalWindow::onMouseMove);
++    ofRemoveListener(mWindow->events().mousePressed, this, &ofxModalWindow::onMousePress);
++    ofRemoveListener(mWindow->events().windowResized, this, &ofxModalWindow::onWindowResize);
++    mWindow.reset();
++}
++
+         }
+     }
+ // sync modal components as window moves //
+diff --git a/src/ofxModalWindow.h b/src/ofxModalWindow.h
+index b9c0956..ebda668 100644
+--- a/src/ofxModalWindow.h
++++ b/src/ofxModalWindow.h
+@@ -233,6 +233,8 @@ class ofxModalWindow {
+         ofxParagraph* mMessage;
+         vector<ModalComponent> mModalComponents;
+         vector<ofxDatGuiButton*> mFooterButtons;
++	
++	shared_ptr<ofAppBaseWindow> mWindow;
+     
+         void onDraw(ofEventArgs &e);
+         void onUpdate(ofEventArgs &e);

@@ -1,0 +1,203 @@
+/***********************************************************************
+KinectProjectorCalibration.cpp - KinectProjectorCalibration compute
+the calibration of the kinect and projector.
+Copyright (c) 2016 Thomas Wolf
+
+--- Adapted from ofxKinectProjectorToolkit by Gene Kogan:
+https://github.com/genekogan/ofxKinectProjectorToolkit
+Copyright (c) 2014 Gene Kogan
+
+This file is part of the Magic Sand.
+
+The Magic Sand is free software; you can redistribute it
+and/or modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; either version 2 of the
+License, or (at your option) any later version.
+
+The Magic Sand is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with the Magic Sand; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+***********************************************************************/
+
+#include "KinectProjectorCalibration.h"
+
+ofxKinectProjectorToolkit::ofxKinectProjectorToolkit(ofVec2f sprojRes, ofVec2f skinectRes) {
+	projRes = sprojRes;
+	kinectRes = skinectRes;
+    calibrated = false;
+}
+
+void ofxKinectProjectorToolkit::calibrate(vector<ofVec3f> pairsKinect,
+                                          vector<ofVec2f> pairsProjector) {
+    int nPairs = pairsKinect.size();
+    A.set_size(nPairs*2, 11);
+    y.set_size(nPairs*2, 1);
+    
+    for (int i=0; i<nPairs; i++) {
+        A(2*i, 0) = pairsKinect[i].x;
+        A(2*i, 1) = pairsKinect[i].y;
+        A(2*i, 2) = pairsKinect[i].z;
+        A(2*i, 3) = 1;
+        A(2*i, 4) = 0;
+        A(2*i, 5) = 0;
+        A(2*i, 6) = 0;
+        A(2*i, 7) = 0;
+        A(2*i, 8) = -pairsKinect[i].x * pairsProjector[i].x;
+        A(2*i, 9) = -pairsKinect[i].y * pairsProjector[i].x;
+        A(2*i, 10) = -pairsKinect[i].z * pairsProjector[i].x;
+        
+        A(2*i+1, 0) = 0;
+        A(2*i+1, 1) = 0;
+        A(2*i+1, 2) = 0;
+        A(2*i+1, 3) = 0;
+        A(2*i+1, 4) = pairsKinect[i].x;
+        A(2*i+1, 5) = pairsKinect[i].y;
+        A(2*i+1, 6) = pairsKinect[i].z;
+        A(2*i+1, 7) = 1;
+        A(2*i+1, 8) = -pairsKinect[i].x * pairsProjector[i].y;
+        A(2*i+1, 9) = -pairsKinect[i].y * pairsProjector[i].y;
+        A(2*i+1, 10) = -pairsKinect[i].z * pairsProjector[i].y;
+        
+        y(2*i, 0) = pairsProjector[i].x;
+        y(2*i+1, 0) = pairsProjector[i].y;
+    }
+    
+    dlib::qr_decomposition<dlib::matrix<double, 0, 11> > qrd(A);
+    x = qrd.solve(y);
+    cout << "x: "<< x << endl;
+    projMatrice = ofMatrix4x4(x(0,0), x(1,0), x(2,0), x(3,0),
+                              x(4,0), x(5,0), x(6,0), x(7,0),
+                              x(8,0), x(9,0), x(10,0), 1,
+                              0, 0, 0, 1);
+    calibrated = true;
+}
+
+ofMatrix4x4 ofxKinectProjectorToolkit::getProjectionMatrix() {
+    return projMatrice;
+}
+
+ofVec2f ofxKinectProjectorToolkit::getProjectedPoint(ofVec3f worldPoint) {
+    ofVec4f pts = ofVec4f(worldPoint);
+    pts.w = 1;
+    ofVec4f rst = projMatrice*(pts);
+    ofVec2f projectedPoint(rst.x/rst.z, rst.y/rst.z);
+    return projectedPoint;
+}
+
+vector<double> ofxKinectProjectorToolkit::getCalibration()
+{
+    vector<double> coefficients;
+    for (int i=0; i<11; i++) {
+        coefficients.push_back(x(i, 0));
+    }
+    return coefficients;
+}
+bool ofxKinectProjectorToolkit::loadCalibration(string path)
+{
+    ofxXmlSettings xml;
+
+    if (!xml.loadFile(path))
+        return false;
+
+    if (!xml.tagExists("CALIBRATION"))
+        return false;
+
+    xml.pushTag("CALIBRATION");
+
+    if (!xml.tagExists("RESOLUTIONS"))
+    {
+        xml.popTag();
+        return false;
+    }
+
+    xml.pushTag("RESOLUTIONS");
+
+    ofVec2f sprojRes;
+    ofVec2f skinectRes;
+
+    sprojRes.x = xml.getValue("PROJECTOR_X", 0.0f);
+    sprojRes.y = xml.getValue("PROJECTOR_Y", 0.0f);
+
+    skinectRes.x = xml.getValue("KINECT_X", 0.0f);
+    skinectRes.y = xml.getValue("KINECT_Y", 0.0f);
+
+    xml.popTag();
+
+    if (sprojRes != projRes || skinectRes != kinectRes)
+    {
+        xml.popTag();
+        return false;
+    }
+
+    if (!xml.tagExists("COEFFICIENTS"))
+    {
+        xml.popTag();
+        return false;
+    }
+
+    xml.pushTag("COEFFICIENTS");
+
+    for (int i = 0; i < 11; i++)
+    {
+        x(i, 0) = xml.getValue(
+            "COEFF" + ofToString(i),
+            0.0f
+        );
+    }
+
+    xml.popTag();
+    xml.popTag();
+
+    projMatrice = ofMatrix4x4(
+        x(0,0), x(1,0), x(2,0), x(3,0),
+        x(4,0), x(5,0), x(6,0), x(7,0),
+        x(8,0), x(9,0), x(10,0), 1,
+        0, 0, 0, 0
+    );
+
+    calibrated = true;
+
+    return true;
+}
+
+
+bool ofxKinectProjectorToolkit::saveCalibration(string path)
+{
+    ofxXmlSettings xml;
+
+    xml.addTag("CALIBRATION");
+    xml.pushTag("CALIBRATION");
+
+    xml.addTag("RESOLUTIONS");
+    xml.pushTag("RESOLUTIONS");
+
+    xml.addValue("PROJECTOR_X", projRes.x);
+    xml.addValue("PROJECTOR_Y", projRes.y);
+
+    xml.addValue("KINECT_X", kinectRes.x);
+    xml.addValue("KINECT_Y", kinectRes.y);
+
+    xml.popTag();
+
+    xml.addTag("COEFFICIENTS");
+    xml.pushTag("COEFFICIENTS");
+
+    for (int i = 0; i < 11; i++)
+    {
+        xml.addValue(
+            "COEFF" + ofToString(i),
+            x(i, 0)
+        );
+    }
+
+    xml.popTag();
+    xml.popTag();
+
+    return xml.saveFile(path);
+}
+

@@ -1,0 +1,6 @@
+ofxCv
+ofxDatGui
+ofxModal
+ofxOpenCv
+ofxParagraph
+ofxXmlSettings
