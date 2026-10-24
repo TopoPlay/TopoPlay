@@ -3,6 +3,7 @@
 """Optional desktop launcher; no autostart or desktop-extension changes."""
 from pathlib import Path
 import os,shutil,subprocess,sys
+from desktop_icon import icon_value
 from topoplay_paths import desktop_quote
 TAG='X-TopoPlay-Shortcut=true'
 
@@ -48,7 +49,7 @@ def sync_shortcut(target,choice=None):
         print('Desktop shortcut skipped: '+str(path)+' already exists and is not managed by this installer.');return False
     launcher=Path(target).resolve()/'TopoPlay'
     if not launcher.is_file():raise RuntimeError('TopoPlay launcher is missing: '+str(launcher))
-    content='[Desktop Entry]\nType=Application\nName=TopoPlay\nComment=Interactive terrain sandbox\nExec=/usr/bin/env -- '+desktop_quote(launcher)+'\nIcon=applications-education\nTerminal=false\nCategories=Education;Science;\nStartupNotify=false\n'+TAG+'\n'
+    content='[Desktop Entry]\nType=Application\nName=TopoPlay\nComment=Interactive terrain sandbox\nExec=/usr/bin/env -- '+desktop_quote(launcher)+'\nIcon='+icon_value(target)+'\nTerminal=false\nCategories=Education;Science;\nStartupNotify=false\n'+TAG+'\n'
     path.parent.mkdir(parents=True,exist_ok=True)
     temp=path.with_suffix('.desktop.tmp');temp.write_text(content);temp.chmod(0o755);temp.replace(path)
     trusted=False

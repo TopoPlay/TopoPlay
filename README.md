@@ -270,3 +270,11 @@ On Ubuntu you may need to right-click it and choose **Allow Launching**. Desktop
 icons must be enabled by the desktop environment; the installer does not change
 extensions or system preferences. The shortcut uses the system education icon.
 Removing registration also removes this installation's managed desktop shortcut.
+
+## TopoPlay launcher icon
+
+The application-menu entry and optional desktop shortcut use the TopoPlay logo.
+The installer stores the icon under the user's data directory so its location
+stays stable when choosing another application folder. Registering an older
+installation without a bundled logo retains an already-installed user icon,
+or falls back to the generic education icon if no logo is available.

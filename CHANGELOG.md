@@ -1,5 +1,11 @@
 # TopoPlay change log
 
+## TopoPlay launcher icon — 2026-10-24
+
+- Bundle the original TopoPlay logo as the desktop/application-menu icon.
+- Install a stable per-user icon when creating or refreshing launchers; use it for both menu and optional desktop shortcuts.
+- Preserve existing launcher commands, calibration, rendering and fossil behavior.
+
 ## Fossil variety and buried logo — 2026-10-24
 
 - Add generated Triceratops, Pteranodon and three-skeleton-group sprites, plus a transparent version of the TopoPlay logo, alongside the existing T. rex.

@@ -149,3 +149,11 @@ immediate repeats when possible, and retains the existing T. rex fallback.
 Four generated image assets and their provenance records were added. Existing
 source notices and licenses remain. Calibration and projector synchronization
 code are unchanged by this update.
+
+## Launcher icon update — 2026-10-24
+
+`scripts/install.py` and `scripts/desktop_shortcut.py` now use the new
+GPL-2.0-or-later `scripts/desktop_icon.py` helper to copy and reference the
+bundled TopoPlay logo. Existing launcher targets and application behavior are
+unchanged. The new runtime icon is an exact copy of the existing generated
+GitHub-logo PNG; provenance is in `docs/assets/topoplay-icon.json`.

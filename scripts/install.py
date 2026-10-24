@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime
 import argparse,hashlib,json,os,re,shutil,subprocess,sys,tempfile
 from desktop_shortcut import sync_shortcut
+from desktop_icon import icon_value
 from topoplay_paths import root,executable,environment,record_install,desktop_quote,registrations
 VERSION='1.0.1'
 MARKER='topoplay-install.json'
@@ -75,7 +76,7 @@ def desktop_path():
     return Path(os.environ.get('XDG_DATA_HOME',str(Path.home()/'.local/share')))/'applications/topoplay.desktop'
 def register(target,desktop=None):
     p=desktop_path();p.parent.mkdir(parents=True,exist_ok=True)
-    text='[Desktop Entry]\nType=Application\nName=TopoPlay\nComment=Interactive terrain sandbox\nExec=/usr/bin/env -- '+desktop_quote(target/'TopoPlay')+'\nIcon=applications-education\nTerminal=false\nCategories=Education;Science;\nStartupNotify=false\n'
+    text='[Desktop Entry]\nType=Application\nName=TopoPlay\nComment=Interactive terrain sandbox\nExec=/usr/bin/env -- '+desktop_quote(target/'TopoPlay')+'\nIcon='+icon_value(target)+'\nTerminal=false\nCategories=Education;Science;\nStartupNotify=false\n'
     tmp=p.with_suffix('.tmp');tmp.write_text(text);tmp.replace(p);record_install(target)
     if shutil.which('update-desktop-database'):subprocess.run(['update-desktop-database',str(p.parent)],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,check=False)
     # Desktop integration is optional; a trust/desktop-service issue must not

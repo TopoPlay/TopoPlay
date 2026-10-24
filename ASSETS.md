@@ -59,3 +59,10 @@ The existing `dig/dinotrex.png` and original GitHub logo are not replaced.
 These are stylized educational game illustrations, not anatomical reference
 reconstructions. Pteranodon is a pterosaur. Keep these provenance records with
 redistributed assets; this record does not change other media permissions.
+
+## Launcher icon — 2026-10-24
+
+`bin/data/icons/topoplay.png` is an exact copy of the existing generated
+TopoPlay GitHub logo, used for the app menu and desktop shortcut. It is separate
+from the transparent buried-logo sprite. Source description and SHA-256 hash
+are in `docs/assets/topoplay-icon.json`. No existing image is replaced.
