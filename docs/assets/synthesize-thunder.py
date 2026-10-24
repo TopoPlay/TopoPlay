@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-or-later
-"""Generate the public thunder WAV without imported audio. Needs numpy/scipy.
+"""Optional synthesized alternative; active thunder is the credited recording.
+Needs numpy/scipy.
 Use: python3 docs/assets/synthesize-thunder.py --output /chosen/thunder.wav
-The published asset is reproducible in the recorded numpy/scipy environment;
+This alternative is reproducible in the recorded numpy/scipy environment;
 other library versions can produce slightly different floating-point rounding.
 """
 from pathlib import Path

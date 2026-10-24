@@ -4,9 +4,11 @@
  * Earlier local development dates were not individually recorded.
  * Original notices below are retained; see docs/MODIFICATIONS.md.
  */
-/* Public source-release thunder: original mathematical synthesis, no samples.
- * Runtime path: rain/thunder.wav. Recipe: docs/assets/synthesize-thunder.py.
- * See docs/assets/THUNDER-PERMISSION.md for current and historical provenance.
+/* Thunder sound effect by Friendly Free Sounds.
+ * https://www.youtube.com/watch?v=xK_m77VZYnc
+ * Original recorded WAV retained with channel credit for TopoPlay.
+ * Operator-supplied creator permission and project-use confirmation:
+ * docs/assets/THUNDER-PERMISSION.md. This is not generated audio.
  */
 #include "RainRunoff.h"
 // RAIN_CLOUD_REFINE_V9: immediate visitor renewal, color-only water, stronger neutral overhead cloud.

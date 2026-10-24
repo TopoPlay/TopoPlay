@@ -114,6 +114,7 @@ identified components such as the MIT-adapted ripple algorithm.
 
 - Include the exact openFrameworks 0.12.1 license and addon MIT notices.
 - Record byte-matched ofxDatGui GUI image provenance; artwork is unchanged.
-- Replace the public thunder recording with generated audio and include its recipe.
+- Retain the credited original thunder recording and its supplied permission record;
+  generated audio is an optional alternative. An intermediate substitution is reverted.
 - Make source-only distribution explicit and refresh asset/package checksums.
 - Source annotations are comments only; simulation and rendering logic are unchanged.

@@ -2,14 +2,14 @@
 
 
 This record supersedes the earlier source-only asset review for the following
-replacement files. The reviewed/generated core media, generated public thunder WAV and font license text
+replacement files. The reviewed/generated core media, credited original thunder WAV and font license text
 are bundled in this GitHub preparation package.
 Hashes identify the prepared replacement assets, not an assertion that every file
 in a locally edited installation still matches. See `docs/assets/KNOWN-ASSET-HASHES.json` and the complete package manifest.
 
 | Runtime paths relative to bin/data | Origin / notice |
 | --- | --- |
-| `rain/thunder.wav` | Original mathematical synthesis without samples; recipe `docs/assets/synthesize-thunder.py`, hash and history in `docs/assets/THUNDER-PERMISSION.md`. |
+| `rain/thunder.wav` | Friendly Free Sounds, “Thunder Sound Effect”; operator-confirmed project use with channel credit. Exact WAV hash and supplied permission record in `docs/assets/THUNDER-PERMISSION.md`. |
 | `volcano/warning.wav`, `volcano/eruption.wav` | Mathematical synthesis without imported samples; recipe `docs/assets/synthesize-sounds.py`. |
 | `volcano/lava.jpg`, `volcano/whitesmoke.png` | Generated artwork; smoke is also used for clouds. |
 | `dig/dinotrex.png`, `dig/closedchest.png` | Generated fossil and chest artwork. |

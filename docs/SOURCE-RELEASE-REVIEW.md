@@ -13,8 +13,9 @@ supplied for binary review. It is an evidence record, not legal certification.
 - Preserve dlib Boost, Evan Wallace MIT, addon MIT and DejaVu notices.
 - GUI artwork: all five PNGs match ofxDatGui upstream commit
   `21dadfe612c16bf364d9bcdfe5a6055ab4eb2891` byte for byte; retain MIT notice.
-- Public thunder: replace recorded audio with reproducible synthesis; retain
-  historical credit without claiming the old creator made the replacement.
+- Thunder: retain the original recording with Friendly Free Sounds channel credit
+  and the operator-supplied permission/project-use confirmation. The intermediate
+  generated replacement is reverted; its recipe remains an optional alternative.
 - Generated-image exports match the 12 recorded provenance hashes. Pine and pool
   artwork retain their separate reported generation history; original prompts for
   those two are not included. All seven font binaries identify as DejaVu.
@@ -24,13 +25,14 @@ supplied for binary review. It is an evidence record, not legal certification.
 
 ## Scope and remaining limits
 
-The new source archive excludes the old recording. Earlier repository commits
-still contain it; normal new commits do not remove old Git objects. Original
-redistribution permission or a deliberate history cleanup is a separate task.
+The original thunder recording is retained by operator direction and confirmation
+of its permitted project use. Its exact hash, supplied creator permission and
+channel credit are preserved in the sound record. No history cleanup is requested.
+This review relies on the supplied permission record; it is not an independent
+legal determination of its scope.
 
 No change to installed laptop software, calibration, CPU settings or private data
-is made by applying this source-repository update. The new generated audio needs
-an audible hardware check. No fresh openFrameworks/Kinect build was performed in
+is made by applying this source-repository update. The exact original recorded audio is restored. No fresh openFrameworks/Kinect build was performed in
 this review environment; code changes are comments only.
 
 Source remains GPL-2.0-or-later where originally granted. Component licenses are

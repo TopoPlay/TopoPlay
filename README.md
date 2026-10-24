@@ -162,10 +162,11 @@ rendering and water simulation. Windows/macOS and clean-machine distribution
 have not been validated. Historical development notes retain their filenames
 so source references remain valid.
 
-The public source uses generated thunder without imported audio samples.
-Friendly Free Sounds is credited for the earlier local recording in
-[the historical sound record](docs/assets/THUNDER-PERMISSION.md); that recording
-is excluded from the current source snapshot.
+Thunder credit: **Friendly Free Sounds**, “Thunder Sound Effect”, identified by
+its supplied source as published April 7, 2023:
+https://www.youtube.com/watch?v=xK_m77VZYnc . The original WAV is retained with
+channel credit based on the operator's supplied permission and confirmation of
+this project's use. See [the sound record](docs/assets/THUNDER-PERMISSION.md).
 
 ## Closing TopoPlay
 

@@ -81,8 +81,8 @@
   },
   {
     "path": "bin/data/rain/thunder.wav",
-    "sha256": "49e61a7a89940e395a1ffc1977bbafd171993e6401deb9c6226384aea49811b0",
-    "origin": "Original mathematical synthesis; see synthesize-thunder.py and THUNDER-PERMISSION.md"
+    "sha256": "3798a887ff469d0986eb6413514abb66379c1ba398a9308894c34ae70c237c92",
+    "origin": "Friendly Free Sounds; original operator-supplied WAV retained with channel credit and supplied permission/project-use confirmation; see THUNDER-PERMISSION.md"
   },
   {
     "path": "bin/data/textures/grass.jpg",
