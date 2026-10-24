@@ -139,3 +139,13 @@ GPL-2.0-or-later. This promotes the separate operator-tested synchronization
 build while retaining the rebuilt calibration and existing layer composition.
 Original notices and licenses are preserved. Earlier rendering rollback entries
 above describe historical changes; this update restores synchronization only.
+
+## Fossil variety and buried logo — 2026-10-24
+
+`ofApp.cpp` and `ofApp.h` were modified to select and retain one fossil image
+and fitted scale per round and share them across reference sampling and reveal
+drawing. New `FossilCatalog.h` is GPL-2.0-or-later and discovers PNGs, avoids
+immediate repeats when possible, and retains the existing T. rex fallback.
+Four generated image assets and their provenance records were added. Existing
+source notices and licenses remain. Calibration and projector synchronization
+code are unchanged by this update.

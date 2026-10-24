@@ -1,0 +1,9 @@
+{
+  "created": "2026-10-24",
+  "file": "bin/data/dig/fossils/topoplay-logo.png",
+  "source": "Existing TopoPlay-GitHub-logo.png, preserved separately",
+  "method": "OpenAI image generation background-extraction edit",
+  "prompt": "Preserve existing TopoPlay terrain/play logo; remove only the navy background outside the colored emblem and inside its triangular play hole. Transparent RGBA game sprite. No redesign, shadows, additional shapes or text.",
+  "use": "Additional random buried image in Fossil mode; same size/rotation/reveal rules as skeleton images.",
+  "sha256": "3c011d37957efb7a3ae3a70a8546f16a075f9472eb23e9a81540716bf8549a41"
+}

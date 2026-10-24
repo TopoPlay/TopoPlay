@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #pragma once
 
 #include "ofMain.h"
+#include "FossilCatalog.h"
 #include "ProjectorFrameSync.h"
 #include "BoxStartup.h"
 #include "OperatorLayout.h"
@@ -186,6 +187,7 @@ private:
 
 		// Large fossil orientation.
 		float objectRotationDeg = 0.0f;
+        float objectScale = 1.0f;
 
 		bool objectPlacementReady = false;
 
@@ -199,6 +201,7 @@ private:
 	};
 
 	FossilFinderState fossilFinder;
+    TopoPlayFossilCatalog fossilCatalog; // TopoPlay addition — 2026-10-24
     MagicSandAutoBone::State digButtonLayout; // MODE_BUTTONS_V37
     FossilRoiSurface fossilRoiSurface; // FOSSIL_SURFACE_V35
     FossilBoxGeometry fossilGeometry; // FOSSIL_ROI_V33

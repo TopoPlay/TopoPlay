@@ -44,3 +44,18 @@ The GPL source license and media permission records serve different purposes.
 Keep original author/dependency/font notices; do not label all assets as public
 domain or as sharing a blanket media license. This update records
 known origins and permissions and does not invent a blanket license for media.
+
+## Additional fossil discoveries — 2026-10-24
+
+- `bin/data/dig/fossils/triceratops.png`, `pteranodon.png` and
+  `fossil-cluster.png`: generated with OpenAI image generation for this project.
+  Subject/prompt notes and SHA-256 hashes are recorded in
+  `docs/assets/fossil-variety-provenance.json`.
+- `bin/data/dig/fossils/topoplay-logo.png`: transparent-background edit of the
+  existing generated TopoPlay logo. Background-extraction prompt, source
+  description and SHA-256 hash are in `docs/assets/topoplay-logo-fossil.json`.
+
+The existing `dig/dinotrex.png` and original GitHub logo are not replaced.
+These are stylized educational game illustrations, not anatomical reference
+reconstructions. Pteranodon is a pterosaur. Keep these provenance records with
+redistributed assets; this record does not change other media permissions.

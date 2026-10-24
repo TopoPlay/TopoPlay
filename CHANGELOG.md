@@ -1,5 +1,14 @@
 # TopoPlay change log
 
+## Fossil variety and buried logo — 2026-10-24
+
+- Add generated Triceratops, Pteranodon and three-skeleton-group sprites, plus a transparent version of the TopoPlay logo, alongside the existing T. rex.
+- Choose one image, a 0–360 degree angle, and 65–100% of its safely fitted size each Fossil-mode round; avoid immediate image repeats when another readable image exists.
+- Share the selected image and scale between buried-reference sampling and drawing; keep the selection fixed during digging.
+- Discover additional PNGs in `bin/data/dig/fossils` when a new round starts; preserve the existing T. rex fallback.
+- Include generated-art provenance and user instructions. Groups reveal through the existing mask and share one buried reference plane.
+- Operator tested the new fossil variety and buried logo in a separate installation. Calibration, synchronization, Dig mode and demo effects remain unchanged.
+
 ## Projector synchronization — 2026-10-24
 
 - Synchronize the finished RUN image between the operator and projector graphics contexts, preventing a new frame from overwriting a texture still being read by the projector.

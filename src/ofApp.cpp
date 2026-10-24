@@ -4890,6 +4890,15 @@ void ofApp::startFossilFinder()
     if (!kinectProjector)
         return;
 
+    // TopoPlay modification — 2026-10-24: select one fossil for this dig round.
+    if(!fossilCatalog.choose()){
+        fossilFinder.enabled=false;
+        std::cout<<"[FOSSIL] ERROR: no readable fossil image available"<<std::endl;
+        return;
+    }
+    fossilFinder.objectScale=ofRandom(0.65f,1.0f);
+    std::cout<<"[FOSSIL ASSET] "<<fossilCatalog.selectedPath()
+        <<" size="<<fossilFinder.objectScale<<std::endl;
     fossilFinder.enabled = true;
     fossilGeometry.reset(); // FOSSIL_ROI_V33
 
@@ -4986,30 +4995,8 @@ void ofApp::freezeFossilFinderReference()
         return;
     }
 
-    static ofImage fossilImage;
-
-    static bool imageTried = false;
-    static bool imageLoaded = false;
-
-    if (!imageTried)
-    {
-        imageTried = true;
-
-        imageLoaded =
-            fossilImage.load(
-                "dig/dinotrex.png"
-            );
-    }
-
-    if (!imageLoaded ||
-        !fossilImage.isAllocated())
-    {
-        std::cout
-            << "[FOSSIL] ERROR: dinotrex.png unavailable"
-            << std::endl;
-
-        return;
-    }
+    ofImage& fossilImage=fossilCatalog.selectedImage();
+    if(!fossilImage.isAllocated())return;
 
     const float imageW =
         fossilImage.getWidth();
@@ -5019,7 +5006,7 @@ void ofApp::freezeFossilFinderReference()
 
     // Fit the final rotated footprint, shared with reference sampling/drawing.
     const auto objectSize=FossilBoxGeometry::fit(roi,imageW/imageH,fossilFinder.objectRotationDeg);
-    const float objectKinectW=objectSize.x,objectKinectH=objectSize.y;
+    const float objectKinectW=objectSize.x*fossilFinder.objectScale,objectKinectH=objectSize.y*fossilFinder.objectScale;
 
     const ofVec2f objectCenter(
         roi.x +
@@ -5268,7 +5255,7 @@ void ofApp::updateFossilFinder()
 
 
 // ------------------------------------------------------------
-// Draw one giant DIG-style fossil.
+// Draw the round-selected DIG-style fossil or fossil group.
 //
 // The reveal code below intentionally mirrors DIG's dense,
 // one-Kinect-pixel CT-scan reveal.
@@ -5284,39 +5271,8 @@ void ofApp::drawFossilFinder()
         return;
     }
 
-    static ofImage fossilImage;
-
-    static bool fossilImageTried =
-        false;
-
-    static bool fossilImageLoaded =
-        false;
-
-    if (!fossilImageTried)
-    {
-        fossilImageTried =
-            true;
-
-        fossilImageLoaded =
-            fossilImage.load(
-                "dig/dinotrex.png"
-            );
-
-        std::cout
-            << "[FOSSIL ASSET] dinotrex.png "
-            << (
-                fossilImageLoaded
-                    ? "OK"
-                    : "FAILED"
-               )
-            << std::endl;
-    }
-
-    if (!fossilImageLoaded ||
-        !fossilImage.isAllocated())
-    {
-        return;
-    }
+    ofImage& fossilImage=fossilCatalog.selectedImage();
+    if(!fossilImage.isAllocated())return;
 
     const ofRectangle& roi =
         fossilFinder.referenceROI;
@@ -5335,7 +5291,7 @@ void ofApp::drawFossilFinder()
 
     // Fit the final rotated footprint, shared with reference sampling/drawing.
     const auto objectSize=FossilBoxGeometry::fit(roi,imageW/imageH,fossilFinder.objectRotationDeg);
-    const float objectKinectW=objectSize.x,objectKinectH=objectSize.y;
+    const float objectKinectW=objectSize.x*fossilFinder.objectScale,objectKinectH=objectSize.y*fossilFinder.objectScale;
 
     const ofVec2f objectCenter(
         roi.x +

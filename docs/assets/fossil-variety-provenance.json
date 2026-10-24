@@ -1,0 +1,40 @@
+{
+  "created": "2026-10-24",
+  "method": "Built-in OpenAI image generation, requested by the TopoPlay operator",
+  "description": "Stylized educational fossil sprites; illustrative game artwork, not scientific reconstruction diagrams. Pteranodon is a pterosaur. Existing T. rex remains unchanged.",
+  "assets": [
+    {
+      "file": "bin/data/dig/fossils/triceratops.png",
+      "sha256": "02fed1a0b937bb746c855957dcb0a25f9650a7b71eca465ced6d80d2f055c5ca",
+      "size": [
+        1536,
+        1024
+      ],
+      "transparent_pixels": 1098813
+    },
+    {
+      "file": "bin/data/dig/fossils/pteranodon.png",
+      "sha256": "c0351d592e6010dd1011174c34b8e67d3966dec9afc3af273596da2a4b80d6a4",
+      "size": [
+        1536,
+        1024
+      ],
+      "transparent_pixels": 1363634
+    },
+    {
+      "file": "bin/data/dig/fossils/fossil-cluster.png",
+      "sha256": "33d8a1f37c0176e2a00d804fe0b73927ceb7084d52892c40366d4b586edc2cff",
+      "size": [
+        1536,
+        1024
+      ],
+      "transparent_pixels": 1017071
+    }
+  ],
+  "prompt_common": "Transparent RGBA fossil game sprites; warm ivory and tan fossilized bones, darker brown crevices, museum-style shaded bone illustration, entire skeleton contained, no ground/slab/sand/shadow/glow/text/watermark, holes between bones transparent.",
+  "subjects": {
+    "triceratops.png": "Complete side-view Triceratops skeleton with three horns, neck frill, four legs and tail.",
+    "pteranodon.png": "Complete Pteranodon pterosaur skeleton with spread wings, long toothless beak, rear crest, elongated wing fingers, short tail, no membranes.",
+    "fossil-cluster.png": "Three separate complete skeletons in one grouping: Triceratops, Stegosaurus and small bipedal theropod, separated without overlap."
+  }
+}

@@ -126,6 +126,26 @@ Ocean ripples have been observed to appear inactive during idle demos; that
 behavior is still under review. Regular-mode and demo effects are unchanged by
 this synchronization update.
 
+## Fossil discoveries
+
+Fossil mode randomly selects the existing T. rex, a Triceratops, a Pteranodon
+(flying pterosaur), a group of three smaller skeletons, or the TopoPlay logo.
+Each new round uses a random angle and 65–100% of the maximum size that safely
+fits inside the sandbox ROI. The buried image stays centered and fixed while
+you dig. Immediate image repeats are avoided when another readable image exists.
+
+Turn Fossil mode off and on with the bone button or GUI to begin another round.
+Allow five seconds for the starting terrain reference to settle, then dig.
+The smaller skeletons in the group reveal separately as sand is removed, using
+one image and one buried reference plane. This does not add automatic respawning.
+
+Additional transparent RGBA PNGs in `bin/data/dig/fossils` join the selection
+when the next round starts; no rebuild is needed. Make the space around and
+between bones transparent. Keep the application folder writable. The original
+`bin/data/dig/dinotrex.png` remains available as a fallback. See [asset
+provenance](ASSETS.md) for the generated illustrations; they are game artwork,
+not scientific reconstruction diagrams.
+
 ## Projected virtual buttons
 
 The **bone** toggles Fossil mode; the **shovel** toggles Dig mode. These are

@@ -122,3 +122,11 @@ Magic-Sand, UC Davis AR Sandbox, framework and asset credits remain in place.
 TopoPlay is the product name of this independently maintained educational
 fork. The previous development snapshots were named Magic-Sand. The rename does
 not change the authorship, licenses, upstream credits, or component provenance.
+
+## Additional fossil artwork — 2026-10-24
+
+The Triceratops, Pteranodon, small-skeleton-group and buried TopoPlay-logo images
+were generated or edited with OpenAI image generation at the operator's request.
+The operator tested the images and random Fossil-mode selection. Subject/prompt
+notes and hashes are linked from `ASSETS.md`. Original project/dependency credits
+and existing asset notices remain applicable.
