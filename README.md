@@ -73,10 +73,19 @@ Evan Wallace's MIT-licensed ripple component is credited separately in
 
 ## First use and settings
 
-Keep camera and projector rigidly mounted. Set the sandbox ROI, calibrate for your
-own box, then set elevations and gestures. Click **Save box settings**. The tested
-build requests RUN automatically when a saved calibration is present and depth is
-ready. New public bundles omit the original box's calibration and startup profile.
+Keep the camera and projector rigidly mounted. For a new box, use this order:
+
+1. Define the **manual sandbox ROI** in the camera/depth view.
+2. Click **Save box settings before starting projector calibration**.
+3. Run the projector/Kinect calibration for your box.
+4. Click **Save box settings again**, then check the terrain against the box edges.
+5. Set terrain elevations and gesture controls, and save those settings as needed.
+
+Saving the manual ROI first matters: the fresh-install test produced a smaller,
+skewed terrain footprint when that ROI had not been saved before calibration.
+The tested build requests RUN automatically when saved calibration is present
+and depth is ready. Public source snapshots omit the operator's private box
+calibration and startup profile.
 
 Mutable settings are in `bin/data/settings`, user terrain maps in
 `bin/data/colorMaps`, and projector/performance settings alongside them under
@@ -85,6 +94,23 @@ those settings and terrain maps and retain a backup of the previous installation
 The existing administrator-installed CPU helper keeps its legacy technical name
 for compatibility; it is not installed or reauthorized by this user-level installer.
 Frame-rate controls remain available without that optional helper.
+
+## Projected virtual buttons
+
+The **bone** toggles Fossil mode; the **shovel** toggles Dig mode. These are
+Kinect gestures, not touch-screen buttons. Make a circle with your thumb and
+finger over the icon, with its opening facing the Kinect. Hold the ring above
+the configured **Landscape ceiling**, leaving the sand visible through its
+center, for the **Button hold sec** interval (normally one second). Move your
+hand away briefly before using it again. A flat hand covering the center is
+not the intended gesture.
+
+Use **Fossil button displayed** and **Dig button displayed** in the operator
+controls to show or hide them. Hiding a button also turns off its mode. Fossil
+and Dig are mutually exclusive. The icon is green while its mode is active;
+a yellow outline indicates the ring gesture is being detected. See
+[the full virtual-button guide](docs/VIRTUAL-BUTTONS.md) for placement, height,
+hold settings and troubleshooting.
 
 ## Build from source
 
