@@ -344,6 +344,21 @@ orientation. Camera ROI outlines projected before valid calibration are not a
 reliable alignment test. See [Using TopoPlay](USING_TOPOPLAY.md#first-use-and-settings)
 for calibration details and [virtual buttons](VIRTUAL-BUTTONS.md) for gestures.
 
+### Checkerboard capture examples
+
+These example debug captures show checkerboard detection on flat test surfaces
+during calibration. Your camera view, surface, and image orientation may differ.
+
+| First-surface capture | Board capture |
+| --- | --- |
+| ![Checkerboard detected on the first calibration surface with green corner markers](screenshots/calibration-first-surface.png) | ![Checkerboard detected with a flat board in place and green corner markers](screenshots/calibration-board.png) |
+
+The green circles mark detected checkerboard corners. For your sandbox, let the
+lower-surface capture finish before placing the raised board. At the board
+prompt, keep a flat surface at least 30 mm closer to the Kinect and hold it
+steady until capture finishes. These images illustrate detection; the green
+markers alone do not establish that the complete calibration has succeeded.
+
 ### Calibrated ROI examples
 
 After calibration, use the color-camera view to check your selected region and
@@ -469,6 +484,18 @@ packages or dependency/source trees used by other projects.
 | Settings fail to save | Keep the installed folder writable by your user; use Save box settings and check after reopening. |
 | Shortcut absent or untrusted | Check desktop-icon support; choose Allow Launching if offered, or use the application menu. |
 | App still running after minimizing | Close the operator window; verify with `pgrep -a -x TopoPlay`. |
+
+### Processed checkerboard reference
+
+![Processed grayscale checkerboard image used by the calibration detector](screenshots/calibration-processed.png)
+
+The detector uses a processed grayscale image such as this one to locate the
+checkerboard corners. With **Dump Debug** enabled, calibration saves
+`ChessboardImage_*.png` and `FoundChessboard_*.png` under the application's
+`bin/data/DebugFiles` folder. The former records processed input; the latter
+records the color-camera capture when a board is detected. Individual capture
+files can come from an incomplete or rejected calibration attempt, so check the
+application's final calibration result as well.
 
 For a build report, include the Ubuntu version, dependency paths, the dependency
 checker output, and the first compiler/linker error with nearby lines. Logs can

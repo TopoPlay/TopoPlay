@@ -70,6 +70,19 @@ Frame-rate controls are available in the application. Optional administrator-lev
 CPU controls require separate system configuration; the installer does not set them up.
 
 
+### Recognizing checkerboard detection
+
+| First surface | Board in place |
+| --- | --- |
+| ![Checkerboard detected on the first surface](screenshots/calibration-first-surface.png) | ![Checkerboard detected with a flat board in place](screenshots/calibration-board.png) |
+
+Green circles mark the detected checkerboard corners. These debug captures show
+flat test surfaces; use your sand and raised board as prompted by TopoPlay.
+Wait for the application to accept the full calibration before checking the
+projected ROI. See the [installation examples](INSTALL_LINUX.md#checkerboard-capture-examples)
+and [processed-image reference](INSTALL_LINUX.md#processed-checkerboard-reference)
+for more detail.
+
 ### Checking the calibrated ROI
 
 These screenshots show Setup after a successful calibration. Use them to

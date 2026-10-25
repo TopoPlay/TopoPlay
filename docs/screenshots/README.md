@@ -17,8 +17,12 @@ feed. Demonstration hands are animated artwork displayed by the application.
 | [fossil-revealed.png](fossil-revealed.png) | Fully revealed Triceratops illustration |
 | [gui-calibrated-roi.png](gui-calibrated-roi.png) | Setup after calibration with selected camera ROI |
 | [projector-calibrated-roi.png](projector-calibrated-roi.png) | Red and green projections of the calibrated ROI |
+| [calibration-first-surface.png](calibration-first-surface.png) | Color debug capture with detected checkerboard corners on the first surface |
+| [calibration-board.png](calibration-board.png) | Color debug capture with the board in place and detected corners |
+| [calibration-processed.png](calibration-processed.png) | Processed grayscale input used for checkerboard detection |
 
-Images are supplied screenshots, retained at their original resolution without
-image editing. The [user guide](../USING_TOPOPLAY.md) explains the controls.
+Images are supplied screenshots or calibration debug captures, retained at
+their original resolution without image editing. The three checkerboard examples
+come from the October 24, 2026 debug capture. The [user guide](../USING_TOPOPLAY.md) explains the controls.
 Underlying software and artwork credits remain in [Credits](../../CREDITS.md)
 and [Assets](../../ASSETS.md).
