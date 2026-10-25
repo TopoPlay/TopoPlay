@@ -2,11 +2,11 @@
   "files": {
     ".gitignore": "dde952b3e9fe792537ef711afd62da874400cea389903652df7802d6b511253f",
     "ASSETS.md": "d00f027a7f3f28c64bdd614784fb5f8a7d3396a403033de0941ff9feec6d26eb",
-    "CHANGELOG.md": "8ab3e47020328a91632dcb99d2e58d592f7130bfe417cac22a16c2e8cd75036a",
+    "CHANGELOG.md": "445c6092aa04cd1da39aa0d6c06678adc89ac56b6acaf55aa5ac8baaa2f0be06",
     "COPYING": "bc8e40284460ad4dd0a1dd8f9498067bda47ac51a02a6080286c86712bfc048e",
     "CREDITS.md": "e586107907014e952c9857d41ad7eec49948bc3e0fe0b573f7c7ae7697858604",
     "Makefile": "14e5e98a53d231b1770c74a6a5dc9da3e5643546963a76f972d5ee95f603a84d",
-    "README.md": "14a44241c0ce674c5d91e7fc850690b51049ed3c0768210a02e5ba9946da33b4",
+    "README.md": "9accf403e541805e66c6621c00da36c4c8c8cf43af19eed71f5c81e872a8a0a7",
     "TopoPlay": "1321aee3e900b9c4dde760828ce3a70b17e6c357c435bf341279728b1ea8db27",
     "addons.make": "ad7b47de43e724eefd4169ddf3892217372a3943e779ebbe20b9279a2147631a",
     "bin/data/Batang.ttf": "8f2c103bfa3fd5de71f1b92b18f21906b5a26871fb7e19a9a4c9af539c3cc7ab",
@@ -314,9 +314,9 @@
     "dependencies/tested-addon-sources/ofxParagraph/src/ofxParagraph.h": "ee1e9aa6f8c667af43df392a9cd9387408b5ca40846a0f608043f22da4929f81",
     "dependencies/tested-addon-sources/ofxXmlSettings/src/ofxXmlSettings.cpp": "bd98ccc83c76e05bfff82a42810b152fbb437e32486743f25aa07a4c4cb06c9f",
     "dependencies/tested-addon-sources/ofxXmlSettings/src/ofxXmlSettings.h": "6e7c3c1305aac5d151c51898a4bd38f479ab503f3e7579c06cdc7ee2a50cbb9d",
-    "docs/BUILD_LINUX.md": "b804254d9c52c72982fb9d681489178b4f4fbbcb3edbaaea0877b607f530a1d1",
+    "docs/BUILD_LINUX.md": "fe523b7bfd36d6ad47ce11f5854c29e56964b8b4df7ac8553f93d0486575ba29",
     "docs/MAINTENANCE.md": "6efbff9f584e4ed754adba69f428684d55d7c45f1d92814d27f237cbda8136c5",
-    "docs/MODIFICATIONS.md": "08b160a11ccc8aa1cf344ca8dd80c5be71696a514ee2f4f761bcd8e1848bdd8f",
+    "docs/MODIFICATIONS.md": "ee1615d891671c7157b58bd12f5d739b6fdf49b8600c1c9be8e244bf884f26a3",
     "docs/PROJECTOR-LAYERS.md": "bb54b3c3636d2f0d0b67394ecf81be7a2c38233b02f14bea30df26008522b3f5",
     "docs/PUBLISHING.md": "1a3b7899999ec04fd5aeee2e783d9ef829bb46973541b5c005db1213e9cebf13",
     "docs/RELEASING.md": "5be27c9e156a49ab7e5da1981f9f1d05815211dac08f1b49336f208716ad51a2",
@@ -351,8 +351,9 @@
     "licenses/ofxModal-MIT.txt": "bea7e02ed9874d0bb788824462ce211a6eac1e3b298a669be522726f21d2cfbc",
     "licenses/ofxParagraph-MIT.txt": "267a6a55cf2dc92ffa48c53f39ef9fb009179029858d30b52a9221afd3062709",
     "licenses/openFrameworks-0.12.1-LICENSE.md": "5b7a62a40eb0e02cf96aefd0c6db8588447b1847e031353dc50d0b4e4d4c2e80",
-    "scripts/build.sh": "a7b507b2ca85dd8784f53c700d64a867ed2bfa7c6ba4ac2bd28c67585c06b14a",
-    "scripts/configure.py": "a1c4c0697c0f73ead2def3f0a4b9f82e094692a5b8e0b04294993f5ecf1be50f",
+    "scripts/build.sh": "0191a92d02c114600742247f4a53830160ef4b4ce5c660c4329c3d3ae82affc4",
+    "scripts/check-dependencies.py": "79ac31f7c060b5f176703358ddf9235e7b2fcfa49296ce32eb88c5a128bed9bc",
+    "scripts/configure.py": "8c4e691cf8e37d2fdf2d0c62d91b81445c9037817edffec7e93562c60422ff21",
     "scripts/desktop_icon.py": "05ab8495be6561aeca8c4d59bcab3d1aa6fb70310365d153af44442484179b7b",
     "scripts/desktop_shortcut.py": "520f4abf1b493ffdfd61f29997e01c4f37bdb2191ab415b58b24741e2b6ae362",
     "scripts/install.py": "34a8b4c8710babb9b97ad3cefdffba8b6429f6d3c46dd8f89fe391a478bf3260",
@@ -517,6 +518,7 @@
     "src/World/WaterSweep.h": "5dd7cd65bc7ccee58574cb7c2bf3cb0f9b4a40c426804f9c8b898ef74c9d6d7e",
     "src/main.cpp": "d952e151a692f8d551d79193e3465621be89d20a06e81f1ccbaad4f32712628d",
     "src/ofApp.cpp": "9b2e070a76b99e793cb2a6fe86becab20825bf849526ec2f4fa40084bc49a108",
-    "src/ofApp.h": "cdc18bb5d3056fa90272c59f45f311d280178758ea0383943c739b7603ebdae6"
+    "src/ofApp.h": "cdc18bb5d3056fa90272c59f45f311d280178758ea0383943c739b7603ebdae6",
+    "tests/test_build_dependencies.py": "460f9171ed4c7502472d30b789b5b514115f88e4148c009a3cdaad09acc76de7"
   }
 }

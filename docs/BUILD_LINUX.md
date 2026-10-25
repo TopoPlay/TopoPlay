@@ -14,6 +14,40 @@ See [the dependency record](../dependencies/README.md) and its included patches.
 The exact libfreenect2 archive revision remains unknown because its working tree
 contains no Git metadata. A clean checkout/build has not yet been reproduced.
 
+## Check dependencies before compiling
+
+`bash scripts/build.sh` now runs a read-only dependency check before configuring
+or compiling. It reports missing `make`, `g++`, and `pkg-config`; missing or
+incomplete openFrameworks/Kinect paths; missing addon source folders; and common
+OpenCV, OpenGL, USB, font, and X11 development libraries. For an explicitly
+configured libfreenect2 build it also checks for missing shared-library dependencies.
+It exits with a nonzero status when a check fails, so compilation does not begin.
+
+To check without building or writing machine-local configuration, run:
+
+```bash
+python3 scripts/check-dependencies.py --of-root /path/to/openFrameworks \
+    --freenect2-root /path/to/libfreenect2
+```
+
+Use actual extracted dependency folders in place of the example paths. The same
+four path options accepted by `build.sh` are accepted by this command. Existing
+saved paths, environment variables, ancestor framework detection, sibling Kinect
+builds, and system `pkg-config` libfreenect2 installations are also supported.
+
+On Ubuntu/Debian, failures list the relevant package names and a suggested
+`sudo apt install ...` command. The checker does not run that command, download
+SDKs, change USB permissions, or install anything automatically. Run the suggested
+steps, then repeat the same check/build command. If Python itself is missing,
+`build.sh` prints the command to install Python 3.
+
+The check covers common prerequisites, not every dependency for every Ubuntu
+release. Run the dependency installer shipped with **your openFrameworks 0.12.1
+package**, then its `scripts/linux/compileOF.sh`, as described below. Package names
+can vary between Ubuntu releases; consult the framework's Linux instructions if
+APT reports a package is unavailable. A pass does not verify GPU/OpenGL operation,
+Kinect USB permissions, addon patch compatibility, or a successful clean build.
+
 ## Install prerequisites
 
 1. Obtain [openFrameworks 0.12.1](https://openframeworks.cc/download/) for Linux.

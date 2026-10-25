@@ -1,5 +1,11 @@
 # TopoPlay change log
 
+## Build dependency guidance — 2026-10-25
+
+- Check common build tools, framework/Kinect paths, addon sources, and development libraries before configuring or compiling.
+- Name missing dependencies and suggest Ubuntu/Debian package commands and framework/driver setup instructions without installing anything automatically.
+- Document the standalone read-only check and its limits; a fresh Ubuntu build remains unverified.
+
 ## User-selected installation and shortcut — 2026-10-24
 
 - Explain the installation folder selection in a dialog before opening the picker; Cancel stops the installation.

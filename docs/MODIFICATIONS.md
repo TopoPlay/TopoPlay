@@ -166,3 +166,12 @@ installation registry, and passes that existing directory to Zenity.
 `scripts/desktop_shortcut.py` asks for an explicit create/update choice when no
 shortcut flag was supplied, including for an existing managed shortcut. Explicit
 flags remain noninteractive. Original license notices and logo behavior remain.
+
+## Build dependency guidance — 2026-10-25
+
+Added the GPL-2.0-or-later `scripts/check-dependencies.py` preflight and regression
+tests. `build.sh` checks Python and runs preflight before configuration/compilation.
+`configure.py` exposes its existing dependency discovery as a read-only resolver;
+configuration still writes the same machine-local paths after the check passes.
+README and Linux build instructions explain missing dependency guidance and
+manual installation. No application C++ or runtime settings are changed.

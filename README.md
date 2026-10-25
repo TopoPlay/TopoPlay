@@ -166,7 +166,9 @@ hold settings and troubleshooting.
 ## Build from source
 
 The source is C++ using **openFrameworks 0.12.1**, libfreenect2, OpenGL/OpenCV, and
-the addons in `addons.make`. Install those build dependencies separately. See
+the addons in `addons.make`. The build checks for missing common dependencies
+before compiling and prints setup guidance and Ubuntu/Debian package commands.
+It does not download or install dependencies automatically. Install them separately. See
 [BUILD_LINUX.md](docs/BUILD_LINUX.md) for the recorded addon compatibility notes.
 
 ```bash
