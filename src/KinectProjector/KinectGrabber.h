@@ -154,7 +154,7 @@ private:
 	bool kinectOpened;
 
     // RGB processing is ON at startup for calibration.
-    // The actual Kinect RGB stream remains physically running.
+    // The standard driver keeps RGB streaming/decoding; unused frames are drained.
     bool processColorFrames = true;
 
     libfreenect2::Freenect2 freenect2;

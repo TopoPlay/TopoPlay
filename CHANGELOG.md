@@ -1,5 +1,14 @@
 # TopoPlay change log
 
+## Standard Kinect driver and camera preview defaults — 2026-10-25
+
+- Remove the custom libfreenect2 RGB-decoding helper dependency.
+- Keep standard driver decoding active; skip unneeded TopoPlay color work and release unused RGB frames in RUN.
+- Preserve attached listeners, streaming lifecycle, and calibration color registration.
+- Default Setup/calibration to the color camera on mode entry; retain manual depth/color selection within each mode and projected-map display in RUN.
+- Record the standard-driver hardware test and pin its upstream revision in the completed Ubuntu installation guide.
+- Include the CMake policy compatibility option and isolate dependency test fixtures from real-machine environment variables.
+
 ## Ubuntu installation guide — 2026-10-25
 
 - Document source downloads, system libraries, openFrameworks, recorded addons/patches, Kinect permissions/testing, building, calibration, installation, updates, and troubleshooting.

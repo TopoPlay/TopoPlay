@@ -1,6 +1,7 @@
 /* TopoPlay modification notice — 2026-10-23
  * Modified from upstream Magic-Sand.
- * This update adds source-release licensing/provenance notices.
+ * Updated 2026-10-25: use the standard libfreenect2 API; drain unused RGB frames.
+ * This update also retains source-release licensing/provenance notices.
  * Earlier local development dates were not individually recorded.
  * Original notices below are retained; see docs/MODIFICATIONS.md.
  */
@@ -29,14 +30,6 @@ General Public License for more details.
 #include "ofConstants.h"
 #include <fstream>
 #include <ctime>
-
-// Custom helper exported by our libfreenect2 build.
-// It gates TurboJPEG decoding without stopping RGB USB
-// or changing listener pointers while streaming.
-extern "C" void freenect2_set_rgb_decoding_enabled(
-    libfreenect2::Freenect2Device *device,
-    bool enabled);
-
 
 KinectGrabber::KinectGrabber()
 :newFrame(true),
@@ -171,29 +164,14 @@ void KinectGrabber::setColorProcessingEnabled(bool enable)
     if (enable == processColorFrames)
         return;
 
-    /*
-     * Do NOT detach listeners or stop/restart the Kinect.
-     *
-     * We only tell our custom libfreenect2 build whether
-     * TurboJPEG should actually decompress incoming RGB frames.
-     */
-    if (enable)
-    {
-        freenect2_set_rgb_decoding_enabled(kinect, true);
-        processColorFrames = true;
-    }
-    else
-    {
-        processColorFrames = false;
-        freenect2_set_rgb_decoding_enabled(kinect, false);
-    }
+    // Only gate TopoPlay's color registration/conversion. The standard driver
+    // keeps decoding RGB; listeners stay attached and the device keeps streaming.
+    processColorFrames = enable;
 
     ofLogNotice("KinectGrabber")
-        << "Kinect RGB processing "
+        << "TopoPlay color processing "
         << (processColorFrames ? "ON" : "OFF")
-        << " (TurboJPEG "
-        << (processColorFrames ? "enabled" : "disabled")
-        << ")";
+        << " (standard driver RGB decoding remains active)";
 }
 
 
@@ -298,11 +276,16 @@ if (depthListener->waitForNewFrame(depthFrames, 1000))
         depthListener->release(depthFrames);depthFrames.clear();break;
     }
 
-    /*
-     * During calibration/setup RGB decoding is enabled.
-     * During normal RUN, RGB decoding is disabled and we never
-     * wait on the color listener.
-     */
+    // RUN does not need color registration, but the standard driver still
+    // delivers RGB. Drain and release available color frames without waiting.
+    // Setup/calibration continues to consume color below with the usual timeout.
+    if (!processColorFrames && colorListener->hasNewFrame() &&
+        colorListener->waitForNewFrame(colorFrames, 0))
+    {
+        colorListener->release(colorFrames);
+        colorFrames.clear();
+    }
+
     if (processColorFrames &&
         colorListener->waitForNewFrame(colorFrames, 50))
     {

@@ -27,16 +27,18 @@ retained; see [the source-release review](docs/SOURCE-RELEASE-REVIEW.md).
 | Component | Requirement |
 | --- | --- |
 | Framework | openFrameworks **0.12.1**, Linux 64-bit release package |
-| Kinect driver | **Modified libfreenect2** exporting `freenect2_set_rgb_decoding_enabled`; matching source/patch is not yet published |
+| Kinect driver | Standard upstream **libfreenect2**, built with OpenGL support |
 | Build tools | Python 3, GCC/G++, Make, CMake, Git, pkg-config |
 | Common libraries | OpenCV, OpenGL/GLU/GLEW/GLFW, libusb, TurboJPEG, FreeType, HarfBuzz, X11 libraries, and the framework's additional dependencies |
 | Addons | ofxCv, ofxDatGui, ofxModal, ofxParagraph, ofxOpenCv, ofxXmlSettings; recorded revisions and two compatibility patches |
 | Camera/display | Kinect v2 with power adapter and USB 3, working desktop graphics, projector |
 
-**A fresh installation is currently blocked by the unpublished custom Kinect
-driver modification.** The current dependency check does not detect that missing
-symbol. See the [driver checkpoint](docs/INSTALL_LINUX.md#5-kinect-driver-and-permissions)
-before building. No Microsoft Windows Kinect SDK is required for this Ubuntu setup.
+This source removes the former custom RGB-decoding driver dependency. The
+standard driver keeps decoding color while TopoPlay skips unneeded color
+registration/conversion and drains unused frames in RUN. The standard-driver change passed
+[hardware validation](docs/STANDARD-DRIVER-VALIDATION.md) on the existing laptop;
+a complete fresh-machine build remains unverified.
+No Microsoft Windows Kinect SDK is required for this Ubuntu setup.
 Exact package commands and download/setup steps are in the installation guide.
 
 ## Local installation after building
@@ -92,7 +94,10 @@ Evan Wallace's MIT-licensed ripple component is credited separately in
 
 ## First use and settings
 
-Keep the camera and projector rigidly mounted, room brightness can effect calibration success. For a new box, use this order:
+Keep the camera and projector rigidly mounted; room brightness can affect calibration success.
+Setup/calibration starts with the color camera view; the existing controls can
+switch to depth. RUN clears the camera previews and displays the projected map.
+For a new box, use this order:
 
 1. Set the projector orientation before calibration. Depending on the mounting,
    its image may need a horizontal or vertical flip. Keep that orientation fixed
@@ -289,7 +294,7 @@ python3 scripts/install.py --register-only --desktop-shortcut
 The installer uses your configured desktop folder and marks the launcher executable.
 On Ubuntu you may need to right-click it and choose **Allow Launching**. Desktop
 icons must be enabled by the desktop environment; the installer does not change
-extensions or system preferences. The shortcut uses the system education icon.
+extensions or system preferences. The shortcut uses the bundled TopoPlay logo when available.
 Removing registration also removes this installation's managed desktop shortcut.
 
 ## TopoPlay launcher icon

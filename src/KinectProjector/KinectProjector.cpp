@@ -241,6 +241,26 @@ void KinectProjector::setGradFieldResolution(int sgradFieldResolution){
 // else it would be convenient just to call it in every update
 void KinectProjector::updateStatusGUI()
 {
+    // Default to a live color preview when entering Setup/calibration. Do not
+    // repeat this while staying in a mode: the operator can select depth/off.
+    if (cameraPreviewState != static_cast<int>(applicationState))
+    {
+        cameraPreviewState = static_cast<int>(applicationState);
+        if (applicationState != APPLICATION_STATE_RUNNING)
+        {
+            drawKinectColorView = true;
+            drawKinectView = false;
+            if (gui)
+            {
+                gui->getToggle("Draw kinect color view")->setChecked(true);
+                gui->getToggle("Draw kinect depth view")->setChecked(false);
+            }
+            kinectgrabber.performInThread([](KinectGrabber& kg) {
+                kg.setColorProcessingEnabled(true);
+            });
+        }
+    }
+
 	if (kinectOpened)
 	{
 		StatusGUI->getLabel("Kinect Status")->setLabel("Kinect running");
@@ -2717,7 +2737,9 @@ void KinectProjector::restoreBoxGui(const ofJson& j){
     maxOffsetBack=j.value("camera_max_offset",maxOffsetBack);maxOffset=maxOffsetBack;
     setSpatialFiltering(j.value("camera_spatial",true));setInPainting(j.value("camera_inpaint",false));setFollowBigChanges(j.value("camera_quick",false));setFullFrameFiltering(j.value("camera_full_frame",false));
     int averaging=ofClamp(j.value("camera_averaging",15),1,40);numAveragingSlots=averaging;gui->getSlider("Averaging")->setValue(averaging);
-    drawKinectColorView=j.value("camera_color_view",false);drawKinectView=!drawKinectColorView&&j.value("camera_depth_view",false);DumpDebugFiles=j.value("camera_debug",false);
+    // Saved RUN preview choices must not hide the camera on a Setup start.
+    drawKinectColorView=applicationState!=APPLICATION_STATE_RUNNING || j.value("camera_color_view",false);
+    drawKinectView=!drawKinectColorView&&j.value("camera_depth_view",false);DumpDebugFiles=j.value("camera_debug",false);
     gui->getToggle("Draw kinect color view")->setChecked(drawKinectColorView);gui->getToggle("Draw kinect depth view")->setChecked(drawKinectView);gui->getToggle("Dump Debug")->setChecked(DumpDebugFiles);
     showROIonProjector(j.value("camera_show_roi",false));gui->getToggle("Show ROI on sand")->setChecked(doShowROIonProjector);
     bool color=drawKinectColorView;float cutoff=maxOffset;

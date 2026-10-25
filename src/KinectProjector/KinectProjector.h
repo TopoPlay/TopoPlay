@@ -302,6 +302,7 @@ private:
     Auto_calibration_state autoCalibState;
     Full_Calibration_state fullCalibState;
 	Application_state applicationState;
+    int cameraPreviewState = -1; // Apply the preview default only on mode entry.
 
     // Projector window
     std::shared_ptr<ofAppBaseWindow> projWindow;

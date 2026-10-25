@@ -20,6 +20,12 @@ from configure import configure
 
 class DependencyCheckTest(unittest.TestCase):
     def setUp(self):
+        # Fixture discovery must not inherit the real machine's dependency paths.
+        environment = patch.dict(os.environ)
+        environment.start()
+        self.addCleanup(environment.stop)
+        for name in ('OF_ROOT', 'FREENECT2_ROOT', 'FREENECT2_BUILD', 'FREENECT2_LIB_DIR'):
+            os.environ.pop(name, None)
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)

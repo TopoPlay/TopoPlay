@@ -2,22 +2,23 @@
 
 For installation commands and checkpoints, see [the Ubuntu installation guide](../docs/INSTALL_LINUX.md).
 
-## Unpublished Kinect driver modification
+## Standard-driver transition
 
-`src/KinectProjector/KinectGrabber.cpp` directly calls
-`freenect2_set_rgb_decoding_enabled` from the working custom libfreenect2 build.
-The captured dependency record does not include its implementation or a
-reproducible patch. Stock upstream libfreenect2 is not a complete substitute.
-Capturing and publishing that modified source is required before a new-user
-build can be considered reproducible. The current preflight checks driver files
-and common libraries, but does not check this symbol.
+Earlier application source called a custom RGB-decoding function in the
+operator's driver. This source removes that call and uses the standard driver
+while gating color registration/conversion inside TopoPlay. Unused color frames
+are drained and released. The isolated test builds clean upstream libfreenect2,
+records its Git revision, and verifies the linked runtime library. The hardware test passed using upstream commit
+`fd64c5d9b214df6f6a55b4419357e51083f15d93`; see
+[the validation record](../docs/STANDARD-DRIVER-VALIDATION.md). The historical
+custom-driver information below is retained as an earlier environment record.
 
 The operator's export verified openFrameworks **0.12.1** in `ofConstants.h`.
 It reported Ubuntu **26.04.1 LTS**, GCC **15.2.0**, GNU Make **4.4.1**, OpenCV
 **4.10.0**, libusb **1.0.29**, and libturbojpeg **2.1.5**. These are observed
 versions, not minimum supported versions or a clean-build guarantee.
-libfreenect2's supplied CMakeLists.txt declares **0.2.0**; that tree has no Git
-metadata, so its exact archive revision/local changes are not established.
+The earlier custom libfreenect2 tree declared **0.2.0** and had no Git metadata.
+Its archive revision remains unknown; it is no longer required by this source.
 
 | Addon | Reported commit | Working modifications |
 | --- | --- | --- |
@@ -29,9 +30,8 @@ metadata, so its exact archive revision/local changes are not established.
 | ofxXmlSettings | Matching openFrameworks addon | No independent Git metadata; source captured |
 
 The capture intentionally omitted remote URLs, which can contain credentials.
-Repository links in the build guide come from upstream attribution; availability
-of the reported commits at those specific remotes has not been independently
-verified. The included `tested-addon-sources/` copies record the actual source
+Repository links in the build guide come from upstream attribution; the four reported addon commits were verified as the listed upstream
+repositories' HEAD revisions on 2026-10-25. The included `tested-addon-sources/` copies record the actual source
 files and notices received, including working modifications. They are reference
 snapshots, not duplicate build inputs: `addons.make` still uses OF_ROOT/addons.
 They do not include each addon's full external libraries/data directories.

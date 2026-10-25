@@ -3,13 +3,12 @@
 This guide takes you from a source download to a locally installed application,
 including dependencies, Kinect testing, building, calibration, and updates.
 
-**Current clean-install blocker:** TopoPlay requires a locally modified
-libfreenect2 driver that exports `freenect2_set_rgb_decoding_enabled`. The public
-repository does not yet contain that modification or a verified way to reproduce
-it. An ordinary upstream driver is useful for testing the Kinect but is not a
-complete replacement. Follow the driver checkpoint in section 5 before building.
-The steps below document the installation process; a successful installation on
-a fresh Ubuntu system has not yet been established.
+TopoPlay uses standard upstream libfreenect2 without application-specific driver
+patches. The former custom RGB-decoding helper has been removed. The standard
+driver was built and tested on the operator's existing Ubuntu laptop, including
+fresh calibration, RUN operation, and shutdown. A complete fresh-Ubuntu build
+with newly obtained framework/addons is still unverified; see
+[the validation record](STANDARD-DRIVER-VALIDATION.md).
 
 ## Contents
 
@@ -45,7 +44,9 @@ does not change CPU boost settings, power management, or startup behavior.
 
 ## 2. Folders and source download
 
-Run commands one block at a time, in order. Stop if a command fails. Use `sudo`
+Run commands one block at a time, in order. Stop if a command fails.
+`~` and `$HOME` mean your Home folder (for example `/home/yourname`); there
+is no second username folder to open inside Home. Use `sudo`
 only where shown; build and run TopoPlay as your normal user. Internet access and
 administrator rights are needed to obtain dependencies and install Ubuntu
 packages. This guide uses the following example folders:
@@ -54,7 +55,7 @@ packages. This guide uses the following example folders:
 | --- | --- |
 | `~/TopoPlay-build/TopoPlay` | TopoPlay source checkout or extracted ZIP |
 | `~/TopoPlay-build/openFrameworks` | Extracted openFrameworks 0.12.1 package |
-| `~/TopoPlay-build/libfreenect2` | Matching modified Kinect driver source/build |
+| `~/TopoPlay-build/libfreenect2` | Standard Kinect driver source/build |
 | `~/Applications/TopoPlay` | Example installed application destination |
 
 Keep source and dependency paths free of spaces and make-special characters.
@@ -101,7 +102,7 @@ Install the common libraries checked by TopoPlay, plus Kinect build prerequisite
 
 ```bash
 sudo apt install libopencv-dev libgl1-mesa-dev libglu1-mesa-dev \
-    libglew-dev libglfw3-dev libusb-1.0-0-dev libturbojpeg0-dev \
+    libglew-dev libglfw3-dev libusb-1.0-0-dev libturbojpeg0-dev libjpeg-dev \
     libfreetype6-dev libharfbuzz-dev libx11-dev libxrandr-dev \
     libxxf86vm-dev libxi-dev libxcursor-dev libxinerama-dev
 ```
@@ -116,7 +117,7 @@ it or change the operating-system version files to fool an installer.
 For the graphical folder picker and graphics diagnostics:
 
 ```bash
-sudo apt install python3-tk zenity mesa-utils
+sudo apt install python3-tk zenity mesa-utils python3-gi gir1.2-glib-2.0
 glxinfo -B
 ```
 
@@ -192,8 +193,8 @@ git clone https://github.com/braitsch/ofxParagraph.git ofxParagraph
 git -C ofxParagraph checkout --detach 41dbfd2e07e00e358629d470dd1b6f986dee2b70
 ```
 
-These revisions were recorded from the operator's working tree; their
-availability at these particular remotes has not been independently established.
+These revisions were recorded from the operator's working tree and verified
+available as the four listed repositories' HEAD revisions on 2026-10-25.
 If a checkout fails, stop and report the addon name and error. Do not substitute
 the latest commit and assume compatibility. The included
 `dependencies/tested-addon-sources` folders are reference snapshots, not complete
@@ -220,47 +221,39 @@ or old `ofxKinect` addon is needed for this integration.
 
 ## 5. Kinect driver and permissions
 
-### Required modified driver
+### Build standard upstream libfreenect2
 
-The application directly calls the C symbol
-`freenect2_set_rgb_decoding_enabled`. It controls RGB decoding during operation.
-The current repository contains the application call but no matching driver
-implementation or driver patch. A generic libfreenect2 install is insufficient.
-
-**New users:** obtain the matching modified driver source and its build record
-from the maintainer before proceeding with TopoPlay. Until that source/patch is
-published, this is an unresolved prerequisite, not an automatic download step.
-Do not substitute an empty function to force a successful link.
-
-**Existing working installations:** keep the working driver. Set its real source
-and build paths in section 6; do not replace it with upstream libfreenect2.
-
-Once matching driver source is available at the example path, build it locally:
+Obtain the driver from [OpenKinect](https://github.com/OpenKinect/libfreenect2#linux)
+into an empty folder. Keep an existing working driver separately until testing
+passes. These commands build locally; no `sudo make install` is needed for the
+explicit driver paths used by TopoPlay:
 
 ```bash
-cd "$HOME/TopoPlay-build/libfreenect2"
-cmake -S . -B build -DENABLE_OPENGL=ON
+cd "$HOME/TopoPlay-build"
+git clone https://github.com/OpenKinect/libfreenect2.git libfreenect2
+cd libfreenect2
+git checkout --detach fd64c5d9b214df6f6a55b4419357e51083f15d93
+git rev-parse HEAD
+cmake -S . -B build -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+    -DENABLE_OPENGL=ON -DENABLE_OPENCL=OFF -DENABLE_CUDA=OFF -DENABLE_VAAPI=OFF
 cmake --build build -j2
-nm -D --defined-only build/lib/libfreenect2.so | grep -w freenect2_set_rgb_decoding_enabled
 ```
 
-The last command must show an exported definition. No output, or a missing
-library, means stop before building TopoPlay. `nm` comes with Ubuntu's binutils
-build tools. No system-wide driver installation is required when using the
-explicit source/build/library paths below.
+The pinned commit is the unmodified upstream source built during the recorded
+hardware test. `CMAKE_POLICY_VERSION_MINIMUM=3.5` addresses newer CMake versions
+rejecting the project's older policy minimum, without editing the driver.
+OpenCL, CUDA, and VAAPI are disabled in this tested configuration, leaving the
+OpenGL processing path available. Keep the printed revision with your results.
+Changing the upstream commit or enabled processors requires another test.
 
-### Optional upstream hardware test
-
-If the modified source is not yet available, you can separately test the camera
-using [upstream libfreenect2](https://github.com/OpenKinect/libfreenect2#linux).
-Use a separate folder such as `~/TopoPlay-build/libfreenect2-hardware-test`:
-clone the upstream repository there, run `cmake -S . -B build -DENABLE_OPENGL=ON`
-and `cmake --build build -j2`, then follow its udev/Protonect instructions.
-Passing this hardware test does not satisfy TopoPlay's custom-symbol requirement.
+TopoPlay's application-side switch controls whether it performs color
+registration/conversion. The driver continues decoding RGB; RUN drains unused
+color frames. CPU use can differ from the earlier optimized custom driver, so
+measure temperature and responsiveness on your setup.
 
 ### USB permissions and camera test
 
-From the **matching driver's source folder**, install its supplied device rule:
+From the **standard driver's source folder**, install its supplied device rule:
 
 ```bash
 cd "$HOME/TopoPlay-build/libfreenect2"
@@ -277,9 +270,7 @@ cd "$HOME/TopoPlay-build/libfreenect2"
 ```
 
 Confirm live color and depth images, then close Protonect before starting
-TopoPlay. Do not run both applications against the same sensor. For a separate
-upstream hardware test, use that test folder in these commands instead.
-USB 2 is insufficient; plug into USB 3 directly while diagnosing connection
+TopoPlay. Do not run both applications against the same sensor. USB 2 is insufficient; plug into USB 3 directly while diagnosing connection
 problems. A successful camera test is separate from successful calibration.
 
 ## 6. Dependency check and build
@@ -295,8 +286,8 @@ python3 scripts/check-dependencies.py \
 
 The check does not install packages or write build configuration. Resolve all
 reported missing tools, addons, libraries, or paths and repeat it. Its current
-checks do **not** verify the custom driver symbol, addon revisions/patches, or
-hardware operation; perform those checkpoints in sections 4 and 5 yourself.
+checks do **not** verify addon revisions/patches or hardware operation; perform
+those checkpoints in sections 4 and 5 yourself.
 
 Build after the checks pass:
 
@@ -333,6 +324,10 @@ If a ZIP extractor removed executable permission, run `chmod +x TopoPlay` once.
 On another desktop, set up the displays yourself and launch with
 `./TopoPlay --no-mode-lock`. Use the launcher rather than opening `bin/TopoPlay`
 directly so the application receives its data/library paths.
+
+Setup/calibration defaults to the color camera view. Use the existing controls
+to choose depth instead; your choice remains active within that mode. Entering
+RUN clears camera previews and shows the projected terrain/map.
 
 For a new box:
 
@@ -383,6 +378,13 @@ packages. An unresolved runtime library causes installation to stop.
 Start TopoPlay from the application menu, optional desktop shortcut, or the
 installed `TopoPlay` launcher. On Ubuntu a desktop shortcut may need a right-click
 and **Allow Launching**. The installer does not enable desktop icons or autostart.
+To repair an existing menu/desktop shortcut, run from the installed folder:
+
+```bash
+python3 scripts/install.py --register-only --desktop-shortcut
+```
+
+This repairs registration for that folder without rebuilding the application.
 Keep your source/dependency folders for future builds.
 
 ## 9. Updates, backups, and removal
@@ -437,8 +439,10 @@ packages or dependency/source trees used by other projects.
 | No executable after ZIP download | Source releases must be built; the install script does not compile them. |
 | openFrameworks not found | Pass the folder containing `libs/openFrameworksCompiled/project/makefileCommon/compile.project.mk`. |
 | Missing addon/header | Check all six addon folders, exact recorded revisions, both patches, and the matching framework package. |
+| CMake rejects compatibility below 3.5 | Include `-DCMAKE_POLICY_VERSION_MINIMUM=3.5` when configuring libfreenect2, as shown in section 5. |
+| Make reports clock skew | Check the system date/time and enable correct automatic date/time in Ubuntu Settings before rebuilding. Do not treat an old executable as proof a failed build succeeded. |
 | APT cannot find a package | Check package naming for the actual Ubuntu release and the framework install-script output. |
-| `undefined reference to freenect2_set_rgb_decoding_enabled` | The selected driver lacks TopoPlay's custom function. Stop and obtain the matching modified driver source/build; see section 5. |
+| `undefined reference to freenect2_set_rgb_decoding_enabled` | Old application source or build objects are still in use. Use this updated source in a fresh build tree; do not patch the standard driver to add the removed helper. |
 | `error while loading shared libraries` or installer runtime-library error | Launch through `./TopoPlay`; confirm the saved driver library path and install the named matching runtime package. Rebuild on the target system if library ABIs differ. |
 | Kinect missing/access denied | Check adapter power, direct USB 3 connection, udev rule, replugging, and normal-user Protonect operation. |
 | Kinect busy or no frames | Close Protonect and other camera users. Check `lsusb -t` for USB 3 speed and test another direct port. |
@@ -462,15 +466,17 @@ bash scripts/build.sh --of-root "$HOME/TopoPlay-build/openFrameworks" \
 
 ## 11. Validation and references
 
-An installation is ready to test when the matching driver exports the required
-symbol, Protonect works as the normal user, addon revisions/patches are correct,
+An installation is ready to test when the standard driver builds, Protonect
+works as the normal user, addon revisions/patches are correct,
 the dependency check and build succeed, and the installed application calibrates,
 saves, reopens, and closes correctly. Test sustained classroom use on the actual
 hardware before relying on it.
 
 Documentation and scripted dependency checks are not a fresh-system build test.
-The modified driver still needs to be captured/published, addon revision
-availability verified, and the complete process repeated on fresh Ubuntu.
+The recorded standard-driver hardware test passed on the existing laptop.
+A complete build using newly obtained framework/addons on fresh Ubuntu remains
+unverified. See [the validation record](STANDARD-DRIVER-VALIDATION.md) for the
+exact tested driver revision, duration, temperatures, and known log messages.
 
 - [Linux build details](BUILD_LINUX.md)
 - [Recorded dependency versions and patches](../dependencies/README.md)

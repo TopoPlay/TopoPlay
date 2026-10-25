@@ -2,10 +2,10 @@
 
 For the step-by-step process, start with [Install TopoPlay on Ubuntu](INSTALL_LINUX.md).
 
-**Driver prerequisite:** the application calls the custom
-`freenect2_set_rgb_decoding_enabled` symbol. Its matching driver modification is
-not yet included in the public source. A standard upstream driver alone cannot
-satisfy this link dependency; see the installation guide before building.
+This source uses standard libfreenect2 APIs and no longer requires the custom
+RGB-decoding helper from the operator's earlier driver. Use a clean upstream
+build as shown in the installation guide. The change passed the existing-laptop
+hardware test; see [the validation record](STANDARD-DRIVER-VALIDATION.md).
 
 ## Tested base and current reproducibility limit
 
@@ -18,8 +18,9 @@ openFrameworks 0.9.3 and Kinect v1 instructions are historical.
 The runtime export now records the working compiler/library versions, four addon
 Git commits, and local compatibility changes for ofxDatGui and ofxModal.
 See [the dependency record](../dependencies/README.md) and its included patches.
-The exact libfreenect2 archive revision remains unknown because its working tree
-contains no Git metadata. A clean checkout/build has not yet been reproduced.
+The historical custom-driver archive had no Git revision. The replacement
+standard-driver build is pinned to `fd64c5d9b214df6f6a55b4419357e51083f15d93`.
+A complete fresh-system build of the framework/addons/application remains unverified.
 
 ## Check dependencies before compiling
 

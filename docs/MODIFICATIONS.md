@@ -182,3 +182,22 @@ Added `docs/INSTALL_LINUX.md`, README prerequisites and links, and notices in th
 build/dependency documentation about the custom libfreenect2 requirement. This
 is a documentation-only change: no application, driver, preflight, or installer
 behavior is changed. Clean-system validation remains pending.
+
+## Standard Kinect driver transition — 2026-10-25
+
+`KinectGrabber.cpp`/`.h` no longer declare or call the custom RGB-decoding helper.
+The worker retains standard driver streaming, color listeners, and calibration
+registration. It drains available unused RGB frames with a nonblocking readiness
+check during RUN. Application color processing remains controlled by the existing
+worker action mechanism. Added a compiled behavior fixture for the changed
+setter/frame handling. The standard-driver build passed the recorded laptop
+hardware test; complete fresh-system framework/addon validation remains open.
+
+## Color camera defaults — 2026-10-25
+
+`KinectProjector.cpp`/`.h` restore color preview once when entering Setup or
+calibration, including startup with saved RUN preview flags. Existing view
+controls remain functional within each mode. RUN retains its camera-preview
+clearing and projected-map rendering. The operator confirmed the change after
+rebuilding the isolated test. Dependency test fixtures now clear machine-level
+framework/Kinect path overrides within their temporary test environment.
