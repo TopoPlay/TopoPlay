@@ -2,29 +2,20 @@
 
 For the step-by-step process, start with [Install TopoPlay on Ubuntu](INSTALL_LINUX.md).
 
-This source uses standard libfreenect2 APIs and no longer requires the custom
-RGB-decoding helper from the operator's earlier driver. Use a clean upstream
-build as shown in the installation guide. The change passed the existing-laptop
-hardware test; see [the validation record](STANDARD-DRIVER-VALIDATION.md).
+## Framework and platform
 
-## Tested base and current reproducibility limit
+Use the Linux 64-bit openFrameworks 0.12.1 package and standard libfreenect2 at
+`fd64c5d9b214df6f6a55b4419357e51083f15d93`. The installation guide provides
+commands for the driver and the two addon compatibility patches. See
+[dependencies](../dependencies/README.md) for exact addon revisions and licenses.
 
-The operator's working tree uses the openFrameworks package
-`of_v0.12.1_linux64_gcc6_release`. Its existing source folder can keep its old name.
-The package name does not necessarily identify the currently installed compiler version.
-The extensions use Kinect v2 through libfreenect2; the old upstream README's
-openFrameworks 0.9.3 and Kinect v1 instructions are historical.
-
-The runtime export now records the working compiler/library versions, four addon
-Git commits, and local compatibility changes for ofxDatGui and ofxModal.
-See [the dependency record](../dependencies/README.md) and its included patches.
-The historical custom-driver archive had no Git revision. The replacement
-standard-driver build is pinned to `fd64c5d9b214df6f6a55b4419357e51083f15d93`.
-A complete fresh-system build of the framework/addons/application remains unverified.
+Hardware testing used Ubuntu on a Dell Inspiron 5570. A complete fresh-system
+framework/addon/application build remains unverified; see the
+[validation record](STANDARD-DRIVER-VALIDATION.md).
 
 ## Check dependencies before compiling
 
-`bash scripts/build.sh` now runs a read-only dependency check before configuring
+`bash scripts/build.sh` runs a read-only dependency check before configuring
 or compiling. It reports missing `make`, `g++`, and `pkg-config`; missing or
 incomplete openFrameworks/Kinect paths; missing addon source folders; and common
 OpenCV, OpenGL, USB, font, and X11 development libraries. For an explicitly
@@ -124,3 +115,17 @@ Larger projected areas and larger Kinect ROIs have not yet been validated for
 performance, temperature or interaction quality. Physical dimensions alone are
 not a processing-cost estimate; ROI, render resolution, simulation grids and
 active effects also matter. Validate the intended larger setup on its own hardware.
+
+## Local application packaging
+
+After building, you can create a local application/source bundle:
+
+```bash
+python3 scripts/package-release.py --output /chosen/output/TopoPlay-1.0.1-linux.tar.gz
+```
+
+The bundle collects the executable, media, private shared libraries, source, and
+notices. System libraries, graphics drivers, and USB permissions remain external.
+Box calibration and machine-specific preferences are omitted by default. Use
+`--include-box-settings` only for a private backup of the same box. Binary
+redistribution needs a separate dependency/license review and clean-system test.

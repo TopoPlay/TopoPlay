@@ -1,15 +1,24 @@
-# Runtime resources
+# TopoPlay runtime resources
 
-Includes terrain shaders, colors, default renderer XML, generated core artwork,
-font aliases with their license, generated countdown/eruption sounds, and credited
-Friendly Free Sounds thunder. Refer to root ASSETS.md and CREDITS.md.
+Keep this folder with TopoPlay. It contains shaders, terrain textures, color
+maps, default renderer settings, artwork, fonts, and sounds used by the app.
+See [asset origins](../../ASSETS.md) and [credits](../../CREDITS.md) for media
+attribution and permissions.
 
-Calibration, box-startup settings, debug captures, scores, CPU/fan preferences,
-executables and shared libraries are excluded. Calibrate each physical box.
+## Your box settings
 
-The older optional Island/Map game and competitive Sandimals media is omitted
-pending its separate provenance review. Their source is retained; those legacy
-activities are not part of this release's validated feature set. Missing splash
-or reference-map messages for those activities may appear. They need their own
-reviewed data before being used. Regular terrain and the educational extension
-features have their required media in this package.
+Calibrate your own camera/projector arrangement. Settings are saved under
+`settings/`; terrain color maps are under `colorMaps/`. Projector color and
+performance preferences are stored alongside them in this folder. Keep the
+installed application writable by your user and back up wanted settings and
+custom media before updates.
+
+See [Using TopoPlay](../../docs/USING_TOPOPLAY.md) for calibration and operation,
+and [fossil images](dig/fossils/README.txt) for adding buried artwork.
+
+## Optional legacy activities
+
+The supported feature set does not include the optional Island/Map game or
+competitive Sandimals activities. Their media is not bundled. Missing splash
+or reference-map messages may appear for those activities; use the documented
+terrain, weather, volcano, fossil, and demonstration features.

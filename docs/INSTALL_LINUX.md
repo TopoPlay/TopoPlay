@@ -341,7 +341,7 @@ For a new box:
 
 Keep the mount fixed. Recalibrate after changing the mount or projector
 orientation. Camera ROI outlines projected before valid calibration are not a
-reliable alignment test. See [First use and settings](../README.md#first-use-and-settings)
+reliable alignment test. See [Using TopoPlay](USING_TOPOPLAY.md#first-use-and-settings)
 for calibration details and [virtual buttons](VIRTUAL-BUTTONS.md) for gestures.
 
 Close the operator GUI with its X button to quit both windows and the Kinect

@@ -1,37 +1,29 @@
-# Thunder recording: credit and permission record
+# Thunder sound: credit and permission
 
-Credit: **Thunder sound effect by Friendly Free Sounds**
+**Credit:** Thunder sound effect by **Friendly Free Sounds**
 
-Original video: https://www.youtube.com/watch?v=xK_m77VZYnc
-Title supplied by operator: Thunder Sound Effect
-Publication date supplied by operator: April 7, 2023
+**Source:** [Thunder Sound Effect](https://www.youtube.com/watch?v=xK_m77VZYnc)
 
-The operator pasted the creator's description into the project conversation.
-It explicitly permits use in videos, games, animations and other media, and
-requests credit to the channel. That supplied permission is the basis for use
-here; no Creative Commons license identifier or public-domain status is asserted.
-The live YouTube page could not be fetched during preparation of this record.
-Keep this credit and record with distributions of the sound.
+**Source publication date supplied for this record:** April 7, 2023
 
-The WAV was supplied by the operator in the runtime review export. This patch
-restores those exact bytes, without trimming, processing or re-encoding:
+## Permission basis
 
-- Runtime path: `bin/data/rain/thunder.wav`
+The creator's description supplied for this project permits use in videos,
+games, animations, and other media, and requests channel credit. That supplied
+permission is the basis for this recording's use in TopoPlay. Project-use
+confirmation was recorded on October 23, 2026.
+
+The source page was not independently retrieved when this record was prepared;
+identification of the WAV and source URL relies on the information supplied for
+the project. No Creative Commons identifier or public-domain status is asserted.
+Keep this credit and permission record with distributions of the sound.
+
+## Included file
+
+- Path: `bin/data/rain/thunder.wav`
 - SHA-256: `3798a887ff469d0986eb6413514abb66379c1ba398a9308894c34ae70c237c92`
-- PCM WAV, stereo, 44,100 Hz, 16 bits, 1,539,072 frames (34.899592 seconds).
-- The original replacement-asset manifest records this same hash as the prior WAV.
-- This recording replaces the earlier synthesized thunder; the warning and eruption sounds remain synthesized.
-- Matching the operator's supplied file and URL is based on their identification;
-  the WAV metadata does not independently certify authorship of the recording.
+- Format: stereo PCM WAV, 44,100 Hz, 16 bits.
+- Length: 1,539,072 frames, approximately 34.90 seconds.
 
-## Operator confirmation for TopoPlay
-
-The operator confirmed on October 23, 2026 that the original recording is to be
-retained and is permitted for this project's use. This record preserves the
-operator-supplied creator permission and channel credit; it does not invent a
-Creative Commons identifier or describe the recording as generated audio.
-
-An intermediate source-release update substituted generated thunder. The next
-correction restores the exact original WAV identified above. No repository
-history rewrite or change to the installed sandbox is requested. The optional
-`synthesize-thunder.py` recipe is available as an alternative, not the active WAV.
+The supplied recording is included without trimming, processing, or re-encoding.
+WAV metadata alone does not independently certify the recording's authorship.

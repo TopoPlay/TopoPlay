@@ -1,5 +1,11 @@
 # TopoPlay change log
 
+## Documentation for new visitors — 2026-10-25
+
+- Introduce features, requirements, installation, and help in the main README.
+- Add a linked user guide and clarify dependency/runtime READMEs.
+- Simplify asset credits and thunder permission wording while retaining source, attribution, permission scope, file identity, and license notices.
+
 ## Standard Kinect driver and camera preview defaults — 2026-10-25
 
 - Remove the custom libfreenect2 RGB-decoding helper dependency.
