@@ -16,9 +16,28 @@ work. Original notices remain in the source. See [CREDITS.md](CREDITS.md),
 
 The public release contains source, runtime assets, notices and build scripts.
 It does not supply a compiled executable, shared libraries or a prebuilt installer.
-Build TopoPlay using the [Linux build notes](docs/BUILD_LINUX.md) and install its
-external dependencies separately. Original notices and component licenses are
+Start with the **[Ubuntu installation guide](docs/INSTALL_LINUX.md)** for source
+download, required libraries, framework/addon setup, Kinect permissions, building,
+installation, calibration, and troubleshooting. The
+[Linux build notes](docs/BUILD_LINUX.md) provide additional technical details. Original notices and component licenses are
 retained; see [the source-release review](docs/SOURCE-RELEASE-REVIEW.md).
+
+## Installation prerequisites
+
+| Component | Requirement |
+| --- | --- |
+| Framework | openFrameworks **0.12.1**, Linux 64-bit release package |
+| Kinect driver | **Modified libfreenect2** exporting `freenect2_set_rgb_decoding_enabled`; matching source/patch is not yet published |
+| Build tools | Python 3, GCC/G++, Make, CMake, Git, pkg-config |
+| Common libraries | OpenCV, OpenGL/GLU/GLEW/GLFW, libusb, TurboJPEG, FreeType, HarfBuzz, X11 libraries, and the framework's additional dependencies |
+| Addons | ofxCv, ofxDatGui, ofxModal, ofxParagraph, ofxOpenCv, ofxXmlSettings; recorded revisions and two compatibility patches |
+| Camera/display | Kinect v2 with power adapter and USB 3, working desktop graphics, projector |
+
+**A fresh installation is currently blocked by the unpublished custom Kinect
+driver modification.** The current dependency check does not detect that missing
+symbol. See the [driver checkpoint](docs/INSTALL_LINUX.md#5-kinect-driver-and-permissions)
+before building. No Microsoft Windows Kinect SDK is required for this Ubuntu setup.
+Exact package commands and download/setup steps are in the installation guide.
 
 ## Local installation after building
 

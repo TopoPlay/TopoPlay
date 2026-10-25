@@ -1,5 +1,11 @@
 # TopoPlay change log
 
+## Ubuntu installation guide — 2026-10-25
+
+- Document source downloads, system libraries, openFrameworks, recorded addons/patches, Kinect permissions/testing, building, calibration, installation, updates, and troubleshooting.
+- Add a prerequisite table and installation-guide links to the main README and dependency/build documents.
+- Identify the unpublished custom libfreenect2 symbol as a fresh-install blocker; do not claim a stock driver or the current preflight verifies this requirement.
+
 ## Build dependency guidance — 2026-10-25
 
 - Check common build tools, framework/Kinect paths, addon sources, and development libraries before configuring or compiling.

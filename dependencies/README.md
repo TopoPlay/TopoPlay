@@ -1,5 +1,17 @@
 # Recorded working dependencies
 
+For installation commands and checkpoints, see [the Ubuntu installation guide](../docs/INSTALL_LINUX.md).
+
+## Unpublished Kinect driver modification
+
+`src/KinectProjector/KinectGrabber.cpp` directly calls
+`freenect2_set_rgb_decoding_enabled` from the working custom libfreenect2 build.
+The captured dependency record does not include its implementation or a
+reproducible patch. Stock upstream libfreenect2 is not a complete substitute.
+Capturing and publishing that modified source is required before a new-user
+build can be considered reproducible. The current preflight checks driver files
+and common libraries, but does not check this symbol.
+
 The operator's export verified openFrameworks **0.12.1** in `ofConstants.h`.
 It reported Ubuntu **26.04.1 LTS**, GCC **15.2.0**, GNU Make **4.4.1**, OpenCV
 **4.10.0**, libusb **1.0.29**, and libturbojpeg **2.1.5**. These are observed

@@ -175,3 +175,10 @@ tests. `build.sh` checks Python and runs preflight before configuration/compilat
 configuration still writes the same machine-local paths after the check passes.
 README and Linux build instructions explain missing dependency guidance and
 manual installation. No application C++ or runtime settings are changed.
+
+## Ubuntu installation guide — 2026-10-25
+
+Added `docs/INSTALL_LINUX.md`, README prerequisites and links, and notices in the
+build/dependency documentation about the custom libfreenect2 requirement. This
+is a documentation-only change: no application, driver, preflight, or installer
+behavior is changed. Clean-system validation remains pending.

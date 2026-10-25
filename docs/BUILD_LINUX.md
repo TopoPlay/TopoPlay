@@ -1,5 +1,12 @@
 # Linux build and dependency notes
 
+For the step-by-step process, start with [Install TopoPlay on Ubuntu](INSTALL_LINUX.md).
+
+**Driver prerequisite:** the application calls the custom
+`freenect2_set_rgb_decoding_enabled` symbol. Its matching driver modification is
+not yet included in the public source. A standard upstream driver alone cannot
+satisfy this link dependency; see the installation guide before building.
+
 ## Tested base and current reproducibility limit
 
 The operator's working tree uses the openFrameworks package
