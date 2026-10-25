@@ -29,8 +29,16 @@ not tools for quantitative hydrology.
 | ![Lava and smoke across the terrain](docs/screenshots/volcano-lava.png) | ![A dark storm cloud and rain over the terrain](docs/screenshots/rain-cloud.png) |
 | Lava and smoke spread across the landscape. | A storm cloud brings rain to the landscape. |
 
-Both images show projector output. See the [user guide](docs/USING_TOPOPLAY.md)
-for the control window and illustrated demonstrations.
+The terrain, lava, rain, and fossil images show projector output.
+
+| Fossil discovery | RUN control window |
+| --- | --- |
+| ![Fully revealed Triceratops illustration in Fossil mode](docs/screenshots/fossil-revealed.png) | ![TopoPlay RUN controls around the terrain preview](docs/screenshots/gui-run.png) |
+| Dig to reveal a buried fossil illustration. | Adjust appearance, interactions, demonstrations, and performance. |
+
+See the [user guide](docs/USING_TOPOPLAY.md) for the full-size control window,
+illustrated demonstrations, and the fossil reveal sequence. The installation
+guide includes [calibrated ROI examples](docs/INSTALL_LINUX.md#calibrated-roi-examples).
 
 ## What you need
 

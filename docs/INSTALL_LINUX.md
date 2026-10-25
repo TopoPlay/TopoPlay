@@ -344,6 +344,23 @@ orientation. Camera ROI outlines projected before valid calibration are not a
 reliable alignment test. See [Using TopoPlay](USING_TOPOPLAY.md#first-use-and-settings)
 for calibration details and [virtual buttons](VIRTUAL-BUTTONS.md) for gestures.
 
+### Calibrated ROI examples
+
+After calibration, use the color-camera view to check your selected region and
+**Show ROI on sand** to inspect its projection. These example images show the
+same setup in the control window and projector output:
+
+| Camera ROI in Setup | Projected ROI outlines |
+| --- | --- |
+| ![Selected ROI outlined in blue in the Kinect color-camera preview](screenshots/gui-calibrated-roi.png) | ![Red and green calibrated ROI outlines on the projector output](screenshots/projector-calibrated-roi.png) |
+
+The blue rectangle marks the selected camera ROI. In the projector output, red
+uses measured depth and green uses reference-plane depth. Both are projections
+of the same ROI; they are not separate camera/projector boundaries. Check these
+only after successful calibration. See [the full-size examples](USING_TOPOPLAY.md#checking-the-calibrated-roi)
+for details. Then turn off the ROI overlay, enter RUN, check terrain alignment,
+and save your box settings.
+
 Close the operator GUI with its X button to quit both windows and the Kinect
 worker. Minimizing or closing the laptop lid does not quit the application.
 

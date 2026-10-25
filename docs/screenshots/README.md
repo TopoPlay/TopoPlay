@@ -1,8 +1,8 @@
 # TopoPlay screenshots
 
-These screenshots show TopoPlay's rendered projector output and application
-interface. They are not photographs of a physical sandbox. Demonstration hands
-are animated artwork displayed by the application.
+The feature images show TopoPlay's rendered projector output; GUI images show
+the application interface. The Setup ROI image includes the live color-camera
+feed. Demonstration hands are animated artwork displayed by the application.
 
 | File | What it shows |
 | --- | --- |
@@ -12,6 +12,11 @@ are animated artwork displayed by the application.
 | [demo-storm.png](demo-storm.png) | Animated hand artwork illustrating storm building |
 | [demo-volcano.png](demo-volcano.png) | Animated hand artwork illustrating volcano building |
 | [gui-run.png](gui-run.png) | RUN control window with terrain preview and settings panels |
+| [fossil-buried.png](fossil-buried.png) | Fossil mode active before digging |
+| [fossil-partial.png](fossil-partial.png) | Partly uncovered fossil illustration |
+| [fossil-revealed.png](fossil-revealed.png) | Fully revealed Triceratops illustration |
+| [gui-calibrated-roi.png](gui-calibrated-roi.png) | Setup after calibration with selected camera ROI |
+| [projector-calibrated-roi.png](projector-calibrated-roi.png) | Red and green projections of the calibrated ROI |
 
 Images are supplied screenshots, retained at their original resolution without
 image editing. The [user guide](../USING_TOPOPLAY.md) explains the controls.

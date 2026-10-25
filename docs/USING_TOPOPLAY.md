@@ -70,6 +70,27 @@ Frame-rate controls are available in the application. Optional administrator-lev
 CPU controls require separate system configuration; the installer does not set them up.
 
 
+### Checking the calibrated ROI
+
+These screenshots show Setup after a successful calibration. Use them to
+recognize the camera ROI and the projected alignment outlines.
+
+![Setup color-camera view with the selected sandbox ROI outlined in blue](screenshots/gui-calibrated-roi.png)
+
+**Control window:** the blue rectangle marks the selected sandbox region in the
+Kinect color-camera view. The outer red rectangle frames the camera preview.
+The status panel shows that the ROI, base plane, and projector/Kinect calibration
+are available. The camera feed shows this example setup, not rendered terrain.
+
+![Projector output with red and green outlines of the calibrated ROI](screenshots/projector-calibrated-roi.png)
+
+**Projector output:** enable **Show ROI on sand** to inspect the calibrated
+region. Red uses measured depth; green uses reference-plane depth. Both outlines
+represent the same camera ROI. They do not represent separate camera and
+projector boundaries. These projected outlines are meaningful only after valid
+calibration. Turn the outline display off when you finish checking alignment,
+then enter RUN to view the terrain and select **Save box settings**.
+
 ## Fossil discoveries
 
 Fossil mode randomly selects a T. rex, a Triceratops, a Pteranodon
@@ -77,6 +98,14 @@ Fossil mode randomly selects a T. rex, a Triceratops, a Pteranodon
 Each new round uses a random angle and 65–100% of the maximum size that safely
 fits inside the sandbox ROI. The buried image stays centered and fixed while
 you dig. Immediate image repeats are avoided when another readable image exists.
+
+| Buried | Partially uncovered | Fully revealed |
+| --- | --- | --- |
+| ![Fossil mode active with the fossil covered by sand](screenshots/fossil-buried.png) | ![Skull, ribs, and legs partly exposed while other areas remain covered](screenshots/fossil-partial.png) | ![Complete Triceratops fossil illustration revealed](screenshots/fossil-revealed.png) |
+
+The green bone icon indicates Fossil mode is active. Digging gradually reveals
+the buried artwork. These are projector-output screenshots of a stylized
+Triceratops illustration, not photographs of real fossils.
 
 Turn Fossil mode off and on with the bone button or GUI to begin another round.
 Allow five seconds for the starting terrain reference to settle, then dig.
