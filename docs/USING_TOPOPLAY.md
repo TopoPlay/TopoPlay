@@ -70,6 +70,19 @@ Frame-rate controls are available in the application. Optional administrator-lev
 CPU controls require separate system configuration; the installer does not set them up.
 
 
+### Following calibration progress
+
+The bottom-left **Calibration step** line shows **LOW** while collecting the
+lower surface and **HIGH** while collecting the raised board. Each stage counts
+checkerboard captures from `# 1/5` to `# 5/5`. Follow the flatten-sand prompt first,
+wait for the raised-board prompt, then keep the board steady during HIGH capture.
+See the [four illustrated calibration steps](INSTALL_LINUX.md#calibration-prompts-and-progress).
+
+Judge the new attempt by its final result. A green calibrated line visible
+during collection can belong to an existing mapping. If the final status shows
+**Projector/Kinect not calibrated** in red, inspect the accompanying message
+and retry; see the [failed-calibration example](INSTALL_LINUX.md#failed-calibration-status).
+
 ### Recognizing checkerboard detection
 
 | First surface | Board in place |
@@ -176,4 +189,3 @@ On Ubuntu you may need to right-click it and choose **Allow Launching**. Desktop
 icons must be enabled by the desktop environment; the installer does not change
 extensions or system preferences. The shortcut uses the bundled TopoPlay logo when available.
 Removing registration also removes this installation's managed desktop shortcut.
-

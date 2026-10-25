@@ -20,6 +20,11 @@ feed. Demonstration hands are animated artwork displayed by the application.
 | [calibration-first-surface.png](calibration-first-surface.png) | Color debug capture with detected checkerboard corners on the first surface |
 | [calibration-board.png](calibration-board.png) | Color debug capture with the board in place and detected corners |
 | [calibration-processed.png](calibration-processed.png) | Processed grayscale input used for checkerboard detection |
+| [calibration-flatten-prompt.png](calibration-flatten-prompt.png) | Prompt to flatten the sand before calibration |
+| [calibration-low-progress.png](calibration-low-progress.png) | LOW capture progress, showing # 1/5 in the status panel |
+| [calibration-board-prompt.png](calibration-board-prompt.png) | Raised-board prompt after LOW # 5/5 |
+| [calibration-high-progress.png](calibration-high-progress.png) | HIGH capture progress, showing # 1/5 in the status panel |
+| [calibration-failed-status.png](calibration-failed-status.png) | Failed calibration status with a clipped raised-board depth-separation message |
 
 Images are supplied screenshots or calibration debug captures, retained at
 their original resolution without image editing. The three checkerboard examples

@@ -344,6 +344,42 @@ orientation. Camera ROI outlines projected before valid calibration are not a
 reliable alignment test. See [Using TopoPlay](USING_TOPOPLAY.md#first-use-and-settings)
 for calibration details and [virtual buttons](VIRTUAL-BUTTONS.md) for gestures.
 
+### Calibration prompts and progress
+
+Follow the prompts in order and watch **Calibration step** in the bottom-left
+status panel. **LOW** identifies the lower-surface captures; **HIGH** identifies
+the raised-board captures. The `# 1/5` through `# 5/5` counter tracks the five
+checkerboard captures in each stage, rather than individual detected corners.
+Click an image to inspect its status text at full size.
+
+1. **Flatten the sand.** Prepare the lower surface, then press **OK**.
+
+   ![Calibration dialog asking the operator to flatten the sand](screenshots/calibration-flatten-prompt.png)
+
+2. **Wait for LOW captures.** The example status reads **CALIBRATION (LOW) # 1/5**.
+   Leave the lower surface undisturbed while the application collects captures.
+
+   ![Calibration running with LOW capture 1 of 5 in the bottom-left status panel](screenshots/calibration-low-progress.png)
+
+3. **Position the raised board when prompted.** This screenshot shows **LOW # 5/5**
+   and the next instruction: place a flat board at least **30 mm closer to the
+   Kinect** than the lower surface. Keep it steady, then press **OK**.
+
+   ![Raised-board instruction after the fifth LOW capture](screenshots/calibration-board-prompt.png)
+
+4. **Wait for HIGH captures and the final result.** The status now reads
+   **CALIBRATION (HIGH) # 1/5**. Keep the board steady until the application finishes.
+   This progress screenshot does not show a completed or accepted calibration.
+
+   ![Calibration running with HIGH capture 1 of 5 in the bottom-left status panel](screenshots/calibration-high-progress.png)
+
+These GUI screenshots show a flat test setup. In a sandbox, follow the same
+sequence using the sand surface and a raised board. During a new attempt, the
+green **Projector/Kinect calibrated** line may still be visible from an existing
+mapping; use the current **Calibration step** and final result to judge the new
+attempt. See [failed-calibration status](#failed-calibration-status) for a rejected
+attempt and [calibrated ROI examples](#calibrated-roi-examples) for the next check.
+
 ### Checkerboard capture examples
 
 These example debug captures show checkerboard detection on flat test surfaces
@@ -484,6 +520,21 @@ packages or dependency/source trees used by other projects.
 | Settings fail to save | Keep the installed folder writable by your user; use Save box settings and check after reopening. |
 | Shortcut absent or untrusted | Check desktop-icon support; choose Allow Launching if offered, or use the application menu. |
 | App still running after minimizing | Close the operator window; verify with `pgrep -a -x TopoPlay`. |
+
+### Failed-calibration status
+
+![Status panel after a rejected calibration with Projector/Kinect not calibrated shown in red](screenshots/calibration-failed-status.png)
+
+In this example, the Kinect is running, the ROI is defined, and the base plane
+is found, but **Projector/Kinect not calibrated** is red. Those other green
+checks do not establish successful projector calibration. The cyan message
+begins **RAISED BOARD NOT MEASURED: NEED AT LEAST 30 MM DEPTH...**; its remainder
+is clipped by the status-panel width in this capture.
+
+For this failure, position the flat board at least **30 mm closer to the Kinect**
+than the lower surface, keep it steady, and repeat calibration. This is a depth
+separation requirement, not a minimum board thickness. Wait for a successful
+final result before checking projected alignment or entering RUN.
 
 ### Processed checkerboard reference
 
