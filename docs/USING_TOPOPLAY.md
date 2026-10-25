@@ -3,6 +3,29 @@
 Start here after following the [Ubuntu installation guide](INSTALL_LINUX.md).
 Keep the camera and projector fixed in position during calibration and use.
 
+## RUN control window
+
+![TopoPlay RUN control window with terrain preview and settings panels](screenshots/gui-run.png)
+
+The center shows a preview of the projected terrain. Surrounding panels provide
+terrain appearance, projector color, calibration/status, trigger, demonstration,
+performance, and animal controls. Open the image to read the controls at full size.
+The values shown are example settings, not required settings for every computer.
+
+## Demonstrations
+
+Idle demonstrations use animated hand artwork to illustrate interactions. The
+hands in these screenshots are part of the demonstration, not a live camera view
+or photographs of a user's hands over the sand.
+
+| Building a storm | Building a volcano |
+| --- | --- |
+| ![Animated hand demonstrating storm-cloud growth](screenshots/demo-storm.png) | ![Animated hands demonstrating a volcano mound with smoke](screenshots/demo-volcano.png) |
+| A hand illustrates growing a storm cloud. | Hands illustrate building a mound, with smoke over the summit. |
+
+These are screenshots of the projector output. The resulting rain and lava
+appear in the [README feature gallery](../README.md#screenshots).
+
 ## First use and settings
 
 Keep the camera and projector rigidly mounted; room brightness can affect calibration success.

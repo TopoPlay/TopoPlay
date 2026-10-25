@@ -8,6 +8,10 @@ TopoPlay is designed for hands-on exploration in classrooms, school events, and
 other educational settings. Its water effects are interactive approximations,
 not tools for quantitative hydrology.
 
+![TopoPlay projector output showing textured terrain, water, vegetation, and aquatic animals](docs/screenshots/terrain.png)
+
+*TopoPlay projector output. This is a software screenshot, not a photograph of a physical sandbox.*
+
 ## What you can do
 
 - Shape terrain with adjustable textures, elevation colors, snow, and vegetation.
@@ -17,6 +21,16 @@ not tools for quantitative hydrology.
 - Reveal fossils and buried artwork with Fossil and Dig modes.
 - Use projected gesture buttons and idle demonstrations.
 - Save your box calibration, appearance, and controls for the next session.
+
+## Screenshots
+
+| Volcano | Rain and clouds |
+| --- | --- |
+| ![Lava and smoke across the terrain](docs/screenshots/volcano-lava.png) | ![A dark storm cloud and rain over the terrain](docs/screenshots/rain-cloud.png) |
+| Lava and smoke spread across the landscape. | A storm cloud brings rain to the landscape. |
+
+Both images show projector output. See the [user guide](docs/USING_TOPOPLAY.md)
+for the control window and illustrated demonstrations.
 
 ## What you need
 
