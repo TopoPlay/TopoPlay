@@ -1,3 +1,8 @@
+/* TopoPlay contributor credit — 2026-10-25
+ * Todd Taylor and Grayson Taylor — TopoPlay development and testing.
+ * This credit applies to TopoPlay contributions; original authors retain
+ * credit for their work. Existing copyright and license notices are preserved.
+ */
 /* TopoPlay modification notice — 2026-10-23
  * Modified from upstream Magic-Sand.
  * This update adds source-release licensing/provenance notices.
@@ -210,4 +215,3 @@ void CSandboxScoreTracker::ResetHighScores(std::string fname)
 	scoreImages.clear();
 	scores.clear();
 }
-

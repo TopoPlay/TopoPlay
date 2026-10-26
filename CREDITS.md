@@ -43,6 +43,8 @@ that every dependency or runtime asset shares the main project's license.
 
 ## TopoPlay educational fork
 
+**Todd Taylor and Grayson Taylor** — TopoPlay development and testing.
+
 The current extensions add storm clouds and runoff/pooling, volcanoes and lava
 rendering, tree fires, wildlife refinements, excavation modes, idle demonstrations,
 projected gestures, saved operator controls, and sustained-use performance work.

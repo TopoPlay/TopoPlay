@@ -154,3 +154,11 @@ Source licensing is described in [COPYING](COPYING). Third-party components,
 fonts, and media retain their own notices and permissions; see
 [Credits](CREDITS.md) and [Assets](ASSETS.md).
 Thunder audio is by **Friendly Free Sounds**, credited in those records.
+
+## TopoPlay development and testing
+
+**Todd Taylor and Grayson Taylor** — TopoPlay development and testing.
+
+TopoPlay builds on Magic-Sand and the other projects credited in
+[CREDITS.md](CREDITS.md). Original authors' copyright and license notices remain
+in place.

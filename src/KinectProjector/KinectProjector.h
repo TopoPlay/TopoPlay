@@ -1,3 +1,8 @@
+/* TopoPlay contributor credit — 2026-10-25
+ * Todd Taylor and Grayson Taylor — TopoPlay development and testing.
+ * This credit applies to TopoPlay contributions; original authors retain
+ * credit for their work. Existing copyright and license notices are preserved.
+ */
 /* TopoPlay modification notice — 2026-10-24
  * Experimental fresh calibration: isolated acquisition, normalized projective
  * fitting, checkerboard symmetry resolution and strict measurement validation.
@@ -408,5 +413,3 @@ private:
 
 
 #endif /* defined(__GreatSand__KinectProjector__) */
-
-

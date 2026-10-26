@@ -1,3 +1,8 @@
+/* TopoPlay contributor credit — 2026-10-25
+ * Todd Taylor and Grayson Taylor — TopoPlay development and testing.
+ * This credit applies to TopoPlay contributions; original authors retain
+ * credit for their work. Existing copyright and license notices are preserved.
+ */
 /* TopoPlay modification notice — 2026-10-23
  * Modified from upstream Magic-Sand.
  * This update adds source-release licensing/provenance notices.
@@ -7,7 +12,8 @@
 /* PROJECT_ATTRIBUTION_V45
  * Magic-Sand: Thomas Wolf and Rasmus R. Paulsen; based in part on
  * Oliver Kreylos / UC Davis / KeckCAVES SARndbox and Gene Kogan's calibration toolkit.
- * Educational extensions developed with operator testing and ChatGPT/Codex.
+ * TopoPlay extensions developed by Todd Taylor and Grayson Taylor
+ * with AI-assisted coding using ChatGPT/Codex.
  * Existing file-level copyrights/licenses remain below. See CREDITS.md and ASSETS.md
  * for dependencies, generated demonstration/volcano media and credited audio.
  */

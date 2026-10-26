@@ -1,3 +1,8 @@
+/* TopoPlay contributor credit — 2026-10-25
+ * Todd Taylor and Grayson Taylor — TopoPlay development and testing.
+ * This credit applies to TopoPlay contributions; original authors retain
+ * credit for their work. Existing copyright and license notices are preserved.
+ */
 #pragma once
 // SPDX-License-Identifier: GPL-2.0-or-later
 // TopoPlay modification: 2026-10-23. Synchronize the finished texture shared by

@@ -1,3 +1,8 @@
+/* TopoPlay contributor credit — 2026-10-25
+ * Todd Taylor and Grayson Taylor — TopoPlay development and testing.
+ * This credit applies to TopoPlay contributions; original authors retain
+ * credit for their work. Existing copyright and license notices are preserved.
+ */
 /* TopoPlay modification notice — 2026-10-23
  * Modified from upstream Magic-Sand.
  * Updated 2026-10-25: use the standard libfreenect2 API; drain unused RGB frames.
